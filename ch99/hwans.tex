@@ -254,6 +254,18 @@ due to timing is approximately zero. She should not worry about the timing error
 Other factors are likely to be more important, e.g., the rocket may not rise exactly
 vertically above the launchpad.
 
+\hwsolnhdr{sum-of-squares-coeff}
+If $\dot{x}=n^2$, and $x$ is a polynomial in $n$, then we must have
+$\dot{x}(n)=x(n)-x(n-1)=n^2$. If $x$ is a polynomial of order $k$, then
+$x(n)$ and $x(n-1)$ both have $n^k$ terms with coefficients of 1, so 
+$\dot{x}$ has no $n^k$ term. We want $\dot{x}$ to have a nonvanishing $n^2$ term,
+so we must have $k\ge 3$. For $k>3$, it's easy to show that the $n^3$ term in
+$x(n)-x(n-1)$ is nonzero, so we must have $k=3$. Let $x(n)=an^3+bn^2+\ldots$, where
+$a$ is the coefficient that we want to prove is $1/3$, and $\ldots$ represents
+lower-order terms. By the binomial theorem, we have $x(n-1)=an^3-3an^2+bn^2+\ldots$,
+and subtracting this from $x(n)$ gives $\dot{x}(n)=3an^3+\ldots$. Since $3a=1$,
+we have $a=1/3$.
+
 \beginsolutions{2}
 
 \hwsolnhdr{fourth-power}

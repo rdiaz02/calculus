@@ -13,7 +13,7 @@ system such as Ubuntu:
   imagemagick
   libjson-ruby
   libjson-perl (version 2.0 or higher)
-  ruby 1.9, packaged as ruby1.9 (karmic koala) or simply as ruby (lucid lynx)
+  ruby 1.9.2 or higher
 
 Go to the main directory (the one where you found this README).
 

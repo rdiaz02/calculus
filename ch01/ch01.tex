@@ -152,9 +152,32 @@ $x(100)=1^2+2^2+\ldots+100^2$ on a computer spreadsheet, we
 get 338,350, which looks suspiciously close to $1,000,000/3$.
 It looks like $x(n)=n^3/3+\ldots$, where
 the dots represent terms involving lower powers of $n$
-such as $n^2$.
+such as $n^2$. The fact that the coefficient of the $n^3$ term
+is $1/3$ is proved in problem \ref{hw:sum-of-squares-coeff} on p.~\pageref{hw:sum-of-squares-coeff}.\label{claim-sum-of-squares-coeff}
 %interp as slope, figure showing x, x', area->, slope<-
 %self-check: visualize for x=13n, x'=13
+
+\smallfig{pyramid}{A pyramid with a volume of $1^2+2^2+3^2$.}
+
+\begin{eg}
+Figure \figref{pyramid} shows a pyramid consisting of a single cubical block on top,
+supported by a $2\times 2$ layer, supported in turn by a $3\times 3$ layer. The total
+volume is $1^2+2^2+3^2$, in units of the volume of a single block. 
+
+Generalizing to the sum $x(n)=1^2+2^2+\ldots+n^2$, and applying the result
+of the preceding paragraph, we find that the volume of such a pyramid is approximately
+$(1/3)Ah$, where $A=n^2$ is the area of the base and $h=n$ is the height.
+
+When $n$ is very large, we can get as good an approximation as we like to
+a smooth-sided pyramid, and the error incurred in $x(n)\approx (1/3)n^3+\ldots$ by omitting the lower-order
+terms $\ldots$ can be made as small as desired.
+
+We therefore conclude that the volume is \emph{exactly} $(1/3)Ah$ for a smooth-sided
+pyramid with these proportions.
+
+This is a special case of a theorem first proved by Euclid (propositions 
+XII-6 and XII-7) two thousand years before calculus was invented.
+\end{eg}
 
 \section{Continuous change}
 
@@ -658,5 +681,12 @@ given the baseline from the launchpad to the camera and the angular height of th
 as determined from analysis of the photo. Comment on the error incurred by the inability to
 snap the photo at exactly the right moment.
 \end{hwwithsoln}
+
+\begin{hwwithsoln}{sum-of-squares-coeff}
+Prove, as claimed on p.~\pageref{claim-sum-of-squares-coeff}, that
+if the sum $1^2+2^2+\ldots+n^2$ is a polynomial, it must be of third
+order, and the coefficient of the $n^3$ term must be $1/3$.
+\end{hwwithsoln}
+
 
 \end{hwsection}

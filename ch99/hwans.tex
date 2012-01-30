@@ -769,6 +769,26 @@ The derivative of $x$ at $t=0$ is undefined, and therefore
 integration followed by differentiation doesn't recover
 the original function $\dot{x}$.
 
+\beginsolutions{4}
+\hwsolnhdr{generalize-integ-by-parts}
+
+It's pretty trivial to generalize from $e$ to $b$. If we write $b^x$ as $e^{x\ln b}$, then
+we can substitute $u=x \ln b$ and reduce the $b\ne e$ case to $b=e$.
+
+The generalization of the exponent of $x$ from 2 to $a$ is less straightforward. To do it
+with $a=2$, we needed two integrations by parts, so clearly if we wanted to do a case with
+$a=37$, we could do it with 37 integrations by parts. However, we would  have no easy way to
+write down the complete answer without going through the whole tedious calculation. Furthermore,
+this is only going to work if $a$ is a positive integer.
+
+\beginsolutions{5}
+
+\hwsolnhdr{x-squared-two-to-x-improper}
+
+The method of finding the indefinite integral is discussed in example \ref{eg:integrate-x-squared-times-exp} on p.~\pageref{eg:integrate-x-squared-times-exp}
+and problem \ref{hw:generalize-integ-by-parts} on p.~\pageref{hw:generalize-integ-by-parts}. The result is
+$-(\ln 2)^{-3}e^{-u}\left(-u^2-2u+2\right)$, where $u=-x\ln 2$. Plugging in the limits of integration, we obtain $2(\ln 2)^{-3}$.
+
 \beginsolutions{6}
 
 \hwsolnhdr{sequence-weierstrass}
@@ -835,6 +855,32 @@ $t\approx \pm\sqrt{3/n}$. The sum diverges by the integral test. Therefore the s
 multiples of $\pi$, which cause $t$ to hit zero immediately without passing through the region where the Taylor series
 is a good approximation.
 
+\hwsolnhdr{sum-of-n-squared-two-to-n}
+Our first impression is that it must converge, since the $2^{-n}$ factor shrinks much more rapidly
+than the $n^2$ factor. To prove this rigorously, we can apply the integral test. 
+The relevant improper integral was carried out in problem \ref{hw:x-squared-two-to-x-improper}
+on p.~\pageref{hw:x-squared-two-to-x-improper}.
+
+Finding the sum is far more difficult, and there is no obvious technique that is guaranteed to work.
+However, the integral test suggests an approach that does lead to a solution. The fact that the
+\emph{indefinite} integral can be evaluated suggests that perhaps the partial sum
+\begin{equation*}
+  S_n = \sum_{j=0}^{n} j^2 2^{-j}
+\end{equation*}
+can also be evaluated. Furthermore, the fact that the integral was of the form $2^{-x}P(x)$, for some
+polynomial $x$, suggests that perhaps $S_n$ is of the same form. Based on this conjecture, we
+try to determine the unknown coefficients in $P(n)=an^2+bn+c$.
+\begin{gather*}
+  S_n-S_{n-1} = n^2 2^{-n} \\
+  n^2 2^{-n} = 2^{-n}\left[-an^2+(4a-b)n-2a+2b-c\right]
+\end{gather*}
+Solving for $a$, $b$, and $c$ results in $P(n)=-n^2-4n-6$. This gives the correct value for the
+difference $S_n-S_{n-1}$, but doesn't give $S_n=0$ as it should. But this is easy to fix simply
+by changing the form of our conjectured partial sum slightly to $S_n=2^{-n}P(n)+k$, where
+$k=6$. Evaluating $\lim_{n\rightarrow\infty}S_n$, we get 6.
+
+\beginscanswers{8}
+
 \hwsolnhdr{addition-theorem-for-sine}
 \begin{align*}
 \sin(a+b) &= \left(e^{i(a+b)}-e^{-i(a+b)}\right)/2i \\
@@ -871,3 +917,15 @@ Our only hope of doing this is to multiply out the two factors that involve comp
 and see if they produce something real. In fact, we can anticipate that it will work, because
 the coefficients are complex conjugates of one another, and when a quadratic has two complex
 roots, they are conjugates. The result is $(x-y)(x^2+xy+y^2)$.
+
+\hwsolnhdr{partial-fraction-high-power}
+We know that integrals of this form can be done, at least in theory, using partial fractions.
+The ten thousand roots of the polynomial will be ten thousand points evenly spaced around
+the unit circle in the complex plane. They can be expressed as $r_k=e^{2\pi k/10000}$ for $k=0$ to 9,999.
+Since all the roots are unequal, the partial-fraction form of the integrand contains only terms
+of the form $A_k/(x-r_k)$. Integrating, we would get a sum of ten thousand terms of the form
+$A_k\ln(x-r_k)$. I also tried inputting the integral into three different pieces of symbolic
+math software: the open-source packages Yacas and Maxima, and the web-based interface to
+Wolfram's proprietary Mathematica software at integrals.com. Maxima gave a partially integrated result after a couple
+of minutes of computation. Yacas crashed. Mathematica's web interface timed out and suggested
+buying a standalone copy of Mathematica.

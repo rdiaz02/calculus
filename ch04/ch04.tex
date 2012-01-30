@@ -335,6 +335,28 @@ parts. Let $u=\ln x$ and $\der v=\der x$.
 \end{align*}
 \end{eg}
 
+\begin{eg}\label{eg:integrate-x-squared-times-exp}
+\egquestion Evaluate $\int x^2 e^x \:\der x$.
+
+\eganswer
+Integration by parts lets us split the integrand into two factors, integrate one, differentiate the
+other, and then do that integral. Integrating or differentiating $e^x$ does nothing. Integrating
+$x^2$ increases the exponent, which makes the problem look harder, whereas differentiating $x^2$
+knocks the exponent down a step, which makes it look easier. Let $u=x^2$ and $\der v=e^x \der x$,
+so that $\der u=2x\der x$ and $v=e^x$. We then have
+\begin{equation*}
+  \int x^2 e^x \:\der x = x^2 e^x - 2 \int x e^x\der x \qquad .
+\end{equation*}
+Although we don't immediately know how to evaluate this new integral, we can subject it to the
+same type of integration by parts, now with $u=x$ and $\der v=e^x \der x$. After the second
+integration by parts, we have:
+\begin{align*}
+  \int x^2 e^x \:\der x &= x^2 e^x - 2 \left(x e^x -\int e^x\der x \right) \\
+                        &= x^2 e^x - 2 \left(x e^x - e^x \right) \\
+                        &= (x^2-2x+2)e^x \\
+\end{align*}
+\end{eg}
+
 \subsection{Partial fractions}\index{integration!methods of!partial fractions}\index{partial fractions}
 
 Given a function like
@@ -355,6 +377,17 @@ But note that the original form is easily integrated to give
 \end{multline*}
 while faced with the form \linebreak[4] $-2/(x^2-1)$, we wouldn't have known how to
 integrate it.
+
+Note that the original function was of the form $(-1)/\ldots+(+1)/\ldots$
+It's not a coincidence that the two constants on top, $-1$ and $+1$, are opposite in sign
+but equal in absolute value. To see why, consider the behavior of
+this function for large values of $x$. Looking at the form
+$-1/(x-1)+1/(x+1)$, we might naively guess that for a large value of $x$
+such as 1000, it would come out to be somewhere on the order thousandths.
+But looking at the form $-2/(x^2-1)$, we would expect it to be way down in the millionths.
+This seeming paradox is resolved by noting that for large values of $x$,
+the two terms in the form $-1/(x-1)+1/(x+1)$ very nearly cancel. This cancellation
+could only have happened if the constants on top were opposites like plus and minus one.
 
 The idea of the method of partial fractions is that if we want to
 do an integral of the form
@@ -430,12 +463,19 @@ The desired integral is
               &+c \qquad .
 \end{align*}
 
-There are some possible complications:
-(1) The same factor may occur more than once, as in
+As in the simpler example I started off with, where $P$ was second order
+and we got $A_1=-A_2$, in this $n=4$ example we expect that $A_1+A_2+A_3+A_4=0$,
+for otherwise the large-$x$ behavior of the partial-fraction form would be $1/x$ rather than $1/x^4$.
+This is a useful way of checking the result: $-8.93+2.84-4.33+10.4=-.02\approx0$.
+
+There are two possible complications:
+
+First, the same factor may occur more than once, as in
 $x^3-5x^2+7x-3=(x-1)(x-1)(x-3)$. In this example, we have to look for an answer of the form
 $A/(x-1)+B/(x-1)^2+C/(x-3)$, the solution being
 $-.25/(x-1)-.5/(x-1)^2+.25/(x-3)$.
-(2) The roots may be complex. 
+
+Second, the roots may be complex. 
 This is no show-stopper
 if you're using computer software that handles complex numbers gracefully. (You can choose a $c$
 that makes the result real.) 
@@ -449,7 +489,7 @@ In Yacas, this can be done using the \verb@Apart@ function.
 \begin{eg}
 \egquestion Evaluate the integral
 \begin{equation*}
-  \int \frac{\der x}{(x^4-8*x^3+8*x^2-8*x+7}
+  \int \frac{\der x}{(x^4-8x^3+8x^2-8x+7}
 \end{equation*}
 using the method of partial fractions.
 
@@ -610,5 +650,19 @@ Evaluate
   \int \frac{\der x}{x^3-x^2+4x-4} \qquad .
 \end{equation*}
 \end{hw}
+
+\begin{hwwithsoln}{generalize-integ-by-parts}
+Plan, \emph{but do not actually carry out} the steps that would be required in order to generalize
+the result of example \ref{eg:integrate-x-squared-times-exp} on p.~\pageref{eg:integrate-x-squared-times-exp}
+in order to evaluate
+\begin{equation*}
+  \int x^a b^{-x} \:\der x \qquad ,
+\end{equation*}
+where $a$ and $b$ are constants.
+Which is easier, the generalization from 2 to $a$, or the one from $e$ to $b$?
+Do we need to introduce any restrictions on $a$ or $b$?
+\end{hwwithsoln}
+
+
 
 \end{hwsection}

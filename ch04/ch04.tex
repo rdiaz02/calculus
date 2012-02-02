@@ -394,7 +394,7 @@ do an integral of the form
 \begin{equation*}
   \int \frac{\der x}{P(x)} \qquad ,
 \end{equation*}
-where $P(x)$ is an nth order polynomial, we can always rewrite $1/P$ as
+where $P(x)$ is an nth order polynomial, we rewrite $1/P$ as
 \begin{equation*}
   \frac{1}{P(x)} = \frac{A_1}{x-r_1} + \ldots \frac{A_n}{x-r_n} \qquad ,
 \end{equation*}
@@ -413,12 +413,15 @@ to do it. In Yacas, you can find the real roots of a polynomial like this:
 \end{Code}
 
 (I assume it uses Newton's method to find them.) The constants
-$A_i$ can then be determined by algebra, or by the trick of evaluating
+$A_i$ can then be determined by algebra, or by the following trick.
+
+\subsubsection{Numerical method}\label{partial-fractions-numerical}
+Suppose we evaluate
 $1/P(x)$ for a value of $x$ very close to one of the roots.
 In the example of the polynomial 
 $x^4-5x^3-25x^2+65x+84$, let $r_1$ \ldots $r_4$ be the roots in the
 order in which they were returned by Yacas. Then $A_1$ can be
-found by evaluating $1/P(x)$ at $x=3.000001$:
+found by evaluating $1/P(x)$ at $x=3.000001$:\label{residue-method-numerical}
 
 \begin{Code}
   \ii P(x):=x^4-5*x^3-25*x^2
@@ -468,6 +471,7 @@ and we got $A_1=-A_2$, in this $n=4$ example we expect that $A_1+A_2+A_3+A_4=0$,
 for otherwise the large-$x$ behavior of the partial-fraction form would be $1/x$ rather than $1/x^4$.
 This is a useful way of checking the result: $-8.93+2.84-4.33+10.4=-.02\approx0$.
 
+\subsubsection{Complications}
 There are two possible complications:
 
 First, the same factor may occur more than once, as in
@@ -544,6 +548,52 @@ Someone who didn't have the knowledge of the technique might have tried
 the integral using the software, seen it fail, and concluded, incorrectly,
 that the integral was one that simply couldn't be done. A computer is
 no substitute for understanding.
+\end{eg}
+
+\subsubsection{Residue method}\index{residue method}\index{partial fractions!residue method}
+On p.~\pageref{residue-method-numerical} I introduced the trick of carrying out the method of partial fractions
+by evaluating $1/P(x)$ numerically at $x=r_i+\epsilon$, near where $1/P$ blows up. Sometimes we would like
+to have an exact result rather than a numerical approximation. We can accomplish this by using an infinitesimal
+number $\der x$ rather than a small but finite $\epsilon$. For simplicity, let's assume that all of the $n$ roots $r_i$
+are distinct, and that $P$'s highest-order term is $x^n$. We can then write $P$ as the product 
+$P(x)=(x-r_1)(x-r_2)\ldots(x-r_n)$. For products like this, there is a notation $\Pi$ (capital Greek letter ``pi'')
+that works like $\Sigma$ does for sums: 
+\begin{equation*}
+  P(x)=\prod_{i=1}^n(x-r_i) \qquad .
+\end{equation*}
+It's not necessary that the roots be real, but for now we assume that they are.
+We want to find the coefficients $A_i$ such that
+\begin{equation*}
+  \frac{1}{P(x)} = \sum \frac{A_i}{x-r_i} \qquad .
+\end{equation*}
+We then have
+\begin{gather*}
+  \frac{1}{P(r_i+\der x)} \\
+          = \frac{1}{\der x \prod_{j\ne i}(r_i-r_j+\der x)} \\
+          = \frac{1}{\der x \prod_{j\ne i}(r_i-r_j)} + \ldots \\
+          = \frac{A_i}{\der x}+\ldots ,
+\end{gather*}
+where $\ldots$ represents finite terms that are negligible compared to the infinite ones. Multiplying on
+both sides by $\der x$, we have
+\begin{equation*}
+  \frac{1}{P'(r_i)} + \ldots = A_i + \ldots ,
+\end{equation*}
+where the $\ldots$ now stand for infinitesimals which must in fact cancel out, since both $A_i$ and
+$1/P'$ are real numbers.
+
+\begin{eg}
+\egquestion The partial-fraction decomposition of the function
+\begin{equation*}
+\frac{1}{x^4-5x^3-25x^2+65x+84}
+\end{equation*}
+was found numerically on p.~\pageref{partial-fractions-numerical}. The coefficient
+of the $1/(x-3)$ term was found numerically to be $A_1\approx -8.930\times10^{-3}$.
+Determine it exactly using the residue method.
+
+\eganswer
+Differentiation gives $P'(x)=4x^3-15x^2-50x+65$. We then have
+$A_1=1/P'(3)=-1/112$.
+
 \end{eg}
 
 % possible example: integration by parts followed by partial fractions

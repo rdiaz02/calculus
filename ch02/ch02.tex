@@ -1486,15 +1486,14 @@ of the top is 2, and the derivative of the bottom is 1, so the limit is 2/1=2.
 
 \subsection{L'H\^{o}pital's rule (general form)}\label{lhospital-general}\index{L'H\^{o}pital's rule!general form}
 
-Mathematical theorems are often like cars. I own a Honda Fit that is about as bare-bones as you can get
+Mathematical theorems are sometimes like cars. I own a Honda Fit that is about as bare-bones as you can get
 these days, but persuading a dealer to sell me that car was like pulling teeth. The salesman was absolutely
 certain that any sane customer would want to pay an extra \$1,800 for such crucial amenities as
 floor mats and a chrome tailpipe. L'H\^{o}pital's rule in its most general form is a much fancier piece of machinery
 than the stripped down model described on p.~\pageref{lhospital-simple}. The price you pay for the deluxe model
 is that the proof becomes much more complicated than the one-liner that sufficed for the simple version.
-We will develop the luxury features one at a time.
 
-\subsubsection{Multiple applications of the rule}
+\subsubsection{Multiple applications of the rule}\label{lhospital-multiple}
 In the following example, we have to use l'H\^{o}pital's rule twice before we get an answer.
 
 \begin{eg}\label{eg:lhospital-differentiating-twice}
@@ -1513,58 +1512,7 @@ which still produces $0/0$ when we plug in $x=\pi$. Going again, we get
 \end{equation*}
 \end{eg}
 
-The proof that this always works can be broken down into two steps.
-
-Step 1: We first have to establish a stronger form of l'H\^{o}pital's rule
-that states that $\lim u/v=\lim \dot{u}/\dot{v}$ rather than $\lim u/v=\dot{u}/\dot{v}$.
-This form is stronger, because in a case like example \ref{eg:lhospital-differentiating-twice},
-$\dot{u}/\dot{v}$ isn't defined, but $\lim \dot{u}/\dot{v}$ is.
-The stronger form can be proved through a somewhat tedious argument using the mean value theorem (p.~\pageref{mean-value-theorem-stated});
-the interested reader can find it in the Wikipedia article on l'H\^{o}pital's rule.
-
-Step 2: If we need
-to take $n$ derivatives, the proof follows by applying the extra-strength rule $n$ times.\footnote{There is a logical
-subtlety here, which is that although we've given a clearcut recipe for cooking up a proof for any given
-$n$, that isn't quite the same thing as proving it for any positive integer $n$. This is an example where what we really need is a technique called
-proof by induction. In general, proof by induction works like this. Suppose we prove some statement
-about the integer 1, e.g., that l'H\^{o}pital's rule is valid when you take 1 derivative. Now say
-that we can also prove that if that statement holds for a given $n$, it also holds for $n+1$. Proof by
-induction means that we can then consider the statement as having been proved for all positive integers.
-For suppose the contrary. Then there would be some least $n$ for which it failed, but this would
-be a contradiction, since it would hold for $n-1$.}
-
-\subsubsection{Change of variable}
-
-We will build up the rest of the features of l'H\^{o}pital's rule  using the technique of a change of variable. To demonstrate
-how this works, let's imagine that we were starting from an even more stripped down version of l'H\^{o}pital's rule
-than the one on p.~\pageref{lhospital-simple}. Say we only know how to do limits of the form $x\rightarrow0$ rather than
-$x\rightarrow a$ for an arbitrary real number $a$. We could then evaluate $\lim_{x\rightarrow a} u/v$ simply
-by defining $t=x-a$ and reexpressing $u$ and $v$ in terms of $t$.
-
-\begin{eg}
-\egquestion
-Reduce
-\begin{equation*}
-  \lim_{x\rightarrow \pi}\frac{\sin x}{x-\pi}
-\end{equation*}
-to a form involving a limit at 0.
-
-\eganswer
-Define $t=x-\pi$. Solving for $x$ gives $x=t+\pi$. We substitute into the above expression
-to find
-\begin{equation*}
-  \lim_{x\rightarrow \pi}\frac{\sin x}{x-\pi} =   \lim_{t\rightarrow 0}\frac{\sin (t+\pi)}{t} \qquad .
-\end{equation*}
-If all we knew was the $\rightarrow0$ form of l'H\^{o}pital's rule, then this would suffice
-to reduce the problem to one we knew how to solve. In fact, this kind of change of variable works in
-all cases, not just for a limit at $\pi$, so rather then going through a laborious change of variable
-every time, we could simply establish the more general form on p.~\pageref{lhospital-simple}, with
-$\rightarrow a$.
-\end{eg}
-
-This change of variable is a specific example of a much more general method of problem-solving in which we look for a way to reduce a hard problem
-to an easier one. We will encounter changes of variable again on p.~\pageref{change-of-variable-for-integration} as a technique for
-integration, which means undoing the operation of differentiation.
+The reason that this always works is outlined on p.~\pageref{detour:lhospital-proofs}.
 
 \subsubsection{The indeterminate form $\infty/\infty$}
 Consider an example like this:
@@ -1572,7 +1520,7 @@ Consider an example like this:
   \lim_{x\rightarrow 0} \frac{1+1/x}{1+2/x} \qquad .
 \end{equation*}
 This is an indeterminate form like $\infty/\infty$ rather than the $0/0$ form for which we've already
-proved l'H\^{o}pital's rule. It turns out that l'H\^{o}pital's rule applies to examples like this as
+proved l'H\^{o}pital's rule. As proved on p.~\pageref{lhospital-inf-inf}, l'H\^{o}pital's rule applies to examples like this as
 well.
 
 \begin{eg}
@@ -1591,26 +1539,6 @@ Note that we could also have gotten this result without l'H\^{o}pital's rule, si
 multiplying both the top and the bottom of the original expression by $x$ in order to rewrite it
 as $(x+1)/(x+2)$.
 \end{eg}
-
-To prove that l'H\^{o}pital's rule works in general for $\infty/\infty$ forms, 
-we do a change of variable on the \emph{outputs} of the functions $u$ and $v$
-rather than their inputs. Suppose that our original problem is of the form
-\begin{equation*}
-  \lim \frac{u}{v} \qquad ,
-\end{equation*}
-where both functions blow up.\footnote{Think about what happens when only $u$ blows up,
-or only $v$.} We then define $U=1/u$ and $V=1/v$. We now have
-\begin{equation*}
-  \lim \frac{u}{v} = \lim \frac{1/U}{1/V} =\lim \frac{V}{U} \qquad ,
-\end{equation*}
-and since $U$ and $V$ both approach zero, we have reduced the problem to one that can be solved
-using the version of l'H\^{o}pital's rule already proved
-for indeterminate forms like $0/0$. Differentiating and applying the chain rule, we have
-\begin{equation*}
-  \lim \frac{u}{v} = \lim \frac{\dot{V}}{\dot{U}} = \lim \frac{-v^{-2}\dot{v}}{-u^{-2}\dot{u}} \qquad .
-\end{equation*}
-Since $\lim ab=\lim a \lim b$ provided that $\lim a$ and $\lim b$ are both defined, we can rearrange
-factors to produce the desired result.
 
 \subsubsection{Limits at infinity}
 It is straightforward to prove a variant of l'H\^{o}pital's rule that allows us to

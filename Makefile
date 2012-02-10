@@ -37,6 +37,13 @@ book1:
 	@scripts/harvest_aux_files.rb
 	@rm -f $(TERMINAL_OUTPUT) # If pdflatex has a nonzero exit code, we don't get here, so the output file is available for inspection.
 
+all:
+	make book
+	make post
+	make web
+	make handheld
+	make post_handheld
+
 index:
 	$(MAKEINDEX)
 

@@ -10,8 +10,8 @@
       set ytics axis (-2.0,-1.0,1.0,2.0)
       set xzeroaxis linetype -1 linewidth 0.5
       set yzeroaxis linetype -1 linewidth 0.5
-      set label "x" at 6.6,0
-      set label "y" at 0,2.6
+      set label "x" at 6.600000000000001,0
+      set label "y" at 0,2.5999999999999996
       set samples 300
       unset key
       set size square 0.35,0.35

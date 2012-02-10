@@ -123,6 +123,7 @@ the semicircle. Doubling it, we find the expected result of $\pi R^2$ for
 a full circle.
 \end{eg}
 
+
 \section{Applications}
 
 Up until now, the integrand of the innermost integral has always been 1, so
@@ -220,6 +221,47 @@ passing perpendicularly through its center.
     &= \frac{M}{\pi b^2}\int_{R=0}^b R^3 \int_{\phi=0}^{2\pi} \der \phi\:\der R \\
     &= \frac{2 M}{ b^2}\int_{R=0}^b R^3 \:\der R \\
     &= \frac{M b^4}{2}
+\end{align*}
+\end{eg}
+
+%%graph%% poisson-trick func=exp(-x*x) format=eps xlo=-3 xhi=3 ylo=0 yhi=1.1 with=lines xtic_spacing=1 ytic_spacing=1
+\smallfig{poisson-trick}{The function $e^{-x^2}$, example \ref{eg:poisson-trick}.}
+
+\begin{eg}\label{eg:poisson-trick}
+In statistics, the standard ``bell curve'' (also known as the normal distribution or Gaussian)
+is shaped like $e^{-x^2}$. An area under this curve is proportional to the probability that $x$
+lies within a certain range. To fix the constant of proportionality, we need to evaluate
+\begin{equation*}
+  I = \int_{-\infty}^\infty e^{-x^2} \der x \qquad ,
+\end{equation*}
+which corresponds to a probability of 1.
+As discussed on p.~\pageref{impossible-integrals}, the corresponding indefinite integral can't be
+done in closed form. The definite integral from $-\infty$ to $+\infty$, however, can be evaluated
+by the following devious trick due to Poisson. We first write $I^2$ as a product of two copies
+of the integral.
+\begin{equation*}
+  I^2 = \left(\int_{-\infty}^\infty e^{-x^2} \der x\right) \left(\int_{-\infty}^\infty e^{-x^2} \der x\right)
+\end{equation*}
+Since the variable of integration $x$ is a ``dummy'' variable, we can choose it to be any letter of the
+alphabet. Let's change the second one to $y$:
+\begin{equation*}
+  I^2 = \left(\int_{-\infty}^\infty e^{-x^2} \der x\right) \left(\int_{-\infty}^\infty e^{-y^2} \der y\right)
+\end{equation*}
+This is in principle a pointless and trivial change, but it suggests visualizing the right-hand side in
+the Cartesian plane, and considering it as the integral of a single function that depends on both $x$ and $y$:
+\begin{align*}
+  I^2 = \int_{-\infty}^\infty  \int_{-\infty}^\infty \left( e^{-y^2}e^{-x^2}\right) \der x \der y
+\end{align*}
+Switching to polar coordinates, we have
+\begin{align*}
+  I^2 &=  \int_0^{2\pi} \int_0^\infty e^{-R^2} R \der R \:\der \phi \\
+      &=  2\pi \int_0^\infty e^{-R^2} R \der R \qquad ,
+\end{align*}
+which can be done using the substitution $u=R^2$, $\der u=2R \der R$:
+\begin{align*}
+  I^2 &=  2\pi \int_0^\infty e^{-u} (\der u/2) \\
+      &= \pi \\
+  I &= \sqrt{\pi}
 \end{align*}
 \end{eg}
 

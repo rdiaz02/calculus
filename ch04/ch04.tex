@@ -134,7 +134,7 @@ evaluate the derivative.
 
 \subsection{Change of variable}\label{change-of-variable-for-integration}\index{integration!methods of!change of variable}
 
-Sometimes and unfamiliar-looking integral can be made into a familiar one by substituting a
+Sometimes an unfamiliar-looking integral can be made into a familiar one by substituting a
 a new variable for an old one. For example, we know how to integrate $1/x$ --- the answer
 is $\ln x$ --- but what about
 \begin{equation*}
@@ -599,6 +599,81 @@ $A_1=1/P'(3)=-1/112$.
 % possible example: integration by parts followed by partial fractions
 % integration of rational functions: P/Q; Q in terms of partial fractions; divide each term
 
+\subsection{Integrals that can't be done}\label{impossible-integrals}
+
+Integral calculus was invented in the age of powdered wigs and harpsichords, so the original emphasis
+was on expressing integrals in a form that would allow numbers to be plugged in for easy numerical evaluation
+by scribbling on scraps of parchment with a quill pen. This was an era when you might have to travel to a large
+city to get access to a table of logarithms. 
+
+In this computationally impoverished environment, one always
+wanted to get answers in what's known as \emph{closed form} and in terms of \emph{elementary functions}.
+
+A closed form expression means one written using a finite number of operations, as opposed to something
+like the geometric series $1+x+x^2+x^3+\ldots$, which goes on forever.
+
+Elementary functions are usually taken to be addition,
+subtraction, multiplication, division, logs, and exponentials, as well as other functions derivable from
+these. For example, a cube root is allowed, since $\sqrt[3]x=e^{(1/3)\ln x}$, and so are trig functions and their inverses,
+since, as we will see in chapter \ref{ch:complex}, they can be expressed in terms of logs and exponentials.
+
+In theory, ``closed form'' doesn't mean anything unless we state the elementary functions that are allowed.
+In practice, when people refer to closed form, they usually have in mind the particular set of elementary functions described above.
+
+A traditional freshman calculus course spends such a vast amount of time teaching you how to do integrals
+in closed form that it may be easy to miss the fact that this is impossible for the vast majority of
+integrands that you might randomly write down. Here are some examples of impossible integrals:
+
+\begin{align*}
+  & \int e^{-x^2} \der x \\
+  & \int x^x \der x \\
+  & \int e^x \tan x \der x
+\end{align*}
+
+The first of these is a form that is extremely important in statistics (it describes the area under the
+standard ``bell curve''), so you can see that
+impossible integrals aren't just obscure things that don't pop up in real life.
+
+People who are proficient at doing integrals in closed form generally seem to work by a process of pattern
+matching. They recognize certain integrals as being of a form that can't be done, so they know not to try.
+
+\begin{eg}
+\egquestion Students! Stand at attention! You will now evaluate $\int e^{-x^2+7x} \der x$ in closed form.
+
+\eganswer
+No sir, I can't do that. By a change of variables of the form $u=x+c$, where $c$ is a constant,
+we could clearly put this into the form $\int e^{-x^2} \der x$, which we know is impossible.
+\end{eg}
+
+Sometimes an integral such as $\int e^{-x^2} \der x$ is important enough that we want to give it a name,
+tabulate it, and write computer subroutines that can evaluate it numerically. For example, statisticians
+define the ``error function'' $\operatorname{erf}(x)=(2/\sqrt{\pi}) \int e^{-x^2} dx$. Sometimes if you're not sure whether
+an integral can be done in closed form, you can put it into computer software, which will tell you that it
+reduces to one of these functions. You then know that it can't be done in closed form. For example, if you ask the
+popular web site integrals.com to do $\int e^{-x^2+7x} \der x$, it spits back $(1/2)e^{49/4}\sqrt{\pi}\operatorname{erf}(x-7/2)$.
+This tells you both that you shouldn't be wasting your time trying to do the integral in closed form and that
+if you need to evaluate it numerically, you can do that using the erf function.
+
+As shown in the following example, just because an indefinite integral can't be done, that doesn't mean that we can never do
+a related definite integral.
+
+\begin{eg}
+\egquestion Evaluate $\int_0^{\pi/2} e^{-\tan^2 x}(\tan^2x+1)\der x$.
+
+\eganswer The obvious substitution to try is $u=\tan x$, and this reduces the integrand to $e^{-x^2}$.
+This proves that the corresponding indefinite integral is impossible to express in closed form. However,
+the definite integral \emph{can} be expressed in closed form; it turns out to be $\sqrt{\pi}/2$. The trick
+for proving this is given in example \ref{eg:poisson-trick} on p.~\pageref{eg:poisson-trick}.
+\end{eg}
+
+Sometimes computer software can't say anything about a particular integral at all. That doesn't mean that the integral
+can't be done. Computers are stupid, and they may try brute-force techniques that fail because the
+computer runs out of memory or CPU time. For example, the integral $\int \der x/(x^{10000}-1)$ 
+(problem \ref{hw:partial-fraction-high-power}, p.~\pageref{hw:partial-fraction-high-power}) can be
+done in closed form using the techniques of chapter \ref{ch:complex}, and it's not too hard for
+a proficient human to figure out how to attack it, but every computer program I've tried it on has
+failed silently.
+
 \begin{hwsection}
 \begin{hw}
 Graph the function $y=e^x-7x$ and get an approximate idea of where any of its zeroes
@@ -713,6 +788,9 @@ Which is easier, the generalization from 2 to $a$, or the one from $e$ to $b$?
 Do we need to introduce any restrictions on $a$ or $b$?
 \end{hwwithsoln}
 
-
+\begin{hw}
+The integral $\int e^{-x^2}\der x$ can't be done in closed form. Knowing this, use a change
+of variable to write down a different integral that also can't be done in closed form.
+\end{hw}
 
 \end{hwsection}

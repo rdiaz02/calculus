@@ -132,7 +132,7 @@ evaluate the derivative.
 
 \section{Methods of integration}
 
-\subsection{Change of variable}\label{change-of-variable-for-integration}\index{integration!methods of!change of variable}
+\subsection{Change of variable}\label{change-of-variable-for-integration}\index{integration!methods of!change of variable}\index{integration!methods of!substitution}\index{change of variables}\index{substitution}
 
 Sometimes an unfamiliar-looking integral can be made into a familiar one by substituting a
 a new variable for an old one. For example, we know how to integrate $1/x$ --- the answer
@@ -146,6 +146,8 @@ Let $u=2x+1$. Differentiating both sides, we have $\der u=2\der x$, or $\der x=\
        &= \frac{1}{2}\ln u + c \\
        &= \frac{1}{2}\ln(2x+1) +c \qquad .
 \end{align*}
+This technique is known as a change of variable or a substitution. (Because the letter $u$ is often
+employed, you may also see it called $u$-substitution.)
 
 In the case of a definite integral, we have to remember to change the limits of integration
 to reflect the new variable.
@@ -627,6 +629,7 @@ integrands that you might randomly write down. Here are some examples of impossi
 \begin{align*}
   & \int e^{-x^2} \der x \\
   & \int x^x \der x \\
+  & \int \frac{\sin x}{x} \der x \\
   & \int e^x \tan x \der x
 \end{align*}
 
@@ -792,5 +795,16 @@ Do we need to introduce any restrictions on $a$ or $b$?
 The integral $\int e^{-x^2}\der x$ can't be done in closed form. Knowing this, use a change
 of variable to write down a different integral that also can't be done in closed form.
 \end{hw}
+
+\begin{hwwithsoln}{exp-of-power-doable}
+Consider the integral
+\begin{equation*}
+  \int e^{x^p} \der x \qquad ,
+\end{equation*}
+where $p$ is a constant. There is an obvious substitution. If this is to result in
+an integral that can be evaluated in closed form by a series of integrations by parts,
+what are the possible values of $p$? Don't actually complete the integral; just determine
+what values of $p$ will work.
+\end{hwwithsoln}
 
 \end{hwsection}

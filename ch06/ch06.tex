@@ -86,7 +86,7 @@ that if the geometric series converges, so does the series
 \end{equation*}
 whose terms get smaller faster than any base raised to the power $n$.
 
-\emph{Alternating series with decreasing terms\/:} If the terms of a series alternate
+\emph{Alternating series with terms approaching zero\/:} If the terms of a series alternate
 in sign and approach zero, then the series converges.
 
 Sketch of a proof: The even partial sums form an increasing sequence, the odd sums a decreasing one.
@@ -131,6 +131,12 @@ The proof can be obtained by comparing with a geometric series.
 
 \eganswer $R$ is easily proved to be 0, so the sum converges by the ratio test.
 \end{eg}
+
+At this point it will seem like a mystery how anyone could have proved the exact results claimed for
+some of the ``special'' series, such as $1-1/2+1/3-1/4+\ldots=\ln 2$. Problems like these are not the main
+focus of the chapter, and in fact there is no well-defined toolbox of techniques that will allow any such
+``nice'' series to be evaluated exactly. Even a relatively innocent-looking example like $1^{-2}+2^{-2}+3^{-2}+\ldots$
+defeated some of the best mathematicians of Europe for years (see problem \ref{hw:basel-problem}, p.~\pageref{hw:basel-problem}).
 
 \section{Taylor series}\label{sec:taylor}\index{Taylor series}\index{series!Taylor}
 
@@ -456,6 +462,20 @@ some initial terms. (b) Similarly, prove that convergence is unaffected by
 multiplying all the terms by some constant factor.
 \end{hw}
 
+\begin{hw}
+The identity
+\begin{equation*}
+  \int_0^1 x^{-x} \der x = \sum_{n=1}^\infty n^{-n} \qquad .
+\end{equation*}
+is known as the ``Sophomore's dream,'' because at first glance it looks like the
+kind of plausible but false statement that someone would naively dream up.\index{Sophomore's dream}
+Verify it numerically by machine computation.
+\end{hw}
+
+\begin{hwwithsoln}[2]{sum-of-iterated-sine}
+Does $\sin x+\sin \sin x+\sin\sin\sin x+\ldots$ converge?
+\end{hwwithsoln}
+
 \begin{hwwithsoln}[2]{telescoping-series}
 Evaluate 
 \begin{equation*}
@@ -463,12 +483,44 @@ Evaluate
 \end{equation*}
 \end{hwwithsoln}
 
-\begin{hw}
+\begin{hw}[2]
 Evaluate
 \begin{equation*}
-  \sum_{n=0}^\infty \frac{(-1)^n}{2n+1+1/n!}
+  \sum_{n=0}^\infty \frac{(-1)^n}{n+1+1/n!}
 \end{equation*}
 to six decimal places.
+\end{hw}
+
+\begin{hw}[2]\label{hw:basel-problem}
+Euler was the first to prove
+\begin{equation*}
+  \frac{1}{1^2}+\frac{1}{2^2}+\frac{1}{3^2}+\ldots=\frac{\pi^2}{6} \quad .
+\end{equation*}
+This problem had defeated
+other great mathematicians of his time, and was famous enough to be given a special name,
+the Basel problem.\index{Basel problem}\index{Euler} Here we present an argument based closely on Euler's
+and pose the problem of how to exploit Euler's technique further in order to prove
+\begin{equation*}
+  \frac{1}{1^4}+\frac{1}{2^4}+\frac{1}{3^4}+\ldots = \frac{\pi^4}{90} \qquad .
+\end{equation*}
+
+From the Taylor series for the sine function, we find the related series
+\begin{equation*}
+  f(x) = \frac{\sin\sqrt{x}}{\sqrt{x}} = 1 - \frac{x}{3!} + \frac{x^2}{5!} \quad .
+\end{equation*}
+The partial sums of this series are polynomials that approximate $f$ for small values of $x$.
+If such a polynomial were exact rather than approximate, then it would have zeroes at $x=\pi^2$,
+$4\pi^2$, $9\pi^2$, \ldots, and we could write it as the product of its linear factors. Euler assumed, without
+any more rigorous proof, that this factorization procedure could be extended to the infinite series,
+so that $f$ could be represented as the infinite product
+\begin{equation*}
+  f(x) = \left(1-\frac{x}{\pi^2}\right)\left(1-\frac{x}{4\pi^2}\right)\ldots
+\end{equation*}
+By multiplying this out and equating its linear term to that of the Taylor series, we find the claimed
+result.
+
+Extend this procedure to the $x^2$ term and prove the result claimed for the sum of the inverse
+fourth powers of the integers.
 \end{hw}
 
 \begin{hwwithsoln}[2]{improper-integral-of-sin-x-squared}
@@ -477,19 +529,6 @@ Does
   \int_0^\infty \sin (x^2)\:\der x
 \end{equation*}
 converge, or not?
-\end{hwwithsoln}
-
-\begin{hw}[2]
-Prove the identity
-\begin{equation*}
-  \int_0^1 x^{-x} \der x = \sum_{n=1}^\infty n^{-n} \qquad .
-\end{equation*}
-This is known as the ``Sophomore's dream,'' because at first glance it looks like the
-kind of plausible but false statement that someone would naively dream up.\index{Sophomore's dream}
-\end{hw}
-
-\begin{hwwithsoln}[2]{sum-of-iterated-sine}
-Does $\sin x+\sin \sin x+\sin\sin\sin x+\ldots$ converge?
 \end{hwwithsoln}
 
 \begin{hw}[2]

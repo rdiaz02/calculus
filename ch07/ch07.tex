@@ -175,14 +175,15 @@ since $\cos(-\theta)=\cos\theta$, and $\sin(-\theta)=-\sin\theta$.
 \end{align*}
 \end{eg}
 
-\begin{eg}
+\begin{eg}\label{eg:int-exp-cos-euler}
 \egquestion Evaluate
 \begin{equation*}
   \int e^x \cos x \der x
 \end{equation*}
 
-\eganswer This seemingly impossible integral becomes easy if we rewrite
-the cosine in terms of exponentials:
+\eganswer Problem \ref{hw:integration-by-parts-twice-trick} on p.~\pageref{hw:integration-by-parts-twice-trick}
+suggested a special-purpose trick for doing this integral. An approach that doesn't rely on tricks
+is to rewrite the cosine in terms of exponentials:
 \begin{align*}
   \int e^x & \cos x \der x \\
       &= \int e^x \left(\frac{e^{ix}+e^{-ix}}{2}\right) \:\der x \\

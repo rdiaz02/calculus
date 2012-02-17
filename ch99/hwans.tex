@@ -908,6 +908,28 @@ difference $S_n-S_{n-1}$, but doesn't give $S_n=0$ as it should. But this is eas
 by changing the form of our conjectured partial sum slightly to $S_n=2^{-n}P(n)+k$, where
 $k=6$. Evaluating $\lim_{n\rightarrow\infty}S_n$, we get 6.
 
+\hwsolnhdr{open-question-about-sum}
+The function $\cos^2$ averages to 1/2, so we might naively expect that $\cos^n$ would
+average to about $2^{-n/2}$, in which case the sum would converge for any value of $p$ whatsoever.
+But the average is misleading, because there are some ``lucky'' values of $n$ for which $\cos^2 n\approx 1$,
+and these will have a disproportionate effect on the sum.
+We know by the integral test that $\sum 1/n$ diverges,
+but $\sum 1/n^2$ converges, so clearly if $p\ge 2$, then even these occasional ``lucky'' terms will
+not cause divergence. 
+
+What about $p=1$?
+Suppose we have some value of $n$ for which
+$\cos^2 n=1-\epsilon$, where $\epsilon$ is some small number. If this is to happen, then we must have
+$n=k\pi+\delta$, where $k$ is an integer and $\delta$ is small, so that $\cos^2 n\approx 1-\delta^2$,
+i.e., $\epsilon\approx\delta^2$. This occurs with a probability proportional to $\delta$, and the
+resulting contribution to the sum is about $(1-\delta^2)^n/n$, which by the binomial theorem
+is roughly of order of $1/n$ if $n\delta^2\sim1$. This happens with probability $\sim n^{-1/2}$,
+so the expected value of the $n$th term is $\sim n^{-3/2}$. Since $\sum n^{-3/2}$ converges
+by the integral test,
+this suggests, but does not prove rigorously, that we also get convergence for $p=1$.
+
+A similar argument suggests that the sum diverges for $p=0$.
+
 \beginscanswers{8}
 
 \hwsolnhdr{addition-theorem-for-sine}

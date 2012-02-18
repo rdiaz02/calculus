@@ -483,20 +483,34 @@ so we have
 \end{equation*}
 for all values of $x$.
 
-\detour{lhospital-proofs}{Proofs of the generalizations of L'H\^{o}pital's rule}\index{L'H\^{o}pital's rule!general form!proofs}
+\detour{lhospital-proofs}{Proofs of the generalizations of l'H\^{o}pital's rule}\index{l'H\^{o}pital's rule!general form!proofs}
 \emph{Multiple applications of the rule}
 
 Here we prove, as claimed on p.~\pageref{lhospital-multiple}, that the form of L'H\^{o}pital's rule rule given
 on p.~\pageref{lhospital-simple} can be generalized to the case where more than one application of the
-rule is required.
+rule is required. The proof requires material from ch.~\ref{ch:integration} (integration and the mean value theorem),
+and, as discussed in example \ref{eg:taylor-lhospital} on p.~\pageref{eg:taylor-lhospital}, 
+the motivation for the result becomes much more transparent once has read ch.~\ref{ch:sequences} and knows
+about Taylor series. The reader who has arrived here while reading ch.~\ref{ch:infinity} will need to defer reading
+this section of the proof until after ch.~\ref{ch:integration}, and may wish to wait until after ch.~\ref{ch:sequences}.
+
 The proof can be broken down into two steps.
 
 Step 1: We first have to establish a stronger form of l'H\^{o}pital's rule
 that states that $\lim u/v=\lim \dot{u}/\dot{v}$ rather than $\lim u/v=\dot{u}/\dot{v}$.
 This form is stronger, because in a case like example \ref{eg:lhospital-differentiating-twice} on p.~\pageref{eg:lhospital-differentiating-twice},
 $\dot{u}/\dot{v}$ isn't defined, but $\lim \dot{u}/\dot{v}$ is.
-The stronger form can be proved through a somewhat tedious argument using the mean value theorem (p.~\pageref{mean-value-theorem-stated});
-the interested reader can find it in the Wikipedia article on l'H\^{o}pital's rule.
+
+We prove the stronger form using the mean value theorem (p.~\pageref{mean-value-theorem-stated}).
+For simplicity of notation, let's assume that the limit is being taken at $x=0$. By the fundamental theorem
+of calculus, we have $u(x)=\int_0^x \dot{u}(x')\der x'$, and the mean value theorem then tells us that
+for some $p$ between 0 and $x$, $u(x)=x\dot{u}(p)$. Likewise for a $q$ in this interval, $v(x)=x\dot{v}(q)$. 
+So
+\begin{equation*}
+  \lim_{x\rightarrow 0} \frac{u}{v} = \lim_{\substack{p\rightarrow 0 \\q\rightarrow 0}} \frac{\dot{u}(p)}{\dot{v}(q)} \qquad ,
+\end{equation*}
+but since both $p$ and $q$ are closer to zero than $x$ is, the limit as they simultaneously approach zero is
+the same as the limit as $x$ approaches zero.
 
 Step 2: If we need
 to take $n$ derivatives, the proof follows by applying the extra-strength rule $n$ times.\footnote{There is a logical

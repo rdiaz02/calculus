@@ -295,21 +295,6 @@ $y$ was built by composing two functions, $w(x)=-1/x^2$ and $y(w)=e^w$. The func
 because it blows up there. In particular, it doesn't have a well-defined Taylor series at $x=0$.
 \end{eg}
 
-\begin{eg}\label{eg:taylor-lhospital}
-Suppose that we want to evaluate a limit of the form
-\begin{equation*}
-  \lim_{x\rightarrow 0} \frac{u(x)}{v(x)} \qquad ,
-\end{equation*}
-where $u(0)=v(0)=0$.
-L'H\^{o}pital's rule tells us that we can do this by taking derivatives on the top and bottom
-to form $u'/v'$, and that, if necessary, we can do more than one derivative, e.g., $u''/v''$.
-This was proved on p.~\pageref{detour:lhospital-proofs} using the mean value theorem.
-But if $u$ and $v$ are both functions that converge to their Taylor series, then it is
-much easier to see why this works. For example, suppose that their Taylor series both have vanishing
-constant and linear terms, so that $u=ax^2+\ldots$ and $v=bx^2+\ldots$. Then $u''=2a+\ldots$, 
-and $v''=2b+\ldots$.
-\end{eg}
-
 \begin{eg}\label{eg:taylor-sin}
 \egquestion Find the Taylor series of $y=\sin x$, evaluated around $x=0$.
 
@@ -333,6 +318,21 @@ The linear term is the familiar small-angle approximation $\sin x\approx x$.
 The radius of convergence of this series turns out to be infinite. Intuitively the reason for
 this is that the factorials grow extremely rapidly, so that the successive terms in the series eventually start
 diminish quickly, even for large values of $x$.
+\end{eg}
+
+\begin{eg}\label{eg:taylor-lhospital}
+Suppose that we want to evaluate a limit of the form
+\begin{equation*}
+  \lim_{x\rightarrow 0} \frac{u(x)}{v(x)} \qquad ,
+\end{equation*}
+where $u(0)=v(0)=0$.
+L'H\^{o}pital's rule tells us that we can do this by taking derivatives on the top and bottom
+to form $u'/v'$, and that, if necessary, we can do more than one derivative, e.g., $u''/v''$.
+This was proved on p.~\pageref{detour:lhospital-proofs} using the mean value theorem.
+But if $u$ and $v$ are both functions that converge to their Taylor series, then it is
+much easier to see why this works. For example, suppose that their Taylor series both have vanishing
+constant and linear terms, so that $u=ax^2+\ldots$ and $v=bx^2+\ldots$. Then $u''=2a+\ldots$, 
+and $v''=2b+\ldots$.
 \end{eg}
 
 A function's Taylor series doesn't have to be evaluated around $x=0$. The Taylor series around some other

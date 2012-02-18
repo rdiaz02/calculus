@@ -932,6 +932,18 @@ A similar argument suggests that the sum diverges for $p=0$.
 
 \beginscanswers{8}
 
+\hwsolnhdr{fourier-ish-integral}
+First we rewrite the integrand as
+\begin{align*}
+  & \frac{1}{4}\left(e^{ix}+e^{-ix}\right)\left(e^{2ix}+2^{-2ix}\right) \\
+  &= \frac{1}{4}\left(e^{3ix}+e^{-3ix}+e^{ix}+e^{-ix}\right) \qquad .
+\end{align*}
+The indefinite integral is
+\begin{equation*}
+  \frac{1}{12i}\left(e^{3ix}-e^{-3ix}\right)+\frac{1}{4i}\left(e^{ix}-e^{-ix}\right)
+\end{equation*}
+Evaluating this at 0 gives 0, while at $\pi/2$ we find 1/3. The result is 1/3.
+
 \hwsolnhdr{addition-theorem-for-sine}
 \begin{align*}
 \sin(a+b) &= \left(e^{i(a+b)}-e^{-i(a+b)}\right)/2i \\

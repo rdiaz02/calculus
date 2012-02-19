@@ -339,6 +339,27 @@ to ``hyperreal'' while leaving ``rational'' alone; for example, it's not true th
 a rational number that lies between the hyperreal numbers 0 and $0+\der x$, where $\der x$
 is infinitesimal.
 
+\hwsolnhdr{parallel-resistance}
+If $R_1$ is finite and $R_2$ infinite, then $1/R_2$ is infinitesimal,
+$1/R_1+1/R_2$ differs infinitesimally from $1/R_1$, and the combined resistance $R$ differs infinitesimally
+from $R_1$. Physically, the second pipe is blocked or too thin to carry any significant flow,
+so it's as though it weren't present.
+
+If $R_1$ is finite and $R_2$ is infinitesimal, then $1/R_2$ is infinite, $1/R_1+1/R_2$ is
+also infinite, and the combined resistance $R$ is infinitesimal. It's so easy for water to
+flow through $R_2$ that $R_1$ might as well not be present. In the context of electrical circuits
+rather than water pipes, this is known as a short circuit.
+
+\hwsolnhdr{velocity-addition-infinitesimals}
+The velocity addition is only interesting if the infinitesimal velocities $u$ and $v$ are comparable
+to one another, i.e., their ratio is finite. Let's write $\epsilon$ for the size of these infinitesimals,
+so that both $u$ and $v$ can be written as $\epsilon$ multiplied by some finite number.
+Then $1+uv$ differs from 1 by an amount that is on the order of $\epsilon^2$, which is infinitesimally
+small compared to $\epsilon$. The same then holds true for $1/(1+uv)$ as well. The result of velocity
+addition $(u+v)/(1+uv)$ is then $u+v+\ldots$, where $\ldots$ represents quantities of order
+$\epsilon^3$, which are amount to a correction that is infinitesimally small compared to the nonrelativistic
+result $u+v$.
+
 \hwsolnhdr{hundredth}
 This would be a horrible problem if we had to expand this as a polynomial with 101 terms,
 as in chapter 1! But now we know the chain rule, so it's easy. The derivative is
@@ -381,6 +402,13 @@ integral of $a\sin(bx+c)$ would therefore be $-a\cos(bx+c)$, which almost works,
 but not quite. The derivative of this function would be $ab\sin(bx+c)$, with the
 pesky factor of $b$ coming from the chain rule. Therefore what we really wanted was
 the function $-(a/b)\cos(bx+c)$.
+
+\hwsolnhdr{square-three-times}\\*
+The chain rule gives
+\begin{equation*}
+  \frac{\der}{\der x} ((x^2)^2)^2 = 2((x^2)^2)(2(x^2))(2x) = 8x^7 \qquad ,
+\end{equation*}
+which is the same as the result we would have gotten by differentiating $x^8$.
 
 \hwsolnhdr{max-range}\\*
 To find a maximum, we take the derivative and set it equal to zero. The whole factor
@@ -540,7 +568,7 @@ For negative values of $x$, the chain rule tells us that the derivative is $1/|x
 multiplied by $-1$, since $\der|x|/\der x=-1$. This gives $-1/|x|$, which is the same
 as $1/x$, since $x$ is assumed negative.
 
-\pagebreak[4]\hwsolnhdr{neg-power-trick}\\*
+\hwsolnhdr{neg-power-trick}\\*
 Let $f=\der x^k/\der x$ be the unknown function. Then
 \begin{align*}
   1 &= \frac{\der x}{\der x} \\
@@ -549,6 +577,25 @@ Let $f=\der x^k/\der x$ be the unknown function. Then
 \end{align*}
 where we can use the ordinary rule for derivatives of powers on $x^{-k+1}$, since $-k+1$ is positive. Solving for
 $f$, we have the desired result.
+
+\hwsolnhdr{nonstandard-plane}
+Since the parallel postulate can be expressed in terms of algebra through Cartesian geometry, the transfer principle
+tells us that it holds for F as well. But G is defined in terms of the finite hyperreals, so statements about E
+don't carry over to statements about G simply by replacing ``real'' with ``hyperreal,'' and the transfer principle
+does not guarantee that the parallel postulate applies to G. 
+
+In fact, it is easy to find a counterexample in G.
+Let $\epsilon$ be an infinitesimal number. Consider the lines with equations $y=1$ and $y=1+\epsilon x$. Neither
+of these intersects the $x$ axis.
+
+No, it is not valid to associate only E with the plane described by Euclid's axioms. All of Euclid's axioms hold
+equally well in F. F is referred to as a nonstandard model of Euclid's axioms. It has the same relation to standard
+Euclidean geometry as the hyperreals have to the reals. If we want to make up a set of axioms that describes E and
+can't describe F, then we need to add an additional axiom to Euclid's set. An example of such an axiom would be
+an axiom stating that given any two line segments with lengths $\ell_1$ and $\ell_2$, there exists some integer
+$n$ such that $n\ell_1>\ell_2$. Note that although this axiom holds in E, the transfer principle cannot be used
+to show that it holds in F --- it is false in F. The transfer principle doesn't apply because the transfer
+principle doesn't apply to statements that include phrases such as ``for any integer.''
 
 \hwsolnhdr{limit-of-sum}
 
@@ -560,6 +607,34 @@ is then at most $\epsilon/2+\epsilon/2$, which completes the proof.
 (b) Let $\der x$ be infinitesimal. Then the definition of the limit in terms of infinitesimals says that the standard part of $f(a+\der x)$
 differs at most infinitesimally from $F$, and likewise for $g$ and $G$. This means that $f+g$ differs from $F+G$ by the sum of two infinitesimals,
 which is itself an infinitesimal, and therefore the standard part of $f+g$ evaluated at $x+\der x$ equals $F+G$, satisfying the definition.
+
+\hwsolnhdr{limits-with-exp-one-over-x}
+
+The shape of the graph can be found by considering four cases: large negative $x$, small negative $x$, small positive $x$, and large positive $x$.
+In these four cases, the function is respectively close to 1, large, small, and close to 1.
+
+%%graph%% soln-limits-with-exp-one-over-x func=exp(-1/x) format=eps xlo=-3 xhi=3 ylo=0 yhi=8 x=t y=x ytic_spacing=4 more_space_below=6 more_space_above=10
+\smallfig{soln-limits-with-exp-one-over-x}{Problem \ref{hw:limits-with-exp-one-over-x}.}
+
+The four limits correspond to the four cases described above.
+
+\hwsolnhdr{granville-lhospital}
+All five of these can be done using l'H\^{o}pital's rule:
+
+\begin{align*}
+  \lim_{s\rightarrow 1} & \frac{s^3-1}{s-1} = \lim \frac{3s^2}{1} = 3 \\
+  \lim_{\theta\rightarrow 0} & \frac{1-\cos\theta}{\theta^2} = \lim \frac{\sin\theta}{2\theta} = \lim \frac{\cos\theta}{2} = \frac{1}{2} \\
+  \lim_{x\rightarrow \infty} & \frac{5x^2-2x}{x} = \lim \frac{10x-2}{1} = \infty \\
+  \lim_{n\rightarrow \infty} & \frac{n(n+1)}{(n+2)(n+3)} = \lim \frac{n^2+\ldots}{n^2+\ldots}  = \lim \frac{2n+\ldots}{2n+\ldots} = \lim \frac{2}{2} = 1 \\
+  \lim_{x\rightarrow \infty} & \frac{ax^2+bx+c}{dx^2+ex+f} = \lim \frac{2ax+\ldots}{2dx+\ldots} = \lim \frac{2a}{2d} = \frac{a}{d}
+\end{align*}
+In examples 2, 4, and 5, we differentiate more than once in order to get an expression that can be evaluated by
+substitution. In 4 and 5, \ldots represents terms that we anticipate will go away after the second differentiation.
+Most people probably would not bother with l'H\^{o}pital's rule for 3, 4, or 5, being content merely to observe
+the behavior of the highest-order term, which makes the limiting behavior obvious. Examples 3, 4, and 5 can also
+be done rigorously without l'H\^{o}pit rule, by algebraic manipulation;
+we divide on the top and bottom by the highest power of the variable, giving an expression that is no longer
+an indeterminate form $\infty/\infty$.
 
 \hwsolnhdr{lhospital-cos-exp}
 
@@ -586,6 +661,25 @@ in $0.9999917$.
 \hwsolnhdr{lhospital-not-at-zero}
 L'H\^{o}pital's rule gives $\cos t/1\rightarrow -1$. Plugging in $t=3.1$
 gives -0.9997.
+
+\hwsolnhdr{lhospital-at-infinity}
+Let $u=1/x$. Then
+\begin{equation*}
+  \frac{\der f/\der x}{\der g/\der x}  =   \frac{\der f/\der u}{\der g/\der u}  \qquad ,
+\end{equation*}
+simply by algebraic manipulation of the infinitesimals. (If we want to interpret these quantities as
+derivatives, then our notational convention is that they stand for the standard parts of the quotients
+of the infinitesimals, in which case the equality is only for the standard parts.) This equality  holds not just in the limit
+but everywhere that the functions are differentiable. The expression on the left is the thing whose limit we're trying to
+prove equals $\lim f/g$. The right-hand side is equal to $\lim f/g$ by the previously established form of l'H\^{o}pital's rule.
+
+\hwsolnhdr{line-is-continuous}
+By the  definition of
+continuity in terms of infinitesimals, the function is continuous, because an infinitesimal change $\der x$ leads
+to a change $\der y=a\der x$ in the output of the function which is likewise infinitesimals. (This depends on the
+fact that $a$ is assumed to be real, which implies that it is finite.)
+
+Continuity in terms of the Weierstrass limit holds because we can take $\delta=\epsilon/a$.
 
 \hwsolnhdr{nines-forever}
 

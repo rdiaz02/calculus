@@ -1611,7 +1611,7 @@ one that can be expressed as an integer divided by another integer.)\\
 (h) For any real number $x$, $x+1\ne x$.
 \end{hwwithsoln}
 
-\begin{hw}
+\begin{hwwithsoln}{parallel-resistance}
 If we want to pump air or water through a pipe, common sense tells us that it will be easier
 to move a larger quantity more quickly through a fatter pipe. Quantitatively, we can define
 the resistance, $R$, which is the ratio of the pressure difference produced by the pump to the
@@ -1622,9 +1622,9 @@ tells us that they act like a single pipe with some lower resistance. The equati
 combined resistance is $R=1/(1/R_1+1/R_2)$. Analyze the case where one resistance is finite,
 and the other infinite, and give a physical interpretation. Likewise, discuss the case where
 one is finite, but the other is infinitesimal.
-\end{hw}
+\end{hwwithsoln}
 
-\begin{hw}
+\begin{hwwithsoln}{velocity-addition-infinitesimals}
 Naively, we would imagine that if a spaceship traveling at $u=3/4$ of the speed of light was to shoot a missile
 in the forward direction at $v=3/4$ of the speed of light (relative to the ship), then the missile would be traveling at $u+v=3/2$ of the
 speed of light. However, Einstein's theory of relativity tells us that this is too good to be true, because
@@ -1632,7 +1632,7 @@ nothing can go faster than light. In fact, the relativistic equation for combini
 is not $u+v$, but rather $(u+v)/(1+uv)$. In ordinary, everyday life, we never travel at speeds anywhere near
 the speed of light. Show that the nonrelativistic result is recovered in the case where both $u$ and $v$ are
 infinitesimal.
-\end{hw}
+\end{hwwithsoln}
 
 \begin{hwwithsoln}{hundredth}
 Differentiate  $(2x+3)^{100}$ with respect to $x$.
@@ -1657,11 +1657,11 @@ Find a function whose derivative with respect to $x$ equals $a\sin(bx+c)$. That 
 integral of the given function.
 \end{hwwithsoln}
 
-\begin{hw}
+\begin{hwwithsoln}{square-three-times}
 Use the chain rule to differentiate $((x^2)^2)^2$, and show that you get the
 same result you would have obtained by differentiating $x^8$.
 \givecredit{M. Livshits}
-\end{hw}
+\end{hwwithsoln}
 
 
 \begin{hwwithsoln}{max-range}
@@ -1772,14 +1772,14 @@ Use a trick similar to the one used in example \ref{eg:derivative-of-sqrt} to pr
 rule $\der(x^k)/\der x=kx^{k-1}$ applies to cases where $k$ is an integer less than 0.
 \end{hwwithsoln}
 
-\begin{hw}[2]
+\begin{hwwithsoln}[2]{nonstandard-plane}
 The plane of Euclidean geometry is today often described as the set of all coordinate pairs $(x,y)$, where
 $x$ and $y$ are real. We could instead imagine the plane F that is defined in the same way, but with $x$ and $y$ taken from the
 set of hyperreal numbers. As a third alternative, there is the plane G in which the finite hyperreals are used.
 In E, Euclid's parallel postulate holds: given a line and a point not on the line, there exists exactly one line passing
 through the point that does not intersect the line. Does the parallel postulate hold in F? In G?
 Is it valid to associate only E with the plane described by Euclid's axioms?
-\end{hw}
+\end{hwwithsoln}
 
 \begin{hwwithsoln}{limit-of-sum}
 (a) Prove, using the Weierstrass definition of the limit, that if $\lim_{x\rightarrow a} f(x) = F$ and $\lim_{x\rightarrow a} g(x) = G$ both exist,
@@ -1787,7 +1787,7 @@ them $\lim_{x\rightarrow a} [f(x)+g(x)] = F+G$, i.e., that the limit of a sum is
 definition of the limit in terms of infinitesimals.
 \end{hwwithsoln}
 
-\begin{hw}
+\begin{hwwithsoln}{limits-with-exp-one-over-x}
 Sketch the graph of the function $e^{-1/x}$, and evaluate the following four limits:
 \begin{align*}
   \lim_{x\rightarrow 0^{+}} & e^{-1/x} \\
@@ -1795,9 +1795,9 @@ Sketch the graph of the function $e^{-1/x}$, and evaluate the following four lim
   \lim_{x\rightarrow +\infty} & e^{-1/x} \\
   \lim_{x\rightarrow -\infty} & e^{-1/x} 
 \end{align*}
-\end{hw}
+\end{hwwithsoln}
 
-\begin{hw}
+\begin{hwwithsoln}{granville-lhospital}
 Verify the following limits.
 \begin{align*}
   \lim_{s\rightarrow 1} & \frac{s^3-1}{s-1} = 3 \\
@@ -1807,7 +1807,7 @@ Verify the following limits.
   \lim_{x\rightarrow \infty} & \frac{ax^2+bx+c}{dx^2+ex+f} = \frac{a}{d}
 \end{align*}
 \granville
-\end{hw}
+\end{hwwithsoln}
 
 \begin{hwwithsoln}{lhospital-cos-exp}
 Evaluate 
@@ -1842,21 +1842,21 @@ Evaluate
 exactly, and check your result by numerical approximation.
 \end{hwwithsoln}
 
-\begin{hw}\label{hw:lhospital-at-infinity}
+\begin{hwwithsoln}{lhospital-at-infinity}
 Prove a form of l'H\^{o}pital's rule stating that
 \begin{equation*}
 \lim_{x\rightarrow\infty}\frac{f(x)}{g(x)}
 \end{equation*}
 is equal to the limit of $f'/g'$ at infinity. Hint: change to some 
 new variable $u$ such that $x\rightarrow\infty$ corresponds to $u\rightarrow0$.
-\end{hw}
+\end{hwwithsoln}
 
 
-\begin{hw}
-Prove that the linear function $y=ax+b$ is continuous, first using the definition of
+\begin{hwwithsoln}{line-is-continuous}
+Prove that the linear function $y=ax+b$, where $a$ and $b$ are real, is continuous, first using the definition of
 continuity in terms of infinitesimals, and then using the definition in terms of
-limits.
-\end{hw}
+the Weierstrass limit.
+\end{hwwithsoln}
 
 \begin{hwwithsoln}{nines-forever}
 Discuss the following statement: \emph{The repeating decimal $0.999\ldots$ is infinitesimally less than one}.

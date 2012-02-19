@@ -167,6 +167,6 @@ setup:
 	perl -e 'use JSON 2.0'
 
 figures:
-	gen_graph.rb ch*/ch*.tex
+	gen_graph.rb ch*/*.tex
 	# The following requires Inkscape 0.47 or later.
 	perl -e 'foreach my $$f(<ch*/figs/*.svg>) {$$g=$$f; $$g=~s/\.svg$$/.pdf/; unless (-e $$g) {print "g=$$g\n"; $$c="inkscape --export-text-to-path --export-pdf=$$g $$f  --export-area-drawing"; print "$$c\n"; system($$c)}}'

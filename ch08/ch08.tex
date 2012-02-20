@@ -1,412 +1,372 @@
-%%chapter%% 08
-\chapter{Iterated integrals}\label{ch:iterated-int}
+%%chapter%% 07
+\chapter{Complex number techniques}\label{ch:complex}
 
-\section{Integrals inside integrals}\index{integral!iterated}\index{iterated integral}
+\section{Review of complex numbers}\index{complex number}
 
-In various applications, you need to do
-integrals stuck inside other integrals. These are known as
-iterated integrals, or double integrals, triple integrals, etc. Similar concepts
-crop up all the time even when you're not doing calculus, so let's start by
-imagining such an example. Suppose you want to count how many squares there are
-on a chess board, and you don't know how to multiply eight times eight. You
-could start from the upper left, count eight squares across, then continue with
-the second row, and so on, until you how counted every square, giving the result
-of 64. In slightly more formal mathematical language, we could write the following
-recipe: for each row, $r$, from 1 to 8, consider the columns, $c$, from 1 to 8,
-and add one to the count for each one of them. Using the sigma notation, this
-becomes
+For a more detailed treatment of complex numbers, see ch. 3 of
+James Nearing's free book at \\
+\verb@http://www.physics.miami.edu/@
+\verb@nearing/mathmethods/@.
+%
+\fig{complex-numbers}{Visualizing complex numbers as points in a plane.}
+%
+\fig{complex-addition}{Addition of complex numbers is just like addition of vectors,
+although the real and imaginary axes don't actually represent directions in space.}
+%
+\fig{complex-conjugate}{A complex number and its conjugate.}
+
+We assume there is a number, $i$, such that $i^2=-1$.
+The square roots of $-1$ are then $i$ and $-i$. (In electrical engineering work,
+where $i$ stands for current, $j$ is sometimes used instead.) This gives rise
+to a number system, called the complex numbers, containing the real numbers as a subset.
+Any complex number $z$ can be written in the form $z=a+bi$, where $a$ and $b$ are
+real, and $a$ and $b$ are then referred to as the real and imaginary parts of $z$.
+A number with a zero real part is called an imaginary number.\index{imaginary number}
+The complex numbers can be visualized as a plane, figure \figref{complex-numbers}, with the real number line placed
+horizontally like the $x$ axis of the familiar $x-y$ plane, and the imaginary numbers running
+along the $y$ axis. The complex numbers are complete in a way that the real numbers
+aren't: every nonzero complex number has two square roots. For example, 1 is
+a real number, so it is also a member of the complex numbers, and its square roots
+are $-1$ and 1. Likewise, $-1$ has square roots $i$ and $-i$, and the number $i$
+has square roots $1/\sqrt{2}+i/\sqrt{2}$ and $-1/\sqrt{2}-i/\sqrt{2}$.
+
+Complex numbers can be added and subtracted by adding or subtracting their real
+and imaginary parts, figure \figref{complex-addition}. Geometrically, this is the same as vector addition.
+
+The complex numbers $a+bi$ and $a-bi$, lying at equal distances above and below the
+real axis, are called complex conjugates.\index{conjugate}\index{complex number!conjugate of}
+The results of the quadratic formula
+are either both real, or complex conjugates of each other.
+The complex conjugate of a number $z$ is notated as $\bar{z}$ or
+$z^*$.
+
+The complex numbers obey all the same rules of arithmetic as the reals, except that
+they can't be ordered along a single line. That is, it's not possible to say whether
+one complex number is greater than another. We can compare them in terms of their
+magnitudes\index{magnitude of a complex number}\index{complex number!magnitude of}
+(their distances from the origin), but two distinct complex numbers may
+have the same magnitude, so, for example, we can't say whether $1$ is greater than
+$i$ or $i$ is greater than $1$.
+
+\begin{eg}\label{eg:sqrt-i}
+\egquestion Prove that $1/\sqrt{2}+i/\sqrt{2}$ is a square root of $i$.
+
+\eganswer Our proof can use any ordinary rules of arithmetic, except for
+ordering.
+\begin{align*}
+   (\frac{1}{\sqrt{2}}+\frac{i}{\sqrt{2}})^2 
+    & = \frac{1}{\sqrt{2}}\cdot\frac{1}{\sqrt{2}}
+       +\frac{1}{\sqrt{2}}\cdot\frac{i}{\sqrt{2}}\\
+       &+\frac{i}{\sqrt{2}}\cdot\frac{1}{\sqrt{2}}
+       +\frac{i}{\sqrt{2}}\cdot\frac{i}{\sqrt{2}} \\
+    &= \frac{1}{2}(1+i+i-1) \\
+    &= i
+\end{align*}
+\end{eg}
+
+Example \ref{eg:sqrt-i} showed one method of multiplying complex numbers.
+However, there is another nice interpretation of complex multiplication.
+We define the argument of a complex number, figure \figref{complex-polar}, as its angle in the complex plane, measured
+counterclockwise from the positive real axis.\index{argument}\index{complex number!argument of}
+Multiplying two complex numbers then corresponds to multiplying their magnitudes,
+and adding their arguments, figure \figref{complex-multiplication}.
+%
+\fig{complex-polar}{A complex number can be described in terms of its magnitude and
+argument.}
+%
+\fig{complex-multiplication}{The argument of $uv$ is the sum of the arguments of $u$ and $v$.}
+
+\begin{selfcheck}{complex-square-root}
+Using this interpretation of multiplication, how could you find the
+square roots of a complex number?
+\end{selfcheck}
+
+\begin{eg}
+The magnitude $|z|$ of a complex number $z$ obeys
+the identity $|z|^2=z\bar{z}$. To prove this, we first note that $\bar{z}$
+has the same magnitude as $z$, since flipping it to the other side of the
+real axis doesn't change its distance from the origin. Multiplying $z$ by
+$\bar{z}$ gives a result whose magnitude is found by multiplying their
+magnitudes, so the magnitude of
+$z\bar{z}$ must therefore equal  $|z|^2$. Now we just have to prove that
+$z\bar{z}$ is a positive real number. But if, for example, $z$ lies counterclockwise
+from the real axis, then $\bar{z}$ lies clockwise from it. If $z$ has a positive
+argument, then $\bar{z}$ has a negative one, or vice-versa. The sum of their arguments is therefore
+zero, so the result has an argument of zero, and is on the positive real axis.
+\footnote{I cheated a little. If $z$'s argument
+is 30 degrees, then we could say $\bar{z}$'s was -30, but we could also call it
+330. That's OK, because 330+30 gives 360, and an argument of
+360 is the same as an argument of zero.}
+\end{eg}
+
+This whole system was built up in order to make every number have square roots.
+What about cube roots, fourth roots, and so on? Does it get even more weird when
+you want to do those as well? No. The complex number system we've already discussed
+is sufficient to handle all of them. The nicest way of thinking about it is in terms
+of roots of polynomials. In the real number system, the polynomial $x^2-1$ has
+two roots, i.e., two values of $x$ (plus and minus one) that we can plug in to the
+polynomial and get zero. Because it has these two real roots, we can rewrite the
+polynomial as $(x-1)(x+1)$. However, the polynomial $x^2+1$ has no real roots. It's
+ugly that in the real number system, some second-order polynomials have two
+roots, and can be factored, while others can't. In the complex number system,
+they all can. For instance, $x^2+1$ has roots $i$ and $-i$, and can be factored
+as $(x-i)(x+i)$. In general, the fundamental theorem of algebra\index{fundamental theorem of algebra!statement}
+states that in the complex number system,
+any nth-order polynomial can be factored completely
+into $n$ linear factors, and we can also say that it has $n$ complex roots,
+with the understanding that some of the roots may be the same. For instance,
+the fourth-order polynomial $x^4+x^2$ can be factored as $(x-i)(x+i)(x-0)(x-0)$,
+and we say that it has four roots, $i$, $-i$, 0, and 0, two of which happen to be
+the same. This is a sensible way to think about it, because in real life, numbers are
+always approximations anyway, and if we make tiny, random changes
+to the coefficients of this polynomial,
+it will have four distinct roots, of which two just happen to be very close
+to zero. I've given a proof of the fundamental theorem of algebra on
+page \pageref{detour:fn-thm-alg-proof}.
+
+\section{Euler's formula}
+
+Having expanded our horizons to include the complex numbers, it's natural to want to extend
+functions we knew and loved from the world of real numbers so that they can also operate on
+complex numbers. The only really natural way to do this in general is to use Taylor series.
+A particularly beautiful thing happens with the functions $e^x$, $\sin x$, and $\cos x$:
+\begin{align*}
+  e^x    &= 1 + \frac{1}{2!}x^2 + \frac{1}{3!}x^3 + \ldots \\
+  \cos x &= 1 - \frac{1}{2!}x^2 + \frac{1}{4!}x^4 - \ldots \\
+  \sin x &= x - \frac{1}{3!}x^3 + \frac{1}{5!}x^5 - \ldots 
+\end{align*}
+If $x=i\phi$ is an imaginary number, we have
 \begin{equation*}
-  \sum_{r=1}^8 \sum_{c=1}^8 1 \qquad .
+  e^{i\phi} = \cos \phi + i \sin \phi \qquad ,
 \end{equation*}
-If you're familiar with computer programming, then you can think of this as
-a sum that could be calculated using a loop nested inside another loop.
-To evaluate the result (again, assuming we don't know how to multiply, so we
-have to use brute force), we can first evaluate the inside sum, which equals
-8, giving
-\begin{equation*}
-  \sum_{r=1}^8 8 \qquad .
-\end{equation*}
-Notice how the ``dummy'' variable $c$ has disappeared. Finally we do the outside
-sum, over $r$, and find the result of 64.
+a result known as Euler's formula.\index{Euler's formula}
+The geometrical interpretation in the complex
+plane is shown in figure \figref{euler}.
 
-Now imagine doing the same thing with the pixels on a TV screen. The electron
-beam sweeps across the screen, painting the pixels in each row, one at a time.
-This is really no different than the example of the chess board, but because the
-pixels are so small, you normally think of the image on a TV screen as continuous
-rather than discrete.
-This is the idea of an integral in calculus.
-Suppose we want to find the area of a rectangle of width
-$a$ and height $b$, and we don't know that we can just multiply to get the
-area $ab$. The brute force way to do this is to break up the rectangle into
-a grid of infinitesimally small squares, each having width $\der x$ and
-height $\der y$, and therefore the infinitesimal area $\der A = \der x \der y$.\index{area!in Cartesian coordinates}
-For convenience, we'll imagine that the rectangle's
-lower left corner is at the origin. Then the area is given by this integral:
+\fig{euler}{The complex number $e^{i\phi}$ lies on the unit circle.}
+
+Although the result may seem like something out of a freak show at first,
+applying the definition\footnote{See page \pageref{definition-of-exp} for an explanation
+of where this definition comes from and why it makes sense.} of the exponential function
+makes it clear how natural it is:
 \begin{align*}
-  \text{area} &= \int_{y=0}^b \int_{x=0}^a \der A \\
-              &= \int_{y=0}^b \int_{x=0}^a \der x \:\der y 
+  e^x = \lim_{n\rightarrow \infty} \left(1+\frac{x}{n}\right)^n \qquad .
 \end{align*}
-Notice how the leftmost integral sign, over $y$, and the rightmost differential, $\der y$,
-act like bookends, or the pieces of bread on a sandwich. Inside them, we have
-the integral sign that runs over $x$, and the differential $\der x$ that matches
-it on the right. Finally, on the innermost layer, we'd normally
-have the thing we're integrating, but here's it's 1, so I've omitted it. Writing the
-lower limits of the integrals with $x=$ and $y=$ helps to keep it straight which
-integral goes with with differential. The result is
-\begin{align*}
-  \text{area} &= \int_{y=0}^b \int_{x=0}^a \der A \\
-              &= \int_{y=0}^b \int_{x=0}^a \der x \:\der y \\
-              &= \int_{y=0}^b \left(\int_{x=0}^a \der x\right) \der y \\
-              &= \int_{y=0}^b a \:\der y \\
-              &= a \int_{y=0}^b \der y \\
-              &= ab \qquad .
-\end{align*}
+When $x=i\phi$ is imaginary, the quantity $(1+i\phi/n)$ represents a number
+lying just above 1 in the complex plane. For large $n$, $(1+i\phi/n)$
+becomes very close to the unit circle, and its argument is the small
+angle $\phi/n$. Raising this number to the nth power multiplies its
+argument by $n$, giving a number with an argument of $\phi$.
 
-\begin{eg}[Area of a triangle]
-\egquestion Find the area of a 45-45-90 right triangle having legs $a$.
+\smallfig{euler-portrait}{Leonhard Euler (1707-1783)}\index{Euler, Leonhard}
 
-\eganswer Let the triangle's hypotenuse run from the origin to the point $(a,a)$,
-and let its legs run from the origin to $(0,a)$, and then to $(a,a)$. In other
-words, the triangle sits on top of its hypotenuse. Then the integral can be set
-up the same way as the one before, but for a particular value of $y$, values of
-$x$ only run from 0 (on the $y$ axis) to $y$ (on the hypotenuse). We then have
-\begin{align*}
-  \text{area} &= \int_{y=0}^a \int_{x=0}^y \der A \\
-              &= \int_{y=0}^a \int_{x=0}^y \der x \:\der y \\
-              &= \int_{y=0}^a \left(\int_{x=0}^y \der x\right) \der y \\
-              &= \int_{y=0}^a y \:\der y \\
-              &= \frac{1}{2}a^2
-\end{align*}
-Note that in this example, because the upper end of the $x$ values depends
-on the value of $y$, it makes a difference which order we do the integrals
-in. The $x$ integral has to be on the inside, and we have to do it first.
-\end{eg}
-
-\begin{eg}[Volume of a cube]
-\egquestion Find the volume of a cube with sides of length $a$.
-
-\eganswer This is a three-dimensional example, so we'll have integrals
-nested three deep, and the thing we're integrating is the volume
-$\der V = \der x \der y \der z$.
-
-\begin{align*}
-  \text{volume} &= \int_{z=0}^a \int_{y=0}^a \int_{x=0}^a \der V \\
-              &= \int_{z=0}^a \int_{y=0}^a \int_{x=0}^a \der x \: \der y \: \der z \\
-              &= \int_{z=0}^a \int_{y=0}^a a \: \der y \: \der z \\
-              &= a \int_{z=0}^a \int_{y=0}^a \der y \: \der z \\
-              &= a \int_{z=0}^a a \: \der z \\
-              &= a^2 \int_{z=0}^a \der z \\
-              &= a^3
-\end{align*}
-\end{eg}
-
-\begin{eg}[Area of a circle]
-\egquestion Find the area of a circle.
-
-\eganswer To make it easy, let's find the area of a semicircle and then double it.
-Let the circle's radius be $r$, and let it be centered on the origin and bounded
-below by the $x$ axis. Then the curved edge is given by the equation $R^2=x^2+y^2$,
-or $y=\sqrt{R^2-x^2}$. Since the $y$ integral's limit depends on $x$, the $x$
-integral has to be on the outside.
-The area is
-\begin{align*}
-  \text{area} &= \int_{x=-R}^r \int_{y=0}^{\sqrt{R^2-x^2}} \der y \: \der x\\
-              &= \int_{x=-R}^r \sqrt{R^2-x^2} \der x\\
-              &= r \int_{x=-R}^r \sqrt{1-(x/R)^2} \: \der x \qquad .
-\intertext{Substituting $u=x/R$,}
-  \text{area} & = R^2 \int_{u=-1}^1 \sqrt{1-u^2} \: \der u 
-\end{align*}
-The definite integral equals $\pi$, as you can
-find using a trig substitution or simply by looking it
-up in a table, and the result is, as expected, $\pi R^2/2$ for the area of
-the semicircle. Doubling it, we find the expected result of $\pi R^2$ for
-a full circle.
-\end{eg}
-
-
-\section{Applications}
-
-Up until now, the integrand of the innermost integral has always been 1, so
-we really could have done all the double integrals as single integrals. The
-following example is one in which you really need to do iterated integrals.
-
-\smallfig{blondin}{The famous tightrope walker Charles Blondin uses a long pole
-for its large moment of inertia.}
-
-\begin{eg}[Moments of inertia]\index{moment of inertia}
-The moment of inertia\index{moment of inertia} is a measure of how difficult
-it is to start an object rotating (or stop it). For example, tightrope walkers
-carry long poles because they want something with a big moment of inertia.
-The moment of inertia is defined by $I=\int R^2 \der m$, where $\der m$ is
-the mass of an infinitesimally small portion of the object, and $R$ is the
-distance from the axis of rotation.
-
-To start with, let's do an example that doesn't require iterated integrals.
-Let's calculate the moment of inertia of a thin rod of
-mass $M$ and length $L$ about a line perpendicular to the rod
-and passing through its center.
-
-\begin{align*}
-	I	&= \int R^2 \der m \\
-		&= \int_{-L/2}^{L/2} x^2\:\frac{M}{L}\:\der x \\
-\intertext{[$r=|x|$, so $R^2=x^2$]}
-		&= \frac{1}{12}ML^2
-\end{align*}
-
-Now let's do one that requires iterated integrals:
-the moment of inertia of a cube of side $b$,
-for rotation about an axis that passes through its center
-and is parallel to four of its faces.
-
-Let the origin be at the center of the cube, and
-let $x$ be the rotation axis.
-\begin{align*}
-	I	&=  \int R^2 \der m \\
-		&= \rho \int R^2 \der V \\
-		&= \rho \int_{b/2}^{b/2} \int_{b/2}^{b/2} \int_{b/2}^{b/2} \left(y^2+z^2\right)
-					 \der x\: \der y\: \der z \\
-		&= \rho b \int_{b/2}^{b/2} \int_{b/2}^{b/2}  \left(y^2+z^2\right)
-					 \der y \: \der z 
-\end{align*}
-The fact that the last step is a trivial integral results
-from the symmetry of the problem. The integrand of the
-remaining double integral breaks down into two terms, each
-of which depends on only one of the variables, so we break
-it into two integrals,
-\begin{align*}
-		I =& \rho b \int_{b/2}^{b/2} \int_{b/2}^{b/2}  y^2 \der y\: \der z \\
-			&+ \rho b \int_{b/2}^{b/2} \int_{b/2}^{b/2}  z^2 \der y\: \der z
-\end{align*}
-which we know have identical results. We therefore only need
-to evaluate one of them and double the result:
-\begin{align*}
-	I	&= 2\rho b \int_{b/2}^{b/2} \int_{b/2}^{b/2}  z^2 \der y\: \der\: z \\
-		&= 2 \rho b^2 \int_{b/2}^{b/2} z^2 \der z \\
-		&= \frac{1}{6} \rho b^5 \\
-		&= \frac{1}{6} M b^2
-\end{align*}
-\end{eg}
+Euler's formula is used frequently in physics and engineering.
 
 \pagebreak
 
-\section{Polar coordinates}\index{polar coordinates}\index{coordinates!polar}\index{area!in polar coordinates}
+\begin{eg}
+\egquestion Write the sine and cosine functions in terms of exponentials.
 
-\smallfig{descartes}{Ren\'{e} Descartes (1596-1650)}\index{Descartes, R\'{e}ne}
+\eganswer Euler's formula for $x=-i\phi$ gives $\cos \phi - i \sin \phi$,
+since $\cos(-\theta)=\cos\theta$, and $\sin(-\theta)=-\sin\theta$.
+\begin{align*}
+  \cos x &= \frac{e^{ix}+e^{-ix}}{2} \\
+  \sin x &= \frac{e^{ix}-e^{-ix}}{2i} 
+\end{align*}
+\end{eg}
 
-Philosopher and mathematician Ren\'{e} Descartes originated the idea of describing plane
-geometry using $(x,y)$ coordinates measured from a pair of perpendicular coordinate
-axes. These rectangular coordinates are known as Cartesian coordinates, in his honor.\index{Cartesian coordinates}\index{coordinates!Cartesian}
+\begin{eg}\label{eg:int-exp-cos-euler}
+\egquestion Evaluate
+\begin{equation*}
+  \int e^x \cos x \der x
+\end{equation*}
 
-\fig{polar-coordinates}{Polar coordinates.}
+\eganswer Problem \ref{hw:integration-by-parts-twice-trick} on p.~\pageref{hw:integration-by-parts-twice-trick}
+suggested a special-purpose trick for doing this integral. An approach that doesn't rely on tricks
+is to rewrite the cosine in terms of exponentials:
+\begin{align*}
+  \int e^x & \cos x \der x \\
+      &= \int e^x \left(\frac{e^{ix}+e^{-ix}}{2}\right) \:\der x \\
+      &= \frac{1}{2} \int (e^{(1+i)x}+e^{(1-i)x})\:\der x \\
+      &= \frac{1}{2} \left( \frac{e^{(1+i)x}}{1+i}+\frac{e^{(1-i)x}}{1-i} \right)+ c
+\end{align*}
 
-As a logical extension of Descartes' idea, one can find different ways of defining coordinates on
-the plane, such as the polar coordinates in figure \figref{polar-coordinates}. In polar coordinates,
-the differential of area, figure \figref{da-polar} can be written as $\der a=R \:\der R\:\der \phi$. The idea
-is that since $\der R$ and $\der \phi$ are infinitesimally small, the shaded area in the figure is very
-nearly a rectangle, measuring $\der R$ is one dimension and $R\:\der \phi$ in the other. (The latter follows
-from the definition of radian measure.)
+Since this result is the integral of a real-valued function, we'd like it to be
+real, and in fact it is, since the first and second terms are complex conjugates of
+one another. If we wanted to, we could use Euler's theorem to convert it back to
+a manifestly real result.\footnote{In general, the use of complex number techniques to
+do an integral could result in a complex number, but that complex number would
+be a constant, which could be subsumed within the usual constant of integration.}
 
-\smallfig{da-polar}{The differential of area in polar coordinates}
+\end{eg}
 
 \begin{eg}
-\egquestion A disk has mass $M$ and radius $b$. Find its moment of inertia for rotation about the axis
-passing perpendicularly through its center.
+Euler found the equation
+\begin{equation*}
+  \pi = 20\tan^{-1}\frac{1}{7}+8\tan^{-1}\frac{3}{79} \qquad ,
+\end{equation*}
+which allowed the computation of $\pi$ to high precision in the era before electronic
+calculators, since the Taylor series for the inverse tangent converges rapidly for
+small inputs. A cute way of proving the validity of the equation is to calculate
+\begin{equation*}
+  (7+i)^{20}(79+3i)^8
+\end{equation*}
+as follows in Yacas:
+\restartLineNumbers
+\begin{Code}
+  \ii (7+I)^20*(79+3*I)^8;
+  \oo{-1490116119384765625}
+  \oo{      00000000000000}
+\end{Code}
+The fact that it is purely real, and has a negative real part, demonstrates
+that the quantity on the right side of the original equation equals $\pi+2\pi n$,
+where $n$ is an integer. Numerical estimation shows that $n=0$.
+Although the proof was straightforward, it provides zero insight into
+how Euler figured it out in the first place!
+\end{eg}
+
+\section{Partial fractions revisited}\label{sec:complex-part-frac}\index{integration!methods of!partial fractions}\index{partial fractions}
+
+Suppose we want to evaluate the integral
+\begin{equation*}
+  \int \frac{\der x}{x^2+1}
+\end{equation*}
+by the method of partial fractions. The quadratic formula tells us that the
+roots are $i$ and $-i$, setting
+$1/(x^2+1)=A/(x+i)+B/(x-i)$ gives $A=i/2$ and $B=-i/2$, so
+\begin{align*}
+  \int \frac{\der x}{x^2+1} &= \frac{i}{2} \int \frac{\der x}{x+i} \\
+                            &  -\frac{i}{2}\int \frac{\der x}{x-i} \\
+      &= \frac{i}{2}\ln(x+i)\\
+        &-\frac{i}{2}\ln(x-i) \\
+      &= \frac{i}{2}\ln\frac{x+i}{x-i} \qquad .
+\end{align*}
+The attractive thing about this approach, compared with the method
+used on page \pageref{eg:arctan}, is that it doesn't require any
+tricks. If you came across this integral ten years from now, you
+could pull out your old calculus book, flip through it, and say,
+``Oh, here we go, there's a way to integrate one over a polynomial ---
+partial fractions.'' On the other hand, it's odd that we started out
+trying to evaluate an integral that had nothing but real numbers,
+and came out with an answer that isn't even obviously a real number.
+
+But what about that expression $(x+i)/(x-i)$? Let's give it a name,
+$w$. The numerator and denominator are complex conjugates of one
+another. Since they have the same magnitude, we must have $|w|=1$,
+i.e., $w$ is a complex number that lies on the unit circle, the
+kind of complex number that Euler's formula refers to. The numerator
+has an argument of $\tan^{-1}(1/x)=\pi/2-\tan^{-1}x$, and the denominator
+has the same argument but with the opposite sign. Division means subtracting
+arguments, so $\arg w=\pi-2\tan^{-1}x$. That means that the result can
+be rewritten using Euler's formula as
+\begin{align*}
+  \int \frac{\der x}{x^2+1} &= \frac{i}{2}\ln e^{i(\pi-2\tan^{-1}x)} \\
+      &=  \frac{i}{2}\cdot i(\pi-2\tan^{-1}x) \\
+      &=  \tan^{-1}x + c \qquad .
+\end{align*}
+In other words, it's the same result we found before, but found 
+without the need for trickery.
+
+\begin{eg}
+\egquestion Evaluate $\int dx/\sin x$.
 
 \eganswer
+This can be tackled by rewriting the sine function in terms of complex exponentials, changing variables
+to $u=e^{ix}$, and then using partial fractions.
 \begin{align*}
-  I &= \int R^2 \der M \\
-    &= \int R^2 \frac{\der M}{\der a}\:\der a \\
-    &= \int R^2 \frac{M}{\pi b^2}\:\der a \\
-    &= \frac{M}{\pi b^2}\int_{R=0}^b \int_{\phi=0}^{2\pi} R^2 \cdot R \:\der \phi\:\der R \\
-    &= \frac{M}{\pi b^2}\int_{R=0}^b R^3 \int_{\phi=0}^{2\pi} \der \phi\:\der R \\
-    &= \frac{2 M}{ b^2}\int_{R=0}^b R^3 \:\der R \\
-    &= \frac{M b^4}{2}
-\end{align*}
-\end{eg}
-
-%%graph%% poisson-trick func=exp(-x*x) format=eps xlo=-3 xhi=3 ylo=0 yhi=1.1 with=lines xtic_spacing=1 ytic_spacing=1
-\smallfig{poisson-trick}{The function $e^{-x^2}$, example \ref{eg:poisson-trick}.}
-
-\begin{eg}\label{eg:poisson-trick}
-In statistics, the standard ``bell curve'' (also known as the normal distribution or Gaussian)
-is shaped like $e^{-x^2}$. An area under this curve is proportional to the probability that $x$
-lies within a certain range. To fix the constant of proportionality, we need to evaluate
-\begin{equation*}
-  I = \int_{-\infty}^\infty e^{-x^2} \der x \qquad ,
-\end{equation*}
-which corresponds to a probability of 1.
-As discussed on p.~\pageref{impossible-integrals}, the corresponding indefinite integral can't be
-done in closed form. The definite integral from $-\infty$ to $+\infty$, however, can be evaluated
-by the following devious trick due to Poisson. We first write $I^2$ as a product of two copies
-of the integral.
-\begin{equation*}
-  I^2 = \left(\int_{-\infty}^\infty e^{-x^2} \der x\right) \left(\int_{-\infty}^\infty e^{-x^2} \der x\right)
-\end{equation*}
-Since the variable of integration $x$ is a ``dummy'' variable, we can choose it to be any letter of the
-alphabet. Let's change the second one to $y$:
-\begin{equation*}
-  I^2 = \left(\int_{-\infty}^\infty e^{-x^2} \der x\right) \left(\int_{-\infty}^\infty e^{-y^2} \der y\right)
-\end{equation*}
-This is in principle a pointless and trivial change, but it suggests visualizing the right-hand side in
-the Cartesian plane, and considering it as the integral of a single function that depends on both $x$ and $y$:
-\begin{align*}
-  I^2 = \int_{-\infty}^\infty  \int_{-\infty}^\infty \left( e^{-y^2}e^{-x^2}\right) \der x \der y
-\end{align*}
-Switching to polar coordinates, we have
-\begin{align*}
-  I^2 &=  \int_0^{2\pi} \int_0^\infty e^{-R^2} R \der R \:\der \phi \\
-      &=  2\pi \int_0^\infty e^{-R^2} R \der R \qquad ,
-\end{align*}
-which can be done using the substitution $u=R^2$, $\der u=2R \der R$:
-\begin{align*}
-  I^2 &=  2\pi \int_0^\infty e^{-u} (\der u/2) \\
-      &= \pi \\
-  I &= \sqrt{\pi}
-\end{align*}
-\end{eg}
-
-\section{Spherical and cylindrical coordinates}\index{cylindrical coordinates}\index{coordinates!cylindrical}
-
-In cylindrical coordinates $(R,\phi,z)$,
-$z$ measures distance
-along the axis, $R$ measures distance from the axis, and $\phi$
-is an angle that wraps around the axis.
-%
-\fig{cylindrical-coordinates}{Cylindrical coordinates.}
-
-The differential of volume in cylindrical coordinates can be\index{volume!in cylindrical coordinates}
-written as $\der v = R \: \der R \: \der z \der \phi$. This follows from adding a third dimension,
-along the $z$ axis, to the rectangle in figure \figref{da-polar}.
-
-\begin{eg}
-\egquestion Show that the expression for $\der v$ has the right units.
-
-\eganswer Angles are unitless, since the definition of radian measure involves a distance
-divided by a distance. Therefore the only factors in the expression that have units
-are $R$, $\der R$, and $\der z$. If these three factors are measured, say, in meters, then
-their product has units of cubic meters, which is correct for a volume.
-\end{eg}
-
-\begin{eg}
-\egquestion Find the volume of a cone whose height is $h$ and whose base has radius $b$.
-
-\eganswer Let's plan on putting the $z$ integral on the outside of the sandwich. That means
-we need to express the radius $r_{max}$ of the cone in terms of $z$. This comes out nice and
-simple if we imagine the cone upside down, with its tip at the origin.
-Then since we have $r_{max}(z=0)=0$, and $r_{max}(h)=b$, evidently $r_{max}=zb/h$.
-
-\begin{align*}
-  v &= \int \der v \\
-    &= \int_{z=0}^h \int_{r=0}^{zb/h} \int_{\phi=0}^{2\pi} R \: \der\phi \:\der R \: \der z \\
-    &= 2\pi \int_{z=0}^h \int_{r=0}^{zb/h} R \:\der R \: \der z \\
-    &= 2\pi \int_{z=0}^h (zb/h)^2/2 \: \der z \\
-    &= \pi (b/h)^2 \int_{z=0}^h z^2 \: \der z \\
-    &= \frac{\pi b^2 h}{3}
-\end{align*}
-
-As a check, we note that the answer has units of volume. This is the classical result, known
-by the ancient Egyptians, that a cone has one third the volume of its enclosing cylinder.
-\end{eg}
-
-In spherical coordinates\index{spherical coordinates}\index{coordinates!spherical}
-$(r,\theta,\phi)$, the coordinate
-$r$ measures the distance from the origin, and $\theta$ and $\phi$ are analogous to
-latitude and longitude, except that $\theta$ is measured down from the pole rather than
-from the equator.
-
-\fig{spherical-coordinates}{Spherical coordinates.}
-
-The differential of volume in spherical coordinates is $\der v = r^2\sin\theta \:\der r\:\der\theta\:\der\phi$.\index{volume!in spherical coordinates}
-
-\begin{eg}
-\egquestion Find the volume of a sphere.
-
-\eganswer
-\begin{align*}
-  v &= \int \der v \\
-    &= \int_{\theta=0}^\pi \int_{r=0}^{r=b} \int_{\phi=0}^{2\pi} r^2\sin\theta \:\der\phi \:\der r\:\der\theta \\
-    &= 2\pi \int_{\theta=0}^\pi \int_{r=0}^{r=b}  r^2\sin\theta \:\der r\:\der\theta \\
-    &= 2\pi\cdot\frac{b^3}{3} \int_{\theta=0}^\pi \sin\theta \:\der\theta \\
-    &= \frac{4\pi b^3}{3}
+  \int \frac{\der x}{\sin x} &= -2i \int \frac{\der x}{e^{ix}-e^{-ix}} \\
+                             &= -2i \int \frac{\der u/iu}{u-1/u} \\
+                             &= -2\int \frac{\der u}{u^2-1} \\
+                             &= \int \frac{\der u}{u-1} - \int \frac{\der u}{u+1} \\
+                             &= \ln(u-1)-ln(u+1) +c \\
+                             &= \ln \frac{e^{ix}-1}{e^{ix}+1} +c \\
+                             &= \ln(-i\tan(x/2)) +c \\
+                             &= \ln\tan(x/2)+ c'
 \end{align*}
 \end{eg}
 
 \begin{hwsection}
 
-\begin{hw}\label{hw:snail}
-Pascal's snail (named after \'{E}tienne Pascal, father of Blaise Pascal)
-is the shape shown in the figure, defined by $R=b(1+\cos\theta)$ in polar coordinates.\\
-(a) Make a rough visual estimate of its area from the figure.\\
-(b) Find its area exactly, and check against your result from part a.\\
-% ans: 3pi/2
-(c) Show that your answer has the right units.\thompson
-\end{hw}
-
-\fig{hw-snail}{Problem \ref{hw:snail}: Pascal's snail with $b=1$.}
-
 \begin{hw}
-A cone with a curved base is defined by $r\le b$ and $\theta\le \pi/4$ in spherical
-coordinates.\\
-(a) Find its volume.\\
-(b) Show that your answer has the right units.
+Find $\arg i$, $\arg(-i)$, and $\arg 37$, where $\arg z$ denotes the argument of the complex number $z$.
 \end{hw}
 
 \begin{hw}
-Find the moment of inertia of a sphere for rotation about an axis passing through its center.
+Visualize the following multiplications in the complex plane using the interpretation of multiplication
+in terms of multiplying magnitudes and adding arguments: $(i)(i)=-1$, $(i)(-i)=1$, $(-i)(-i)=-1$.
 \end{hw}
 
 \begin{hw}
-A jump-rope swinging in circles has the shape of a sine function. Find the volume enclosed by
-the swinging rope, in terms of the radius $b$ of the circle at the rope's fattest point, and
-the straight-line distance $\ell$ between the ends.
+If we visualize $z$ as a point in the complex plane, how should we visualize $-z$?
 \end{hw}
 
 \begin{hw}
-A curvy-sided cone is defined in cylindrical coordinates by $0\le z\le h$ and
-$R\le kz^2$. (a) What units are implied for the constant $k$? (b) Find the volume
-of the shape. (c) Check that your answer to b has the right units.
-\end{hw}
-
-\begin{hw}\label{hw:nuclear-shape}
-The discovery of nuclear fission\index{nucleus}\index{fission}\index{liquid drop model}
-was originally explained by modeling the atomic nucleus as
-a drop of liquid. Like a water balloon, the drop could spin or vibrate, and if the motion became
-sufficiently violent, the drop could split in half --- undergo fission. It was later learned that
-even the nuclei in matter under ordinary conditions are often not
-spherical but deformed, typically with an elongated ellipsoidal shape like an American football.
-One simple way of describing such a shape is with the equation
-\begin{align*}
-  r \le b[1+c(\cos^2\theta-k)] \qquad ,
-\end{align*}
-where $c=0$ for a sphere, $c>0$ for an elongated shape, and $c<0$ for a flattened one.
-Usually for nuclei in ordinary matter, $c$ ranges from about 0 to $+0.2$. The constant
-$k$ is introduced because without it, a change in $c$ would entail not just a change in
-the shape of the nucleus, but a change in its volume as well. Observations show, on the
-contrary, that the nuclear fluid is highly incompressible, just like ordinary water, so the
-volume of the nucleus is not expected to change significantly, even in violent processes
-like fission. Calculate the volume of the nucleus, throwing away terms of order $c^2$
-or higher, and show that $k=1/3$ is required in order to keep the volume constant.
-\end{hw}
-% c=.95beta, beta is known as Hill-Wheeler, see Ring & Schuck p.34
-
-\begin{hw}[2]
-This problem is a continuation of problem \ref{hw:nuclear-shape}, and assumes the result of that problem
-is already known.
-The nucleus $^{168}\zu{Er}$ has the type of elongated ellipsoidal shape described in that
-problem, with $c>0$. Its mass is
-$2.8\times10^{-25}$ kg, it is observed to have a moment of inertia of $2.62\times10^{-54}\ \kgunit\unitdot\munit^2$
-for end-over-end rotation, and its shape is believed to be described by $b\approx 6\times10^{-15}\ \munit$ and $c\approx 0.2$.
-Assuming that it rotated rigidly, the usual equation for the moment of inertia could be applicable, but
-it may rotate more like a water balloon, in which case its moment of inertia would be significantly less because
-not all the mass would actually flow. Test which type of rotation it is by calculating its moment of inertia for end-over-end
-rotation and comparing with the observed moment of inertia.
+Find four different complex numbers $z$ such that $z^4=1$.
 \end{hw}
 
 \begin{hw}
-Von K\'arm\'an found empirically that when a fluid flows turbulently through a cylindrical pipe, the
-velocity of flow $v$ varies according to the ``1/7 power law,'' $v/v_\zu{o}=(1-r/R)^{1/7}$, where
-$v_\zu{o}$ is the velocity at the center of the pipe, $R$ is the radius of the pipe, and $r$ is the
-distance from the axis. Find the average velocity at which water is transported through the pipe.
+Compute the following: 
+\begin{gather*}
+|1+i| \quad , \quad \arg(1+i) \quad , \\
+  \left|\frac{1}{1+i}\right| \quad , \quad \arg\left(\frac{1}{1+i}\right) \quad , \\
+  \frac{1}{1+i}
+\end{gather*}
 \end{hw}
+
+\begin{hw}
+Write the function $\tan x$ in terms of complex exponentials.
+\end{hw}
+
+\begin{hw}
+Evaluate $\int \sin^3 x\: \der x$.
+\end{hw}
+
+\begin{hwwithsoln}{addition-theorem-for-sine}
+Use Euler's theorem to derive the addition theorems that express
+$\sin(a+b)$ and $\cos(a+b)$ in terms of the sines and cosines of
+$a$ and $b$.
+\end{hwwithsoln}
+
+\begin{hwwithsoln}{fourier-ish-integral}
+Evaluate
+\begin{equation*}
+  \int_0^{\pi/2} \cos x \: \cos 2x \: \der x \qquad .
+\end{equation*}
+\end{hwwithsoln}
+
+
+\begin{hwwithsoln}{cube-roots-of-unity}
+Find every complex number $z$ such that $z^3=1$.
+\end{hwwithsoln}
+
+\begin{hwwithsoln}{factor-cubic}
+Factor the expression $x^3-y^3$ into factors of the lowest possible
+order, using complex coefficients. (Hint: use the result of problem \ref{hw:cube-roots-of-unity}.) Then do the same using real
+coefficients.
+\end{hwwithsoln}
+
+
+\begin{hw}
+Evaluate
+\begin{equation*}
+  \int \frac{\der x}{x^3-x^2+4x-4} \qquad .
+\end{equation*}
+\end{hw}
+
+\begin{hw}
+Evaluate
+\begin{equation*}
+  \int e^{-ax}\cos bx \: \der x \qquad .
+\end{equation*}
+\end{hw}
+
+\begin{hwwithsoln}[2]{partial-fraction-high-power}
+(a) Discuss how the integral
+\begin{equation*}
+  \int \frac{\der x}{x^{10000}-1}
+\end{equation*}
+could be evaluated, in principle, in closed form. (b) See what happens when you try to evaluate it using computer software.
+(c) Express it as a finite sum.
+\end{hwwithsoln}
 
 \end{hwsection}

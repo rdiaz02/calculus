@@ -1,819 +1,652 @@
-%%chapter%% 04
-\chapter{Techniques}
+%%chapter%% 03
+\chapter{Integration}\label{ch:integration}
 
-\section{Newton's method}\label{sec:newtons-method}\index{Newton's method}
+\section{Definite and indefinite integrals}
 
-In the 1958 science fiction novel \textbf{Have Space Suit --- Will Travel}, by
-Robert Heinlein, Kip is a high school student who wants to be an engineer,
-and his father is trying to convince him to stretch himself more if he
-wants to get anything out of his education:
+Because any formula can be differentiated symbolically to find another formula,
+the main motivation for doing derivatives numerically would be if the function to be
+differentiated wasn't known in symbolic form.
+A typical example might be a two-person network computer game, in which player A's
+computer needs to figure out player B's velocity based on knowledge of how her
+position changes over time. But in most cases, it's numerical integration that's
+interesting, not numerical differentiation.
 
-\newcommand{\quoted}[1]{\textit{#1}}
+As a warm-up, let's see how to do a running sum of a discrete function using Yacas.
+The following program computers the sum $1+2+\ldots+100$ discussed to on page
+\pageref{gauss-story}. Now that we're writing real computer programs with Yacas, it would be a good
+idea to enter each program into a file before trying to run it. In fact, some
+of these examples won't run properly if you just start up Yacas and type them in
+one line at a time. If you're using Adobe Reader to read this book, you can
+do \verb@Tools>Basic>Select@, select the program, copy it into a file,
+and then edit out the line numbers.
 
-\quoted{``Why did Van Buren fail of re-election? How do you extract the cube
-root of eighty-seven?''}
-
-\quoted{Van Buren had been a president; that was all I remembered. But I could
-answer the other one. ``If you want a cube root, you look in a table
-in the back of the book.''}
-
-\quoted{Dad sighed. ``Kip, do you think that table was brought down from on
-high by an archangel?''}
-
-We no longer use tables to compute roots, but how does a pocket calculator
-do it? A technique called Newton's method allows us to calculate
-the inverse of any function efficiently, including cases that aren't
-preprogrammed into a calculator. In the example from the novel,
-we know how to calculate the function $y=x^3$ fairly accurately and
-quickly for any given value of $x$, but we want to turn the equation
-around and find $x$ when $y=87$. We start with a rough mental guess:
-since $4^3=64$ is a little too small, and $5^3=125$ is much too big,
-we guess $x\approx 4.3$. Testing our guess, we have
-$4.3^3=79.5$. We want $y$ to get bigger by $7.5$, and we can use
-calculus to find approximately how much bigger $x$ needs to get
-in order to accomplish that:
-\begin{align*}
-  \Delta x &= \frac{\Delta x}{\Delta y} \Delta y \\
-           &\approx \frac{\der x}{\der y} \Delta y \\
-           &= \frac{\Delta y}{\der y/\der x} \\
-           &= \frac{\Delta y}{3x^2} \\
-           &= \frac{\Delta y}{3x^2} \\
-           &= 0.14
-\end{align*}
-Increasing our value of $x$ to $4.3+0.14=4.44$, we find that 
-$4.44^3=87.5$ is a pretty good approximation to 87. If we need higher
-precision, we can go through the process again with $\Delta y=-0.5$,
-giving
-\begin{align*}
-  \Delta x &\approx \frac{\Delta y}{3x^2} \\
-           &= 0.14 \\
-  x &= 4.43 \\
-  x^3 &= 86.9 \qquad .
-\end{align*}
-This second iteration gives an excellent approximation.
-
-\fig{keplerian}{Example \ref{eg:keplerian}.}
-
-\begin{eg}\label{eg:keplerian}
-\egquestion Figure \ref{eg:keplerian} shows the astronomer Johannes Kepler's\index{Kepler, Johannes}\index{planets, motion of} analysis
-of the motion of the planets. The ellipse is the orbit of the planet around
-the sun. At $t=0$, the planet is at its closest approach to the sun, A. At some
-later time, the planet is at point B. The angle $x$ (measured in radians) is defined with reference
-to the imaginary circle encompassing the orbit. Kepler found the equation
-\begin{equation*}
-  2\pi \frac{t}{T} = x-e\sin x \qquad ,
-\end{equation*}
-where the period, $T$, is the time required for the planet to complete a full orbit, and
-the eccentricity of the ellipse, $e$, is a number that measures how much it
-differs from a circle. The relationship is complicated because the planet
-speeds up as it falls inward toward the sun, and slows down again as it swings
-back away from it.
-
-The planet Mercury has $e=0.206$. Find the angle $x$
-when Mercury has completed $1/4$ of a period.
-
-\eganswer We have
-\begin{equation*}
-  y = x-(0.206)\sin x \qquad ,
-\end{equation*}
-and we want to find $x$ when $y=2\pi/4=1.57$. As a first guess, we try $x=\pi/2$ (90 degrees), since the eccentricity of Mercury's
-orbit is actually much smaller than the example shown in the figure, and
-therefore the planet's speed doesn't vary all that much as it goes around the sun.
-For this value of $x$ we have $y=1.36$, which is too small by $0.21$.
-\begin{align*}
-  \Delta x &\approx \frac{\Delta y}{\der y/\der x} \\
-           &= \frac{0.21}{1-(0.206)\cos x} \\
-           &= 0.21
-\end{align*}
-(The derivative $\der y/\der x$ happens to be 1 at $x=\pi/2$.) This gives a new value of $x$, 1.57+.21=1.78.
-Testing it, we have $y=1.58$, which is correct to within rounding errors after only one iteration.
-(We were only supplied with a value of $e$ accurate to three significant figures, so we can't get a result
-with precision better than about that level.)
-\end{eg}
-
-\section{Implicit differentiation}\index{implicit differentiation}\index{differentiation!implicit}
-
-We can differentiate any function that is written as a formula,
-and find a result in terms of a formula. However, sometimes the
-original problem can't be written in any nice way as a formula.
-For example, suppose we want to find $\der y/\der x$ in a case
-where the relationship between $x$
-and $y$ is given by the following equation:
-\begin{equation*}
-  y^7+y = x^7+x^2 \qquad .
-\end{equation*}
-There is no equivalent of the quadratic formula for seventh-order
-polynomials, so we have no way to solve for one variable in terms
-of the other in order to differentiate it. However, we can still
-find $\der y/\der x$ in terms of $x$ and $y$. Suppose we let $x$
-grow to $x+\der x$. Then for example the $x^2$ term will grow
-to $(x+\der x)^2=x+2\der x+\der x^2$. The squared infinitesimal
-is negligible, so the increase in $x^2$ was really just
-$2\der x$, and we've really just computed the derivative of
-$x^2$ with respect to $x$ and multiplied it by $\der x$. In
-symbols,
-\begin{align*}
-  \der(x^2) &= \frac{\der(x^2)}{\der x} \cdot \der x \\
-           &= 2x \: \der x \qquad .
-\end{align*}
-That is, the change in $x^2$ is $2x$ times the change in $x$.
-Doing this to both sides of the original equation, we have
-\begin{gather*}
-  \der(y^7+y) = \der(x^7+x^2)\\
-  7y^6\:\der y + 1\:\der y = 7x^6\:\der x + 2x\:\der x\\
-  (7y^6+1)\der y = (7x^6+2x)\der x \\
-  \frac{\der y}{\der x} = \frac{7x^6+2x}{7y^6+1} \qquad .
-\end{gather*}
-This still doesn't give us a formula for the derivative in
-terms of $x$ alone, but it's not entirely useless. For instance,
-if we're given a numerical value of $x$, we can always use
-Newton's method to find $y$, and then
-evaluate the derivative.
-
-\section{Methods of integration}
-
-\subsection{Change of variable}\label{change-of-variable-for-integration}\index{integration!methods of!change of variable}\index{integration!methods of!substitution}\index{change of variables}\index{substitution}
-
-Sometimes an unfamiliar-looking integral can be made into a familiar one by substituting a
-a new variable for an old one. For example, we know how to integrate $1/x$ --- the answer
-is $\ln x$ --- but what about
-\begin{equation*}
-  \int \frac{\der x}{2x+1}   \qquad ?
-\end{equation*}
-Let $u=2x+1$. Differentiating both sides, we have $\der u=2\der x$, or $\der x=\der u/2$, so
-\begin{align*}
-  \int \frac{\der x}{2x+1}   &= \int \frac{\der u/2}{u} \\
-       &= \frac{1}{2}\ln u + c \\
-       &= \frac{1}{2}\ln(2x+1) +c \qquad .
-\end{align*}
-This technique is known as a change of variable or a substitution. (Because the letter $u$ is often
-employed, you may also see it called $u$-substitution.)
-
-In the case of a definite integral, we have to remember to change the limits of integration
-to reflect the new variable.
-
+\restartLineNumbers
 \begin{eg}
-\egquestion Evaluate $\int_3^4 \der x/(2x+1)$.
-
-\eganswer As before, let $u=2x+1$.
-\begin{align*}
-  \int_{x=3}^{x=4} \frac{\der x}{2x+1}   &= \int_{u=7}^{u=9} \frac{\der u/2}{u} \\
-       &= \left.\frac{1}{2}\ln u\right|_{u=7}^{u=9} \\
-\intertext{Here the notation $\left.\right|_{u=7}^{u=9}$ means to evaluate the function at
-7 and 9, and subtract the former from the latter. The result is}
-  \int_{x=3}^{x=4} \frac{\der x}{2x+1}  &= \frac{1}{2}(\ln 9-\ln 7) \\
-            &=\frac{1}{2}\ln\frac{9}{7} \qquad .
-\end{align*}
+\startcodeeg
+\begin{Code}
+  \nn n := 1;
+  \nn sum := 0;
+  \nn While (n<=100) [
+  \nn   sum := sum+n;
+  \nn   n := n+1;
+  \nn ];
+  \nn Echo(sum);
+\end{Code}
 \end{eg}
 
-Sometimes, as in the next example, a clever substitution is the secret to doing a
-seemingly impossible integral.
-
-\begin{eg}\label{eg:not-so-tricky}
-\egquestion Evaluate
-\begin{equation*}
-  \int \frac{e^{\sqrt x}}{\sqrt x} \der x \qquad .
-\end{equation*}
-
-\eganswer The only hope for reducing this to a form we can do is to let
-$u=\sqrt x$. Then $\der x=\der(u^2)=2u\der u$, so
-\begin{align*}
-  \int \frac{e^{\sqrt x}}{\sqrt x} \der x &=   \int \frac{e^u}{u} \cdot 2u\:\der u \\
-             &= 2 \int e^u \der u \\
-             &= 2e^u \\
-             &= 2e^{\sqrt{x}} \qquad .
-\end{align*}
-\end{eg}
-
-Example \ref{eg:not-so-tricky} really isn't so tricky, since there was only one logical
-choice for the substitution that had any hope of working. The following is a little more
-dastardly.
-
-\begin{eg}\label{eg:arctan}\index{arctangent}
-\egquestion Evaluate
-\begin{equation*}
-  \int \frac{\der x}{1+x^2} \qquad .
-\end{equation*}
-
-\eganswer The substitution that works is $x=\tan u$. First let's see what this does
-to the expression $1+x^2$. The familiar identity
-\begin{align*}
-   &\sin^2 u + \cos^2 u = 1 \qquad ,\\
-\intertext{when divided by $\cos^2 u$, gives}
-   &\tan^2 u + 1 = \sec^2 u \qquad ,
-\end{align*}
-so $1+x^2$ becomes $\sec^2 u$.
-But differentiating both sides of $x=\tan u$ gives
-\begin{align*}
-  \der x &= \der \left[\sin u(\cos u)^{-1}\right] \\
-         &= (\der\sin u)(\cos u)^{-1}\\
-         &  \quad +(\sin u)\der\left[(\cos u)^{-1}\right] \\
-         &= \left(1+\tan^2 u\right)\der u \\
-         &= \sec^2 u\:\der u \qquad , 
-\end{align*}
-so the integral becomes
-\begin{align*}
-  \int \frac{\der x}{1+x^2} &= \int \frac{\sec^2 u \der u}{\sec^2 u} \\
-           &= u+c \\
-           &= \tan^{-1} x+c \qquad .
-\end{align*}
-\end{eg}
-%
-What mere mortal would ever have suspected that the substitution $x=\tan u$ was
-the one that was needed in example \ref{eg:arctan}? One possible answer is to
-give up and do the integral on a computer:
+The semicolons are to separate one instruction from the next, and they become necessary
+now that we're doing real programming.
+Line 1 of this program defines the variable \verb@n@, which will take on all the values
+from 1 to 100. Line 2 says that we haven't added anything up yet, so our running
+sum is zero do far. Line 3 says to keep on repeating the instructions inside the
+square brackets until \verb@n@ goes past 100. Line 4 updates the running sum, and
+line 5 updates the value of \verb@n@. If you've never done any programming before,
+a statement like \verb@n:=n+1@ might seem like nonsense --- how can a number equal
+itself plus one? But that's why we use the \verb@:=@ symbol; it says that we're redefining
+\verb@n@, not stating an equation. If \verb@n@ was previously 37, then after this statement is
+executed, \verb@n@ will be redefined as 38.
+To run the program on a Linux computer,
+do this (assuming you saved the program in a file named \verb@sum.yacas@):
 
 \begin{Code}
-  \ii Integrate(x) 1/(1+x^2)
-  \oo{ArcTan(x)}
+  \ii % yacas -pc sum.yacas 
+  \oo{5050}
 \end{Code}
 
-Another possible answer is that you can usually smell the possibility of
-this type of substitution, involving a trig function, when the thing to be
-integrated contains something reminiscent of the Pythagorean theorem, as
-suggested by figure \figref{tan-substitution}. The $1+x^2$ looks like what
-you'd get if you had a right triangle with legs 1 and $x$, and were using the
-Pythagorean theorem to find its hypotenuse.
-%
-\smallfig{tan-substitution}{The substitution $x=\tan u$.}
-
-\begin{eg}
-\egquestion Evaluate $\int \der x/\sqrt{1-x^2}$.
-
-\eganswer The $\sqrt{1-x^2}$ looks like what you'd get if you had a right
-triangle with hypotenuse 1 and a leg of length $x$, and were using the
-Pythagorean theorem to find the other leg, as in figure \figref{cos-substitution}.
-This motivates us to try the substitution $x=\cos u$, which gives
-$\der x=-\sin u\:\der u$ and $\sqrt{1-x^2}=\sqrt{1-\cos^2u}=\sin u$. The result is
-\begin{align*}
-  \int \frac{\der x}{\sqrt{1-x^2}} &= \int \frac{-\sin u\:\der u}{\sin u} \\
-                 &= u+c \\
-                 &= \cos^{-1}x \qquad .
-\end{align*}
-\end{eg}
-%
-\smallfig{cos-substitution}{The substitution $x=\cos u$.}
-
-\subsection{Integration by parts}\index{integration!methods of!by parts}
-
-Figure \figref{by-parts} shows a technique called integration by parts.
-If the integral $\int v\der u$ is easier than the integral $\int u\der v$,
-then we can calculate the easier one, and then by simple geometry determine
-the one we wanted. Identifying the large rectangle that surrounds both
-shaded areas, and the small white rectangle on the lower left, we have
-\begin{align*}
-  \int u\:\der v =& (\text{area of large rectangle})\\
-                &-(\text{area of small rectangle})\\
-                &\int v\:\der u \qquad .
-\end{align*}
-
-\fig{by-parts}{Integration by parts.}
-
-In the case of an indefinite integral, we have a similar relationship
-derived from the product rule:
-\begin{gather*}
-  \:\der(uv) = u \:\der v + v \:\der u \\
-  u \:\der v = \der(uv) - v \:\der u 
-\end{gather*}
-Integrating both sides, we have the following relation.
-\begin{important}[Integration by parts]
+Here the \verb@%@ symbol is the computer's prompt. The result is 5,050, as expected.
+One way of stating this result is
 \begin{equation*}
-  \int u \:\der v = uv - \int v \:\der u \qquad .
+  \sum_{n=1}^{100} n = 5050 \qquad .
 \end{equation*}
+The capital Greek letter $\Sigma$, sigma, is used because it makes the ``s'' sound, and
+that's the first sound in the word ``sum.'' The $n=1$ below the sigma says the sum starts
+at 1, and the 100 on top says it ends at 100. The $n$ is what's known as a dummy variable:
+it has no meaning outside the context of the sum. Figure \figref{discrete-sum} shows the
+graphical interpretation of the sum: we're adding up the areas of a series of rectangular
+strips. (For clarity, the figure only shows the sum going up to 7, rather than 100.)
+
+\smallfig{discrete-sum}{Graphical interpretation of the sum $1+2+\ldots+7$.}
+
+Now how about an integral? Figure \figref{integral-of-t} shows the graphical interpretation
+of what we're trying to do: find the area of the shaded triangle.
+This is an example we know how to do symbolically, so we can do it numerically as well,
+and check the answers against each other. Symbolically, the area is given by the integral.
+To integrate the function $\xdot(t)=t$, we know we need some function with a $t^2$ in it,
+since we want something whose derivative is $t$, and differentiation reduces the power
+by one. The derivative of $t^2$ would be $2t$ rather than $t$, so what we want is
+$x(t)=t^2/2$. Let's compute the area of the triangle that stretches along the $t$ axis
+from 0 to 100: $x(100)=100^/2=5000$.
+
+\smallfig{integral-of-t}{Graphical interpretation of the integral of the function $\xdot(t)=t$.}
+
+Figure \figref{riemann} shows how to accomplish the same thing numerically. We break up the area
+into a whole bunch of very skinny rectangles. Ideally, we'd like to make the width of each
+rectangle be an infinitesimal number $\der x$, so that we'd be adding up an infinite number of
+infinitesimal areas. In reality, a computer can't do that, so we divide up the interval from
+$t=0$ to $t=100$ into $H$ rectangles, each with finite width $\der t=100/H$. Instead of making
+$H$ infinite, we make it the largest number we can without making the computer take too
+long to add up the areas of the rectangles.\index{integration!computer-aided!numerical}
+
+\smallfig{riemann}{Approximating the integral numerically.}
+
+\restartLineNumbers
+\begin{eg}\label{eg:riemann}
+\startcodeeg
+\begin{Code}
+  \nn tmax := 100;
+  \nn H := 1000;
+  \nn dt := tmax/H;
+  \nn sum := 0;
+  \nn t := 0;
+  \nn While (t<=tmax) [
+  \nn   sum := N(sum+t*dt);
+  \nn   t := N(t+dt);
+  \nn ];
+  \nn Echo(sum);
+\end{Code}
+\end{eg}
+
+In example \ref{eg:riemann}, we split the interval from $t=0$ to 100 into $H=1000$ small
+intervals, each with width $\der t=0.1$. The result is 5,005, which agrees with the symbolic
+result to three digits of precision. Changing $H$ to 10,000 gives $5,000.5$, which is one
+more digit. Clearly as we make the number of rectangles greater and greater, we're converging
+to the correct result of 5,000.
+
+In the Leibniz notation,\index{Leibniz notation!integral}
+the thing we've just calculated, by two different techniques, is written like
+this:
+\begin{equation*}
+  \int_{0}^{100} t \:\der t = 5,000
+\end{equation*}
+It looks a lot like the $\Sigma$ notation, with the $\Sigma$ replaces by a flattened-out letter ``S.''
+The $t$ is a dummy variable. What I've been casually referring to as an integral is really two different
+but closely related things, known as the definite integral and the indefinite integral.
+
+\begin{important}[Definition of the indefinite integral]\index{integral!indefinite!definition}
+If $\xdot$ is a function, then a function $x$ is an indefinite integral of $\xdot$ if,
+as implied by the notation, $\der x/\der t=\xdot$.
+
+Interpretation: Doing an indefinite integral means doing the opposite of differentiation.
+All the possible indefinite integrals are the same function except for an additive constant.
 \end{important}
-Since a definite integral can always be done by evaluating an indefinite
-integral at its upper and lower limits, one usually uses this form.
-Integrals don't usually come prepackaged in a form that makes it
-obvious that you should use integration by parts. What the equation for
-integration by parts tells us is that if we can split up the integrand
-into two factors, one of which (the $\der v$) we know how to integrate, we have
-the option of changing the integral into a new form in which that factor
-becomes its integral, and the other factor becomes its derivative. If we
-choose the right way of splitting up the integrand into parts, the result can be
-a simplification.
 
 \begin{eg}
-\egquestion Evaluate
-\begin{equation*}
-  \int x \cos x \:\der x
-\end{equation*}
+\egquestion Find the indefinite integral of the function $\xdot(t)=t$.
 
-\egquestion There are two obvious possibilities for splitting up the integrand
-into factors,
-\begin{align*}
-  u \:\der v &= (x)(\cos x\:\der x) \\
-\intertext{or}
-  u \:\der v &= (\cos x)(x\:\der x) \qquad .
-\end{align*}
-The first one is the one that lets us make progress. If $u=x$, then
-$\der u=\der x$, and if $\der v=\cos x\:\der x$, then integration
-gives $v=\sin x$.
-\begin{align*}
-  \int x \cos x \:\der x &= \int u \:\der v \\
-                       &= uv - \int v \:\der u \\
-                       &= x\sin x-\int \sin x \:\der x \\
-                       &= x\sin x+\cos x
-\end{align*}
-Of the two possibilities we considered for $u$ and $\der v$, the reason
-this one helped was that differentiating $x$ gave $\der x$, which was
-simpler, and integrating $\cos x\der x$ gave $\sin x$, which was no
-more complicated than before. The second possibility would have made
-things worse rather than better, because integrating $x\der x$ would
-have given $x^2/2$, which would have been more complicated rather than
-less.
+\eganswer Any function of the form
+\begin{equation*}
+  x(t)=t^2/2+c \qquad ,
+\end{equation*}
+where $c$ is a constant, is an
+indefinite integral of this function, since its derivative is $t$.
 \end{eg}
 
-\begin{eg}
-\egquestion Evaluate $\int \ln x \:\der x$.
-
-\eganswer This one is a little tricky, because it isn't explicitly
-written as a product, and yet we can attack it using integration by
-parts. Let $u=\ln x$ and $\der v=\der x$.
-\begin{align*}
-  \int \ln x \:\der x &= \int u \:\der v \\
-                       &= uv - \int v \:\der u \\
-                       &= x\ln x-\int x \frac{\der x}{x} \\
-                       &= x\ln x-x
-\end{align*}
-\end{eg}
-
-\begin{eg}\label{eg:integrate-x-squared-times-exp}
-\egquestion Evaluate $\int x^2 e^x \:\der x$.
-
-\eganswer
-Integration by parts lets us split the integrand into two factors, integrate one, differentiate the
-other, and then do that integral. Integrating or differentiating $e^x$ does nothing. Integrating
-$x^2$ increases the exponent, which makes the problem look harder, whereas differentiating $x^2$
-knocks the exponent down a step, which makes it look easier. Let $u=x^2$ and $\der v=e^x \der x$,
-so that $\der u=2x\der x$ and $v=e^x$. We then have
-\begin{equation*}
-  \int x^2 e^x \:\der x = x^2 e^x - 2 \int x e^x\der x \qquad .
-\end{equation*}
-Although we don't immediately know how to evaluate this new integral, we can subject it to the
-same type of integration by parts, now with $u=x$ and $\der v=e^x \der x$. After the second
-integration by parts, we have:
-\begin{align*}
-  \int x^2 e^x \:\der x &= x^2 e^x - 2 \left(x e^x -\int e^x\der x \right) \\
-                        &= x^2 e^x - 2 \left(x e^x - e^x \right) \\
-                        &= (x^2-2x+2)e^x \\
-\end{align*}
-\end{eg}
-
-\subsection{Partial fractions}\index{integration!methods of!partial fractions}\index{partial fractions}
-
-Given a function like
-\begin{equation*}
-  \frac{-1}{x-1}+\frac{1}{x+1} \qquad ,
-\end{equation*}
-we can rewrite it over a common denominator like this:
-\begin{align*}
-  &\left(\frac{-1}{x-1}\right)\left(\frac{x+1}{x+1}\right) \\
-  &+\left(\frac{1}{x+1}\right)\left(\frac{x-1}{x-1}\right) \\
-  &=\frac{-x-1+x-1}{(x-1)(x+1)} \\
-  &=\frac{-2}{x^2-1} \qquad .
-\end{align*}
-But note that the original form is easily integrated to give
+\begin{important}[Definition of the definite integral]\index{integral!definite!definition}
+If $\xdot$ is a function, then the definite integral of $\xdot$ from $a$ to $b$ is
+defined as
 \begin{multline*}
-  \int \left(\frac{-1}{x-1}+\frac{1}{x+1}\right)\:\der x \\
-    =-\ln(x-1)+\ln(x+1)+c \qquad ,
+  \int_{a}^{b} \xdot(t) \der t \\
+= \lim_{H\rightarrow\infty} \sum_{i=0}^{H} \xdot\left(a+i\Delta t\right)\Delta t \qquad ,
 \end{multline*}
-while faced with the form \linebreak[4] $-2/(x^2-1)$, we wouldn't have known how to
-integrate it.
+where $\Delta t=(b-a)/H$.
 
-Note that the original function was of the form $(-1)/\ldots+(+1)/\ldots$
-It's not a coincidence that the two constants on top, $-1$ and $+1$, are opposite in sign
-but equal in absolute value. To see why, consider the behavior of
-this function for large values of $x$. Looking at the form
-$-1/(x-1)+1/(x+1)$, we might naively guess that for a large value of $x$
-such as 1000, it would come out to be somewhere on the order thousandths.
-But looking at the form $-2/(x^2-1)$, we would expect it to be way down in the millionths.
-This seeming paradox is resolved by noting that for large values of $x$,
-the two terms in the form $-1/(x-1)+1/(x+1)$ very nearly cancel. This cancellation
-could only have happened if the constants on top were opposites like plus and minus one.
+Interpretation: What we're calculating is
+the area under the graph of $\xdot$, from $a$ to $b$. (If the graph dips below the $t$ axis, we interpret the
+area between it and the axis as a negative area.)
+The thing inside the limit is a calculation like the one done in example \ref{eg:riemann},
+but generalized to $a\ne 0$.
+If $H$ was infinite, then $\Delta t$ would be an infinitesimal number $\der t$. 
+\end{important}
 
-The idea of the method of partial fractions is that if we want to
-do an integral of the form
+\section{The fundamental theorem of calculus}\index{calculus!fundamental theorem of!statement}\index{fundamental theorem of calculus!statement}
+
+\begin{important}[The fundamental theorem of calculus]
+Let $x$ be an indefinite integral of $\xdot$, and let $\xdot$ be a continuous
+function (one whose graph is a single connected curve). Then
+
 \begin{equation*}
-  \int \frac{\der x}{P(x)} \qquad ,
+  \int_{a}^{b} \xdot(t) \der t = x(b)-x(a) \qquad .
 \end{equation*}
-where $P(x)$ is an nth order polynomial, we rewrite $1/P$ as
+
+Interpretation: In the simple examples we've been doing so far,
+we were able to choose an indefinite integral such that $x(0)=0$.
+In that case, $x(t)$ is interpreted as the area from 0 to $t$,
+so in the expression $x(b)-x(a)$, we're taking the area from
+0 to $a$, but subtracting out the area from 0 to $b$, which gives
+the area from $a$ to $b$. If we choose an indefinite integral with
+a different $c$, the $c$'s will just cancel out anyway in the
+difference  $x(b)-x(a)$.
+\end{important}
+
+The fundamental theorem is proved on page \pageref{detour:fundamental-thm-proof}.
+
+\begin{eg}\label{eg:hyperbola}
+\egquestion Interpret the indefinite integral
 \begin{equation*}
-  \frac{1}{P(x)} = \frac{A_1}{x-r_1} + \ldots \frac{A_n}{x-r_n} \qquad ,
+  \int_{1}^{2} \frac{1}{t}\:\der t \qquad .
 \end{equation*}
-where $r_1$ \ldots $r_n$ are the roots of the polynomial, i.e., the
-solutions of the equation $P(r)=0$. If the polynomial is second-order,
-you can find the roots $r_1$ and $r_2$ using the quadratic formula; I'll assume for
-the time being that they're real.
-For higher-order polynomials, there is no surefire, easy
-way of finding the roots by hand, and you'd be smart simply to use computer software
-to do it. In Yacas, you can find the real roots of a polynomial like this:
+graphically; then evaluate it it both symbolically and numerically, and check that the two results
+are consistent.
 
+\smallfig{hyperbola-area}{The indefinite integral $\int_1^2 (1/t)\der t$.}
+
+\eganswer Figure \figref{hyperbola-area} shows the graphical interpretation. The numerical calculation
+requires a trivial variation on the program from example \ref{eg:riemann}:
+
+\restartLineNumbers
 \begin{Code}
-  \ii FindRealRoots(x^4-5*x^3
-  \ii    -25*x^2+65*x+84)
-  \oo{\{3.,7.,-4.,-1.\}}
+  a := 1;
+  b := 2;
+  H := 1000;
+  dt := (b-a)/H;
+  sum := 0;
+  t := a;
+  While (t<=b) [
+    sum := N(sum+(1/t)*dt);
+    t := N(t+dt);
+  ];
+  Echo(sum);
 \end{Code}
+The result is $0.693897243$, and increasing $H$ to 10,000 gives $0.6932221811$, so we can be fairly confident that
+the result equals $0.693$, to 3 decimal places.
 
-(I assume it uses Newton's method to find them.) The constants
-$A_i$ can then be determined by algebra, or by the following trick.
+Symbolically, the indefinite integral is $x=\ln t$. Using the fundamental theorem of calculus, the area
+is $\ln 2-\ln 1\approx 0.693147180559945$.
 
-\subsubsection{Numerical method}\label{partial-fractions-numerical}
-Suppose we evaluate
-$1/P(x)$ for a value of $x$ very close to one of the roots.
-In the example of the polynomial 
-$x^4-5x^3-25x^2+65x+84$, let $r_1$ \ldots $r_4$ be the roots in the
-order in which they were returned by Yacas. Then $A_1$ can be
-found by evaluating $1/P(x)$ at $x=3.000001$:\label{residue-method-numerical}
+Judging from the graph, it looks plausible that the shaded area is about 0.7.
 
-\begin{Code}
-  \ii P(x):=x^4-5*x^3-25*x^2
-  \ii   +65*x+84
-  \ii N(1/P(3.000001))
-  \oo{-8928.5702094768}
-\end{Code}
+This is an interesting example, because the natural log blows up to negative infinity as $t$ approaches 0,
+so it's not possible to add a constant onto the indefinite integral and force it to be equal to
+0 at $t=0$. Nevertheless, the fundamental theorem of calculus still works.
 
-We know that for $x$ very close to 3, the expression
-\begin{equation*}
-  \frac{1}{P} = \frac{A_1}{x-3}+\frac{A_2}{x-7}+\frac{A_3}{x+4}+\frac{A_4}{x+1}
-\end{equation*}
-will be dominated by the $A_1$ term, so
-\begin{gather*}
-  -8930 \approx \frac{A_1}{3.000001-3} \\
-  A_1 \approx (-8930)(10^{-6})  \qquad .
-\end{gather*}
-By the same method we can find the other four constants:
-\begin{Code}
-  \ii dx:=.000001
-  \ii N(1/P(7+dx),30)*dx
-  \oo{0.2840908276e-2}
-  \ii N(1/P(-4+dx),30)*dx
-  \oo{-0.4329006192e-2}
-  \ii N(1/P(-1+dx),30)*dx
-  \oo{0.1041666664e-1}
-\end{Code}
-(The \verb@N( ,30)@ construct is to tell Yacas to do a numerical calculation rather than an exact
-symbolic one, and to use 30 digits of precision, in order to
-avoid problems with rounding errors.) Thus, \begin{align*}
-  \frac{1}{P} &= \frac{-8.93\times10^{-3}}{x-3} \\
-              &+ \frac{2.84\times10^{-3}}{x-7} \\
-              &- \frac{4.33\times10^{-3}}{x+4} \\
-              &+ \frac{1.04\times10^{-2}}{x+1} \qquad .
-\end{align*}
-The desired integral is
-\begin{align*}
-  \int \frac{\der x}{P(x)} &= -8.93\times10^{-3}\ln(x-3) \\
-              & +2.84\times10^{-3}\ln(x-7) \\
-              & -4.33\times10^{-3}\ln(x+4) \\
-              &+ 1.04\times10^{-2}\ln(x+1) \\
-              &+c \qquad .
-\end{align*}
-
-As in the simpler example I started off with, where $P$ was second order
-and we got $A_1=-A_2$, in this $n=4$ example we expect that $A_1+A_2+A_3+A_4=0$,
-for otherwise the large-$x$ behavior of the partial-fraction form would be $1/x$ rather than $1/x^4$.
-This is a useful way of checking the result: $-8.93+2.84-4.33+10.4=-.02\approx0$.
-
-\subsubsection{Complications}
-There are two possible complications:
-
-First, the same factor may occur more than once, as in
-$x^3-5x^2+7x-3=(x-1)(x-1)(x-3)$. In this example, we have to look for an answer of the form
-$A/(x-1)+B/(x-1)^2+C/(x-3)$, the solution being
-$-.25/(x-1)-.5/(x-1)^2+.25/(x-3)$.
-
-Second, the roots may be complex. 
-This is no show-stopper
-if you're using computer software that handles complex numbers gracefully. (You can choose a $c$
-that makes the result real.) 
-In fact, as discussed in section \ref{sec:complex-part-frac}, some beautiful things can happen
-with complex roots. But as an alternative,
-any polynomial with real coefficients can be factored into linear
-and quadratic factors with real coefficients. For each quadratic factor $Q(x)$, we then have a
-partial fraction of the form $(A+Bx)/Q(x)$, where $A$ and $B$ can be determined by algebra.
-In Yacas, this can be done using the \verb@Apart@ function.
-
-\begin{eg}
-\egquestion Evaluate the integral
-\begin{equation*}
-  \int \frac{\der x}{(x^4-8x^3+8x^2-8x+7}
-\end{equation*}
-using the method of partial fractions.
-
-\eganswer First we use Yacas to look for real roots of the polynomial:
-
-\begin{Code}
-  \ii FindRealRoots(x^4-8*x^3
-  \ii   +8*x^2-8*x+7)
-  \oo{\{1.,7.\}}
-\end{Code}
-
-Unfortunately this polynomial seems to have only two real roots; the rest
-are complex.
-We can divide out the factor $(x-1)(x-7)$, but that still
-leaves us with a second-order polynomial, which has no real roots.
-One approach would be to factor the polynomial into the form
-$(x-1)(x-7)(x-p)(x-q)$, where $p$ and $q$ are complex,
-as in section \ref{sec:complex-part-frac}. Instead, let's use
-Yacas to expand the integrand in terms of partial fractions:
-
-\begin{Code}
-  \ii Apart(1/(x^4-8*x^3
-  \ii   +8*x^2-8*x+7))
-  \oo{((2*x)/25+3/50)/(x^2+1)}
-  \oo{  +1/(300*(x-7))}
-  \oo{  +(-1)/(12*(x-1))}
-\end{Code}
-
-We can now rewrite the integral like this:
-
-\begin{align*}
-   &\frac{2}{25} \int \frac{x\:\der x}{x^2+1} \\
-  +&\frac{3}{50} \int \frac{\der x}{x^2+1} \\
-  +&\frac{1}{300} \int \frac{\der x}{x-7} \\
-  -&\frac{1}{12} \int \frac{\der x}{x-1} \\
-\intertext{which we can evaluate as follows:}
-  & \frac{1}{25} \ln(x^2+1) \\
-  +&\frac{3}{50} \tan^{-1}x \\
-  +&\frac{1}{300} \ln(x-7) \\
-  -&\frac{1}{12} \ln(x-1) \\
-  +&c
-\end{align*}
-
-In fact, Yacas should be able to do the whole integral for us from scratch, but
-it's best to understand how these things work under the hood, and to avoid
-being completely dependent on one particular piece of software. As an illustration
-of this gem of wisdom, I found that when I tried to make Yacas evaluate the
-integral in one gulp, it choked because the calculation became too complicated!
-Because I understood the ideas behind the procedure, I was still able to
-get a result through a mixture of computer calculations and working it by hand.
-Someone who didn't have the knowledge of the technique might have tried
-the integral using the software, seen it fail, and concluded, incorrectly,
-that the integral was one that simply couldn't be done. A computer is
-no substitute for understanding.
 \end{eg}
 
-\subsubsection{Residue method}\index{residue method}\index{partial fractions!residue method}
-On p.~\pageref{residue-method-numerical} I introduced the trick of carrying out the method of partial fractions
-by evaluating $1/P(x)$ numerically at $x=r_i+\epsilon$, near where $1/P$ blows up. Sometimes we would like
-to have an exact result rather than a numerical approximation. We can accomplish this by using an infinitesimal
-number $\der x$ rather than a small but finite $\epsilon$. For simplicity, let's assume that all of the $n$ roots $r_i$
-are distinct, and that $P$'s highest-order term is $x^n$. We can then write $P$ as the product 
-$P(x)=(x-r_1)(x-r_2)\ldots(x-r_n)$. For products like this, there is a notation $\Pi$ (capital Greek letter ``pi'')
-that works like $\Sigma$ does for sums: 
-\begin{equation*}
-  P(x)=\prod_{i=1}^n(x-r_i) \qquad .
-\end{equation*}
-It's not necessary that the roots be real, but for now we assume that they are.
-We want to find the coefficients $A_i$ such that
-\begin{equation*}
-  \frac{1}{P(x)} = \sum \frac{A_i}{x-r_i} \qquad .
-\end{equation*}
-We then have
+%%graph%% hyperbola-area-raw func=1/x format=svg xlo=0 xhi=3 ylo=0 yhi=1.5 with=lines x=t y=x xtic_spacing=1 ytic_spacing=1
+
+\section{Properties of the integral}\index{integral!properties of}
+
+Let $f$ and $g$ be two functions of $x$, and let $c$ be a constant. We already know that for derivatives,
 \begin{gather*}
-  \frac{1}{P(r_i+\der x)} \\
-          = \frac{1}{\der x \prod_{j\ne i}(r_i-r_j+\der x)} \\
-          = \frac{1}{\der x \prod_{j\ne i}(r_i-r_j)} + \ldots \\
-          = \frac{A_i}{\der x}+\ldots ,
+  \frac{\der}{\der x}(f+g) = \frac{\der f}{\der x} + \frac{\der g}{\der x} \\
+\intertext{and}
+  \frac{\der}{\der x}(cf) = c\frac{\der f}{\der x} \qquad .
 \end{gather*}
-where $\ldots$ represents finite terms that are negligible compared to the infinite ones. Multiplying on
-both sides by $\der x$, we have
-\begin{equation*}
-  \frac{1}{P'(r_i)} + \ldots = A_i + \ldots ,
-\end{equation*}
-where the $\ldots$ now stand for infinitesimals which must in fact cancel out, since both $A_i$ and
-$1/P'$ are real numbers.
+But since the indefinite integral is just the operation of undoing a derivative, the
+same kind of rules must hold true for indefinite integrals as well:
+\begin{gather*}
+  \int(f+g)\der x =   \int f \der x +   \int g \der x \\
+\intertext{and}
+  \int(cf)\der x =   c \int f \der x \qquad .
+\end{gather*}
+And since a definite integral can be found by plugging in the upper and lower limits of integration
+into the indefinite integral, the same properties must be true of definite integrals as well.
 
 \begin{eg}
-\egquestion The partial-fraction decomposition of the function
+\egquestion Evaluate the indefinite integral
 \begin{equation*}
-\frac{1}{x^4-5x^3-25x^2+65x+84}
+  \int (x+2\sin x) \der x \qquad .
 \end{equation*}
-was found numerically on p.~\pageref{partial-fractions-numerical}. The coefficient
-of the $1/(x-3)$ term was found numerically to be $A_1\approx -8.930\times10^{-3}$.
-Determine it exactly using the residue method.
 
 \eganswer
-Differentiation gives $P'(x)=4x^3-15x^2-50x+65$. We then have
-$A_1=1/P'(3)=-1/112$.
-
+Using the additive property, the integral becomes
+\begin{equation*}
+ \int x \der x +   \int 2\sin x \der x \qquad .
+\end{equation*}
+Then the property of scaling by a constant lets us change this to
+\begin{equation*}
+                             \int x \der x +   2 \int \sin x \der x \qquad .
+\end{equation*}
+We need a function whose derivative is $x$, which would be $x^2/2$, and
+one whose derivative is $\sin x$, which must be $-\cos x$, so the result is
+\begin{equation*}
+                             \frac{1}{2}x^2 -   2 \cos x + c \qquad .
+\end{equation*}
 \end{eg}
 
-% possible example: integration by parts followed by partial fractions
-% integration of rational functions: P/Q; Q in terms of partial fractions; divide each term
+\section{Applications}
 
-\subsection{Integrals that can't be done}\label{impossible-integrals}
+\subsection{Averages}\index{average}
 
-Integral calculus was invented in the age of powdered wigs and harpsichords, so the original emphasis
-was on expressing integrals in a form that would allow numbers to be plugged in for easy numerical evaluation
-by scribbling on scraps of parchment with a quill pen. This was an era when you might have to travel to a large
-city to get access to a table of logarithms. 
+In the story of Gauss's problem of adding up the numbers from 1 to 100, one interpretation of
+the result, 5,050, is that the average of all the numbers from 1 to 100 is 50.5. This is the
+ordinary definition of an average: add up all the things you have, and divide by the number
+of things. (The result in this example makes sense, because half the numbers
+are from 1 to 50, and half are from 51 to 100, so the average is half-way between 50 and 51.)
 
-In this computationally impoverished environment, one always
-wanted to get answers in what's known as \emph{closed form} and in terms of \emph{elementary functions}.
+Similarly, a definite integral can also be thought of as a kind of average. In general, if $y$ is
+a function of $x$, then the average, or mean, value of $y$ on the interval from $x=a$ to $b$ can be
+defined as
+\begin{equation*}
+  \bar{y} = \frac{1}{b-a} \int_a^b y\:\der x \qquad .
+\end{equation*}
+In the continuous case, dividing by $b-a$ accomplishes the same thing as dividing by the
+number of things in the discrete case.
 
-A closed form expression means one written using a finite number of operations, as opposed to something
-like the geometric series $1+x+x^2+x^3+\ldots$, which goes on forever.
+\begin{eg}
+\egquestion Show that the definition of the average makes sense in the case where the function
+is a constant.
 
-Elementary functions are usually taken to be addition,
-subtraction, multiplication, division, logs, and exponentials, as well as other functions derivable from
-these. For example, a cube root is allowed, since $\sqrt[3]x=e^{(1/3)\ln x}$, and so are trig functions and their inverses,
-since, as we will see in chapter \ref{ch:complex}, they can be expressed in terms of logs and exponentials.
+\eganswer If $y$ is a constant, then we can take it outside of the integral, so
+\begin{align*}
+  \bar{y} &= \frac{1}{b-a} y \int_a^b 1\:\der x \\
+                     &= \frac{1}{b-a} y \left.x\right|_a^b \\
+                     &= \frac{1}{b-a} y (b-a) \\
+                     &= y
+\end{align*}
+\end{eg}
 
-In theory, ``closed form'' doesn't mean anything unless we state the elementary functions that are allowed.
-In practice, when people refer to closed form, they usually have in mind the particular set of elementary functions described above.
-
-A traditional freshman calculus course spends such a vast amount of time teaching you how to do integrals
-in closed form that it may be easy to miss the fact that this is impossible for the vast majority of
-integrands that you might randomly write down. Here are some examples of impossible integrals:
+\begin{eg}\label{eg:mean-of-square}
+\egquestion Find the average value of the function $y=x^2$ for values of $x$ ranging from
+0 to 1.
 
 \begin{align*}
-  & \int e^{-x^2} \der x \\
-  & \int x^x \der x \\
-  & \int \frac{\sin x}{x} \der x \\
-  & \int e^x \tan x \der x
+  \bar{y} &= \frac{1}{1-0} \int_0^1 x^2\:\der x \\
+                     &= \left.\frac{1}{3}x^3\right|_0^1 \\
+                     &= \frac{1}{3}
 \end{align*}
+\end{eg}
 
-The first of these is a form that is extremely important in statistics (it describes the area under the
-standard ``bell curve''), so you can see that
-impossible integrals aren't just obscure things that don't pop up in real life.
+\begin{important}[The mean value theorem]\label{mean-value-theorem-stated}\index{mean value theorem!statement}
+If the continuous function $y(x)$ has the average value $\bar{y}$ on the interval
+from $x=a$ to $b$, then $y$ attains its average value at least once in that interval,
+i.e., there exists $\xi$ with $a<\xi<b$ such that $y(\xi)=\bar{y}$.
+\end{important}
 
-People who are proficient at doing integrals in closed form generally seem to work by a process of pattern
-matching. They recognize certain integrals as being of a form that can't be done, so they know not to try.
+The mean value theorem is proved on page \pageref{detour:mean-value-proof}.
+The special case in which $\bar{y}=0$ is known as Rolle's theorem.\index{Rolle's theorem}
 
 \begin{eg}
-\egquestion Students! Stand at attention! You will now evaluate $\int e^{-x^2+7x} \der x$ in closed form.
+\egquestion Verify the mean value theorem for $y=x^2$ on the interval from 0 to 1.
+
+\eganswer The mean value is 1/3, as shown in example \ref{eg:mean-of-square}. This value
+is achieved at $x=\sqrt{1/3}=1/\sqrt{3}$, which lies between 0 and 1.
+\end{eg}
+
+\subsection{Work}\index{work}
+In physics, work is a measure of the amount of energy transferred by a force; for example, if a horse
+sets a wagon in motion, the horse's force on the wagon is putting some energy of motion into the wagon.
+When a force $F$ acts on an object that moves in the direction of the force by an infinitesimal
+distance $\der x$, the infinitesimal work done is $\der W=F\der x$. Integrating both sides,
+we have $W=\int_a^b F\der x$, where the force may depend on $x$, and $a$ and $b$ represent the
+initial and final positions of the object. 
+
+\begin{eg}
+\egquestion A spring compressed by an amount $x$ relative to its relaxed length provides
+a force $F=kx$. Find the amount of work that must be done in order to compress the spring
+from $x=0$ to $x=a$. (This is the amount of energy stored in the spring, and that energy
+will later be released into the toy bullet.)
 
 \eganswer
-No sir, I can't do that. By a change of variables of the form $u=x+c$, where $c$ is a constant,
-we could clearly put this into the form $\int e^{-x^2} \der x$, which we know is impossible.
+\begin{align*}
+  W &= \int_0^a F \der x \\
+    &= \int_0^a kx \der x
+\end{align*}
+\begin{align*}
+    &= \left.\frac{1}{2}kx^2\right|_0^a \\
+    &= \frac{1}{2}ka^2
+\end{align*}
+The reason $W$ grows like $a^2$, not just like $a$, is that as the spring is compressed
+more, more and more effort is required in order to compress it.
 \end{eg}
 
-Sometimes an integral such as $\int e^{-x^2} \der x$ is important enough that we want to give it a name,
-tabulate it, and write computer subroutines that can evaluate it numerically. For example, statisticians
-define the ``error function'' $\operatorname{erf}(x)=(2/\sqrt{\pi}) \int e^{-x^2} dx$. Sometimes if you're not sure whether
-an integral can be done in closed form, you can put it into computer software, which will tell you that it
-reduces to one of these functions. You then know that it can't be done in closed form. For example, if you ask the
-popular web site integrals.com to do $\int e^{-x^2+7x} \der x$, it spits back $(1/2)e^{49/4}\sqrt{\pi}\operatorname{erf}(x-7/2)$.
-This tells you both that you shouldn't be wasting your time trying to do the integral in closed form and that
-if you need to evaluate it numerically, you can do that using the erf function.
+\subsection{Probability}
 
-As shown in the following example, just because an indefinite integral can't be done, that doesn't mean that we can never do
-a related definite integral.
+Mathematically, the probability that something will happen can be specified with a number
+ranging from 0 to 1, with 0 representing impossibility and 1 representing certainty.
+If you flip a coin, heads and tails both have probabilities of 1/2.
+The sum of the probabilities of all the possible outcomes has to have probability 1.
+This is called \emph{normalization}.\index{probability}\index{normalization}
+
+\smallfig{globe}{Normalization: the probability of picking land plus
+the probability of picking water adds up to 1.}
+
+So far we've discussed random processes having only two
+possible outcomes: yes or no, win or lose, on or off. More
+generally, a random process could have a result that is a
+number. Some processes yield integers, as when you roll a
+die and get a result from one to six, but some are not
+restricted to whole numbers, e.g., the height of a human being, or
+the amount of time that a uranium-238 atom will exist before undergoing radioactive decay.
+The key to handling these continuous random variables is the concept of the area
+under a curve, i.e., an integral.
+%
+\fig{single-die}{Probability distribution for the result of rolling a single die.}
+
+Consider a throw of a die. If the die is ``honest,'' then we
+expect all six values to be equally likely. Since all six
+probabilities must add up to 1, then probability of any
+particular value coming up must be 1/6. We can summarize
+this in a graph, \figref{single-die}. Areas under the curve can be
+interpreted as total probabilities. For instance, the area
+under the curve from 1 to 3 is $1/6+1/6+1/6=1/2$, so the
+probability of getting a result from 1 to 3 is 1/2. The
+function shown on the graph is called the probability distribution.
+%
+\fig{two-dice}{Rolling two dice and adding them up.}
+
+Figure \figref{two-dice} shows the probabilities of various results
+obtained by rolling two dice and adding them together, as in
+the game of craps. The probabilities are not all the same.
+There is a small probability of getting a two, for example,
+because there is only one way to do it, by rolling a one and
+then another one. The probability of rolling a seven is high
+because there are six different ways to do it: 1+6, 2+5, etc.
+
+If the number of possible outcomes is large but finite, for
+example the number of hairs on a dog, the graph would start
+to look like a smooth curve rather than a ziggurat.
+
+What about probability distributions for random numbers that
+are not integers? We can no longer make a graph with
+probability on the $y$ axis, because the probability of
+getting a given exact number is typically zero. For
+instance, there is zero probability that a person will be
+\emph{exactly} 200 cm tall, since there are
+infinitely many possible results that are close to 200 but not
+exactly two, for example 199.99999999687687658766.
+It doesn't usually make sense, therefore, to talk
+about the probability of a single numerical result, but it
+does make sense to talk about the probability of a certain
+range of results. For instance, the probability that a randomly
+chosen person will be more than 170 cm and less than 200 cm
+in height is a perfectly
+reasonable thing to discuss. We can still summarize the
+probability information on a graph, and we can still
+interpret areas under the curve as probabilities.
+%
+\fig{human-height}{A probability distribution for human height.}
+
+But the $y$ axis can no longer be a unitless probability
+scale. In the example of human height, we want the $x$
+axis to have units of meters, and we want areas under the
+curve to be unitless probabilities. The area of a single
+square on the graph paper is then
+\begin{align*}
+ (\text{unitless area of a square})\\
+         =  (\text{width of square}\\
+             \text{with distance units}) \\
+             \times (\text{height of square}) \qquad .
+\end{align*}
+If the units are to cancel out, then the height of the
+square must evidently be a quantity with units of inverse
+centimeters. In other words, the $y$ axis of the graph is to be
+interpreted as probability per unit height, not probability.
+
+Another way of looking at it is that the $y$ axis on the graph
+gives a derivative, $\der P/\der x$: the infinitesimally small
+probability that $x$ will lie in the infinitesimally small
+range covered by $\der x$.
+
+\begin{eg}\label{eg:random-diff}
+\egquestion A computer language will typically have a built-in
+subroutine that produces a fairly random number that is equally
+likely to take on any value in the range from 0 to 1. If you
+take the absolute value of the difference between two such
+numbers, the probability distribution is of the form
+$\der P/\der x=k(1-x)$. Find the value of the constant $k$
+that is required by normalization.
+
+\eganswer
+\begin{align*}
+  1 &= \int_0^1 k(1-x)\:\der x \\
+    &= \left.kx-\frac{1}{2}kx^2\right|_0^1 \\
+    &= k-k/2 \\
+  k &= 2
+\end{align*}
+\end{eg}
+
+\begin{selfcheck}{interpret-human-height}
+Compare the number of people with heights in the range of
+130-135 cm to the number in the range 135-140.
+\end{selfcheck}
+
+\fig{average}{The average can be interpreted as the balance point
+of the probability distribution.}
+
+When one random variable is related to another in some mathematical
+way, the chain rule can be used to relate their probability distributions.
+
+\fig{laser}{Example \ref{eg:laser}.}
+
+\begin{eg}\label{eg:laser}
+\egquestion A laser is placed one meter away from a wall, and spun
+on the ground to give it a random direction, but if the angle $u$ shown in figure
+\figref{laser} doesn't
+come out in the range from 0 to $\pi/2$, the laser is spun again until
+an angle in the desired range is obtained. Find the probability distribution
+of the distance $x$ shown in the figure. The derivative
+$\der\tan^{-1}z/\der z=1/(1+z^2)$ will be required (see example \ref{eg:arctan},
+page \pageref{eg:arctan}).
+
+\eganswer Since any angle between 0 and $\pi/2$ is equally likely, the
+probability distribution $\der P/\der u$ must be a constant, and normalization
+tells us that the constant must be $\der P/\der u=2/\pi$. 
+
+The laser is one meter from the wall, so the distance $x$, measured in
+meters, is given by $x=\tan u$. For the probability distribution of $x$, we have
+\begin{align*}
+  \frac{\der P}{\der x} &= \frac{\der P}{\der u}\cdot\frac{\der u}{\der x} \\
+        &= \frac{2}{\pi}\cdot\frac{\der \tan^{-1}x}{\der x} \\
+        &= \frac{2}{\pi(1+x^2)}
+\end{align*}
+
+Note that the range of possible values of $x$ theoretically extends from 0 to
+infinity. Problem \ref{hw:laser} on page \pageref{hw:laser} deals with this.
+\end{eg}
+
+If the next Martian you meet asks you, ``How tall is an
+adult human?,'' you will probably reply with a statement
+about the average human height, such as ``Oh, about 5 feet 6
+inches.'' If you wanted to explain a little more, you could
+say, ``But that's only an average. Most people are somewhere
+between 5 feet and 6 feet tall.'' Without bothering to draw
+the relevant bell curve for your new extraterrestrial
+acquaintance, you've summarized the relevant information by
+giving an average and a typical range of variation.
+The average of a probability distribution can be defined
+geometrically as the horizontal position at which it could
+be balanced if it was constructed out of cardboard, \figref{average}.
+This is a different way of working with averages than the one
+we did earlier. Before, had a graph of $y$ versus $x$, we implicitly
+assumed that all values of $x$ were equally likely, and we found an
+average value of $y$. In this new method using probability distributions,
+the variable we're averaging is on the $x$ axis, and the $y$ axis
+tells us the relative probabilities of the various $x$ values.
+
+For a discrete-valued variable with $n$ possible values, the average would be
+\begin{equation*}
+  \bar{x} = \sum_{i=0}^n x\:P(x) \qquad ,
+\end{equation*}
+and in the case of a continuous variable, this becomes an integral,
+\begin{equation*}
+  \bar{x} = \int_a^b x\:\frac{\der P}{\der x} \: \der x \qquad .
+\end{equation*}
 
 \begin{eg}
-\egquestion Evaluate $\int_0^{\pi/2} e^{-\tan^2 x}(\tan^2x+1)\der x$.
+\egquestion For the situation described in example \ref{eg:random-diff},
+find the average value of $x$.
 
-\eganswer The obvious substitution to try is $u=\tan x$, and this reduces the integrand to $e^{-x^2}$.
-This proves that the corresponding indefinite integral is impossible to express in closed form. However,
-the definite integral \emph{can} be expressed in closed form; it turns out to be $\sqrt{\pi}/2$. The trick
-for proving this is given in example \ref{eg:poisson-trick} on p.~\pageref{eg:poisson-trick}.
+\eganswer
+\begin{align*}
+  \bar{x} &= \int_0^1 x\:\frac{\der P}{\der x} \: \der x \\
+          &= \int_0^1 x \cdot 2(1-x)\:\der x \\
+          &= 2\int_0^1 (x-x^2)\:\der x \\
+          &= 2\left. \left(\frac{1}{2}x^2-\frac{1}{3}x^3\right) \right|_0^1 \\
+          &= \frac{1}{3}
+\end{align*}
 \end{eg}
 
-Sometimes computer software can't say anything about a particular integral at all. That doesn't mean that the integral
-can't be done. Computers are stupid, and they may try brute-force techniques that fail because the
-computer runs out of memory or CPU time. For example, the integral $\int \der x/(x^{10000}-1)$ 
-(problem \ref{hw:partial-fraction-high-power}, p.~\pageref{hw:partial-fraction-high-power}) can be
-done in closed form using the techniques of chapter \ref{ch:complex}, and it's not too hard for
-a proficient human to figure out how to attack it, but every computer program I've tried it on has
-failed silently.
+Sometimes we don't just want to know the average value of a certain variable, we
+also want to have some idea of the amount of variation above and below the average.
+The most common way of measuring this is the \emph{standard deviation},\index{standard deviation}
+defined by
+\begin{equation*}
+  \sigma = \sqrt{\int_a^b (x-\bar{x})^2\:\frac{\der P}{\der x} \: \der x} \qquad .
+\end{equation*}
+The idea here is that if there was no variation at all above or below the average,
+then the quantity $(x-\bar{x})$ would be zero whenever $\der P/\der x$ was nonzero, and
+the standard deviation would be zero. The reason for taking the square root of the whole
+thing is so that the result will have the same units as $x$.
+
+\begin{eg}
+\egquestion For the situation described in example \ref{eg:random-diff},
+find the standard deviation of $x$.
+
+\eganswer The square of the standard deviation is
+\begin{align*}
+  \sigma^2 &= \int_0^1 (x-\bar{x})^2\:\frac{\der P}{\der x} \: \der x \\
+          &= \int_0^1 (x-1/3)^2\cdot2(1-x) \: \der x \\
+          &= 2 \int_0^1 \left(-x^3+\frac{5}{3}x^2-\frac{7}{9}x+\frac{1}{9}\right) \: \der x \\
+          &= \frac{1}{18} \qquad ,
+\intertext{so the standard deviation is}
+  \sigma &= \frac{1}{\sqrt{18}} \\
+         &\approx 0.236
+\end{align*}
+\end{eg}
+
+%---------------------------------------------------------------------------------
 
 \begin{hwsection}
-\begin{hw}
-Graph the function $y=e^x-7x$ and get an approximate idea of where any of its zeroes
-are (i.e., for what values of $x$ we have $y(x)=0$).
-Use Newton's method to find the zeroes to three significant figures of precision.
-\end{hw}
-
-\begin{hw}
-The relationship between $x$ and $y$ is given by $xy = \sin y+x^2y^2$.\\
-(a) Use Newton's method to find the nonzero solution for $y$ when $x=3$. Answer: $y=0.2231$\\
-(b) Find $\der y/\der x$ in terms of $x$ and $y$, and evaluate the derivative
-at the point on the curve you found in part a. Answer: $\der y/\der x=-0.0379$\\
-{\footnotesize Based on an example by Craig B. Watkins.}
-\end{hw}
-
-\begin{hw}
-Suppose you want to evaluate
+\begin{hwwithsoln}{integrate-num}
+Write a computer program similar to the one in example \ref{eg:hyperbola} on page \pageref{eg:hyperbola}
+to evaluate the definite integral
 \begin{equation*}
-  \int \frac{\der x}{1+\sin 2x} \qquad ,
+  \int_0^1 e^{x^2} \qquad .
 \end{equation*}
-and you've found
-\begin{equation*}
-  \int \frac{\der x}{1+\sin x} = -\tan\left(\frac{\pi}{4}-\frac{x}{2}\right)
-\end{equation*}
-in a table of integrals. Use a change of variable to find the answer to the
-original problem.
-\end{hw}
+\end{hwwithsoln}
 
-\begin{hw}
-Evaluate
+\begin{hwwithsoln}{integrate-sin-cancel}
+Evaluate the integral
 \begin{equation*}
-  \int \frac{\sin x \der x}{1+\cos x} \qquad .
+  \int_0^{2\pi} \sin x \:\der x \qquad ,
 \end{equation*}
-\end{hw}
+and draw a sketch to explain why your result comes out the way it does.
+\end{hwwithsoln}
 
-\begin{hw}
-Evaluate
+\begin{hwwithsoln}{estimate-then-integrate}
+Sketch the graph that represents the definite integral
 \begin{equation*}
-  \int \frac{\sin x \der x}{1+\cos^2 x} \qquad .
+  \int_0^2 -x^2+2x \qquad ,
 \end{equation*}
-\end{hw}
+and estimate the result roughly from the graph. Then evaluate the
+integral exactly, and check against your estimate.
+\end{hwwithsoln}
 
-\begin{hw}
-Evaluate
-\begin{equation*}
-  \int \sqrt{x^4+bx^2} \:\der x \qquad ,
-\end{equation*}
-where $b$ is a constant.
-\end{hw}
+\begin{hwwithsoln}{average-sine}
+Make a rough guess as to the average value of $\sin x$ for $0<x<\pi$, and then
+find the exact result and check it against your guess.
+\end{hwwithsoln}
 
-\begin{hw}
-Evaluate
-\begin{equation*}
-  \int x e^{-x^2} \:\der x \qquad .
-\end{equation*}
-\end{hw}
+\begin{hwwithsoln}{continuity-mean-value}
+Show that the mean value theorem's assumption of continuity is necessary, by exhibiting
+a discontinuous function for which the theorem fails.
+\end{hwwithsoln}
 
-\begin{hw}
-Evaluate
-\begin{equation*}
-  \int x e^x \:\der x \qquad .
-\end{equation*}
-\end{hw}
-
-\begin{hw}
-Use integration by parts to evaluate the following integrals.
-\begin{gather*}
-  \int \sin^{-1} x\:\der x \\
-  \int \cos^{-1} x\:\der x \\
-  \int \tan^{-1} x\:\der x 
-\end{gather*}
-\end{hw}
-
-\begin{hw}
-Evaluate
-\begin{equation*}
-  \int x^2 \sin x \:\der x \qquad .
-\end{equation*}
-Hint: Use integration by parts more than once.
-\end{hw}
-
-\begin{hw}
-Evaluate
-\begin{equation*}
-  \int \frac{\der x}{x^2-x-6} \qquad .
-\end{equation*}
-\end{hw}
-
-\begin{hw}
-Evaluate
-\begin{equation*}
-  \int \frac{\der x}{x^3+3x^2-4} \qquad .
-\end{equation*}
-\end{hw}
-
-\begin{hw}
-Evaluate
-\begin{equation*}
-  \int \frac{\der x}{x^3-x^2+4x-4} \qquad .
-\end{equation*}
-\end{hw}
-
-\begin{hw}\label{hw:integration-by-parts-twice-trick}
-Apply integration by parts \emph{twice} to
-\begin{equation*}
-  \int e^{-x}\cos x \:\der x \qquad ,
-\end{equation*}
-examine what happens, and manipulate the result in order to solve the original integral.
-(An approach that doesn't rely on tricks is given in example \ref{eg:int-exp-cos-euler} on p.~\pageref{eg:int-exp-cos-euler}.)
-\end{hw}
-
-\begin{hwwithsoln}{generalize-integ-by-parts}
-Plan, \emph{but do not actually carry out} the steps that would be required in order to generalize
-the result of example \ref{eg:integrate-x-squared-times-exp} on p.~\pageref{eg:integrate-x-squared-times-exp}
-in order to evaluate
-\begin{equation*}
-  \int x^a b^{-x} \:\der x \qquad ,
-\end{equation*}
-where $a$ and $b$ are constants.
-Which is easier, the generalization from 2 to $a$, or the one from $e$ to $b$?
-Do we need to introduce any restrictions on $a$ or $b$?
+\begin{hwwithsoln}{fund-thm-assumption}
+Show that the fundamental theorem of calculus's assumption of continuity for $\xdot$ is necessary, by exhibiting
+a discontinuous function for which the theorem fails.
 \end{hwwithsoln}
 
 \begin{hw}
-The integral $\int e^{-x^2}\der x$ can't be done in closed form. Knowing this, use a change
-of variable to write down a different integral that also can't be done in closed form.
+Sketch the graphs of $y=x^2$ and $y=\sqrt{x}$ for $0\le x\le 1$. Graphically, what relationship
+should exist between the integrals $\int_0^1 x^2\:\der x$ and $\int_0^1 \sqrt{x}\:\der x$? Compute both
+integrals, and verify that the results are related in the expected way.
 \end{hw}
 
-\begin{hwwithsoln}{exp-of-power-doable}
-Consider the integral
-\begin{equation*}
-  \int e^{x^p} \der x \qquad ,
-\end{equation*}
-where $p$ is a constant. There is an obvious substitution. If this is to result in
-an integral that can be evaluated in closed form by a series of integrations by parts,
-what are the possible values of $p$? Don't actually complete the integral; just determine
-what values of $p$ will work.
-\end{hwwithsoln}
+\begin{hw}\label{hw:piston}
+In a gasoline-burning car engine, the exploding air-gas
+mixture makes a force on the piston, and the force tapers off as the piston expands, allowing the
+gas to expand. (a) In the approximation $F=k/x$, where $x$ is the position of the piston, find the
+work done on the piston as it travels from $x=a$ to $x=b$, and show that the result only depends
+on the ratio $b/a$. This ratio is known as the compression ratio of the engine. (b) A better
+approximation, which takes into account the cooling of the air-gas mixture as it expands, is
+$F=kx^{-1.4}$. Compute the work done in this case.
+\end{hw}
+
+\smallfig{hw-piston}{Problem \ref{hw:piston}.}
+
+\begin{hw}
+A certain variable $x$ varies randomly from -1 to 1, with probability distribution
+$\der P/\der x=k\left(1-x^2\right)$.\\
+(a) Determine $k$ from the requirement of normalization.\\
+(b) Find the average value of $x$.\\
+(c) Find its standard deviation.
+\end{hw}
+
+\begin{hw}[2]
+A perfectly elastic ball bounces up and down forever, always coming back up to the same height $h$. Find
+its average height.
+\end{hw}
+
+\fig{hw-holditch}{Problem \ref{hw:holditch}.}
+
+\begin{hw}[2]\label{hw:holditch}
+The figure shows a curve with a tangent line segment of length 1 that sweeps around it, forming a new curve
+that is usually outside the old one.
+Prove Holditch's theorem, which states that the  new curve's area differs from the old one's
+by $\pi$.\index{Holditch's theorem}
+(This is an example of a result that is much more
+difficult to prove without making use of infinitesimals.)
+\end{hw}
 
 \end{hwsection}

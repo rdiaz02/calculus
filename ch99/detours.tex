@@ -32,7 +32,7 @@ Marsden and Alan Weinstein, \verb@http://resolver.caltech.edu/CaltechBOOK:1981.0
 
 Some ideas in this proof are due to Michael Livshits.
 
-We want to prove that the derivative of $t^k$ is $kt^{k-1}$. It suffices to
+We want to prove that the derivative of $t^k$ is $kt^{k-1}$, for $k=1$, 2, 3, \ldots. It suffices to
 prove that the derivative equals $k$ when evaluated at $t=1$, since we can
 then apply the kind of scaling argument\footnote{Scaling fails in the special case of $t=0$ and odd $k$,
 so we have to fill in the ``gap tooth''
@@ -64,18 +64,19 @@ If we try the example
 of $k=3$, we find that the quotient has
 the very simple form $t^2+t+1$, i.e., a polynomial of order $k-1$ whose
 coefficients are all equal to 1. We can easily verify that this works for
-all $k$, by checking the multiplication
+all $k\ge 1$, by checking the multiplication
 \begin{equation*}
-  t^k-1 = (t-1)(t^k+t^{k-1}+\ldots+1) \qquad ,
+  t^k-1 = (t-1)(t^{k-1}+t^{k-2}+\ldots+1) \qquad ,
 \end{equation*}
 in which all the terms in the expansion of the right-hand side cancel except for $t^k$ and $-1$.
-Let's refer to the quotient as $Q(t)=t^k+t^{k-1}+\ldots+1$.
+Let's refer to the quotient as $Q(t)=t^{k-1}+t^{k-2}+\ldots+1$.
 How can we get $Q(t)=k$? Clearly we have a solution for $t=1$, since there are $k$ terms,
 each equal to 1. For $t>1$, all the terms except the constant one are greater than 1, so
 there can't be any solution. For $0 \le t < 1$, all the terms except the constant
 one are positive and less than 1, so again there can't be any solution.
 This completes the proof that there are no crossings for $t \ge 0$, which establishes
-the desired result.
+the desired result. The result is also true for any real value of $k$; see example \ref{eg:der-x-to-any-k}
+on p.~\pageref{eg:der-x-to-any-k}.
 
 \detour{sin-rigor}{Details of the proof of the derivative of the sine function}\index{derivative!of the sine}
 

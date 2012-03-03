@@ -68,10 +68,10 @@ where the dots indicate infinitesimal terms that we can neglect.
 \end{eg}
 
 This result
-required significant sweat and ingenuity when proved on page \pageref{detour:polynomial-proof} by the methods of chapter 1,
+required significant sweat and ingenuity when proved on page \pageref{detour:polynomial-proof} by the methods of chapter \ref{ch:rates-of-change},
 and not only that but the old method would have required a completely different method of proof for a function that
 wasn't a polynomial, whereas the new one can be applied more generally, as we'll see presently in examples
-\ref{eg:derivative-of-sin}-\ref{eg:geometric-series}.
+\ref{eg:derivative-of-one-over-x}-\ref{eg:geometric-series}.
 
 It's easy to get the mistaken impression that infinitesimals exist in some remote fairyland where we can never
 touch them. This may be true in the same artsy-fartsy sense that we can never truly understand $\sqrt{2}$, because
@@ -111,7 +111,30 @@ to tell how it compared with other numbers without having some special informati
 algebra, but it does know that \verb@d@ is a positive number that is less than any positive \emph{real} number
 that can be represented using decimals or scientific notation.
 
-\pagebreak
+\begin{eg}\label{eg:derivative-of-one-over-x}
+In example \ref{eg:der-one-over-x-approx} on p.~\pageref{eg:der-one-over-x-approx}, we made a rough numerical
+check to see if the differentiation rule $t^k \rightarrow kt^{k-1}$, which was proved on p.~\pageref{detour:polynomial-proof}
+for $k=1,$ 2, 3, \ldots, was also valid for $k=-1$, i.e., for the function $x=1/t$. Let's look for an actual proof. To find a natural method of attack,
+let's first redo the numerical check in a slightly more suggestive form. Again approximating the derivating at
+$t=3$, we have
+\begin{equation*}
+  \frac{\der x}{\der t}  \approx \left(\frac{1}{3.01}-\frac{1}{3}\right)\left(\frac{1}{0.01}\right)  \qquad .
+\end{equation*}
+Let's apply the grade-school technique for subtracting fractions, in which we first get them over the same denominator:
+\begin{equation*}
+  \frac{1}{3}-\frac{1}{3.01} = \frac{3-3.01}{3\times3.01}  \qquad .
+\end{equation*}
+The result is 
+\begin{align*}
+  \frac{\der x}{\der t}  &\approx \left(\frac{-0.01}{3\times3.01}\right)\left(\frac{1}{0.01}\right) \\
+                         &=-\frac{1}{3\times3.01} \qquad .
+\end{align*}
+Replacing 3 with $t$ and $0.01$ with $\der t$, this becomes
+\begin{align*}
+  \frac{\der x}{\der t}  &= -\frac{1}{t (t+\der t)} \\
+                         &= -t^{-2}+\ldots
+\end{align*}
+\end{eg}
 
 %%graph%% derivative-of-sine func=sin(x) format=eps xlo=0 xhi=6.283 ylo=-1 yhi=1 with=lines x=t y=x samples=300 xtic_spacing=1 ytic_spacing=1 ; func=cos(x)
 \smallfig{derivative-of-sine}{Graphs of $\sin t$, and its derivative $\cos t$.}
@@ -400,8 +423,6 @@ to take a hyperreal number as an input and give back a hyperreal as an output. E
 we can apply the transfer principle to them just as we would to statements about simple arithmetic, but I've discussed
 this a little more on page \pageref{detour:transcendentals}.
 
-\pagebreak
-
 \section{The product rule}\index{derivative!product rule}\index{product rule}
 
 When I first learned calculus, it seemed to me that if the derivative of $3t$ was $3$, and the derivative of
@@ -477,9 +498,9 @@ square it; the notation is not to be taken as a literal statement about infinite
 \begin{eg}\label{eg:derivative-of-sqrt}\index{derivative!of square root}
 A tricky use of the product rule is to find the derivative of $\sqrt{t}$. Since $\sqrt{t}$ can be
 written as $t^{1/2}$, we might suspect that the rule $\der(t^k)/\der t=kt^{k-1}$ would work,
-giving a derivative $\frac{1}{2}t^{-1/2}=1/(2\sqrt{t})$. However, the methods used to prove
-that rule in chapter 1 only work if $k$ is an integer, so the best we could do would be to confirm
-our conjecture approximately by graphing.
+giving a derivative $\frac{1}{2}t^{-1/2}=1/(2\sqrt{t})$. However, the method from ch.~\ref{ch:rates-of-change} used to prove
+that rule proved on p.\pageref{detour:polynomial-proof} only work if $k$ is an integer, so the best we could do would be to confirm
+our conjecture approximately by graphing or numerical estimation.
 
 Using the product rule, we can write $f(t)=\der\sqrt{t}/\der t$ for our unknown derivative, and
 back into the result using the product rule:
@@ -532,6 +553,17 @@ Let the function $f$ be defined by $f(x)=g(h(x))$. Then the derivative
 of $f$ is given by $f'(x)=g'(h(x))\cdot h'(x)$.
 \end{eg}
 
+\begin{eg}\label{eg:derive-neg-integer-power}
+\egquestion We've already proved that the derivative of $t^k$ is $kt^{k-1}$ for $k=-1$
+(example \ref{eg:derivative-of-one-over-x} on p.~\pageref{eg:derivative-of-one-over-x})
+and for $k=1,$ 2, 3, \ldots (p.~\pageref{detour:polynomial-proof}). Use these facts to extend
+the rule to all integer values of $k$.
+
+\eganswer
+For $k<0$, the function $x=t^k$ can be written as $x=(t^{-1})^{-k}$, where $-k$ is positive.
+Applying the chain rule, we find $\der x/\der t=(-k)(t^{-1})^{-k-1}(-t^{-2})=kt^{k-1}$.
+\end{eg}
+
 \section{Exponentials and logarithms}
 
 \subsection{The exponential}\index{derivative!of the exponential}\index{exponential!derivative of}
@@ -550,8 +582,6 @@ $e^x$, multiplied by some unknown constant,
   \frac{\der e^x}{\der x} = c\:e^x .
 \end{equation*}
 
-\vfill\pagebreak
-
 A rough check by graphing at, say $x=0$, shows that the slope is close to 1, so $c$ is close to
 1. Numerical calculation also shows that, for example, $(e^{0.001}-1)/0.001=1.00050016670838$ is very close
 to 1. But how do we know it's exactly one when $\der x$ is really infinitesimal?
@@ -563,8 +593,6 @@ We can use Inf:
 (The ... indicates where I've snipped some higher-order terms out of the output.) It seems clear
 that $c$ is equal to 1 except for negligible terms involving higher powers of $\der x$.
 A rigorous proof is given on page \pageref{detour:exp}.\label{main:exp}
-
-\vfill\pagebreak
 
 \begin{eg}\label{eg:caffeine}
 \egquestion The concentration of a foreign substance in the bloodstream generally falls off exponentially
@@ -1010,6 +1038,12 @@ $e^{(e^x)}$, not $(e^e)^x$.)
 
 \begin{hwwithsoln}{sinusoidal}
 Differentiate $a\sin(bx+c)$ with respect to $x$.
+\end{hwwithsoln}
+
+\begin{hwwithsoln}{derivative-of-fractional-exp}
+Let $x=t^{p/q}$, where $p$ and $q$ are positive integers. By a technique similar to the one
+in example \ref{eg:derive-neg-integer-power} on p.~\pageref{eg:derive-neg-integer-power},
+prove that the differentiation rule for $t^k$ holds when $k=p/q$.qwe
 \end{hwwithsoln}
 
 \begin{hwwithsoln}{integrate-sinusoidal}

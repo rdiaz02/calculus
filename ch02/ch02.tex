@@ -1079,8 +1079,6 @@ Show that the function $\sin(\sin(\sin x))$ has maxima and minima at all the sam
 where $\sin x$ does, and at no other places.
 \end{hwwithsoln}
 
-\pagebreak
-
 \begin{hwwithsoln}{air-res-v}
 In free fall, the acceleration will not be exactly constant, due to air resistance. For example,
 a skydiver does not speed up indefinitely until opening her chute, but rather approaches a certain
@@ -1165,6 +1163,15 @@ that the derivative of $\ln |x|$ equals $1/x$, for both positive and negative $x
 On even function is one with the property $f(-x)=f(x)$. For example, $\cos x$ is an even function, and $x^n$ is an even function if
 $n$ is even. An odd function has $f(-x)=-f(x)$. Prove that the derivative of an even function is odd.
 \end{hwwithsoln}
+
+\begin{hw}
+Suppose we have a list of numbers $x_1,\ldots x_n$, and we wish to find some number $q$ that is as close as possible
+to as many of the $x_i$ as possible. To make this a mathematically precise goal, we need to define some numerical
+measure of this closeness. Suppose we let $h=(x_1-q)^2+\ldots+(x_n-q)^2$, which can also be notated using $\Sigma$, uppercase Greek
+sigma, as $h=\sum_{i=1}^n (x_i-q)^2$. Then minimizing $h$ can be used as a definition of optimal closeness.
+(Why would we not want to use $h=\sum_{i=1}^n (x_i-q)$?) Prove that the value of $q$ that minimizes $h$ is
+the average of the $x_i$.
+\end{hw}
 
 \begin{hwwithsoln}[2]{neg-power-trick}
 Use a trick similar to the one used in example \ref{eg:derivative-of-sqrt} to prove that the power

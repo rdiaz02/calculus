@@ -8,23 +8,29 @@
 
 \detour{def-tangent}{Formal definition of the tangent line}\index{tangent line!formal definition}
 
-Let $(a,b)$ be a point on the graph of the function $x(t)$.
-A line $\ell(t)$ through this point is said not to cut through the graph
-if there exists some real number $d>0$ such that
-$x(t)-\ell(t)$ has the same sign for all $t$ between $a-d$ and $a+d$.
-The line is said to be the tangent line at this point if it is the
-only line through this point that doesn't cut through the graph.
+Given a function $x(t)$, consider any point $\zu{P}=(a,x(a))$ on its graph.
+Let the function $\ell(t)$ be a line passing through P.
+We say that $\ell$ cuts through $x$ at P if
+there exists some real number $d>0$ such that
+the graph of $\ell$ is on one side of the graph of $x$ for
+all $a-d < t < a$, and is on the other side for all $a < t < a+d$.
 
-As an exception,
+Definition (Marsden\footnote{\emph{Calculus Unlimited}, by Jerrold
+Marsden and Alan Weinstein, \verb@http://resolver.caltech.edu/CaltechBOOK:1981.001@}): A line $\ell$ through P is said to be the  line tangent to $x$ at P if all
+lines through P with slopes less than that of $\ell$ cut through $x$
+in one direction, while all lines with slopes greater than P's cut through
+it in the opposite direction.
+
+The reason for the complication in the definition is that 
 there are cases in which the function is smooth and well-behaved throughout a certain
-region, but has no tangent line according to this definition at one particular point.
-For example, the function $x(t)=t^3$ has tangent lines everywhere except at $t=0$,
-which is an inflection point (p. \pageref{inflection}). In such cases, we fill in the
+region, but for a certain point P in that region,
+all lines through P cut through P.
+For example, the function $x(t)=t^3$ is blessed everywhere with lines that don't
+cut through it --- everywhere, that is,
+except at $t=0$,
+which is an inflection point (p. \pageref{inflection}).
+Our definition fills in the
 ``gap tooth'' in the derivative function in the obvious way.
-
-For an alternative definition that avoids the ``gap tooth'' issue, at the expense
-of some complication in the definition, see \emph{Calculus Unlimited}, by Jerrold
-Marsden and Alan Weinstein, \verb@http://resolver.caltech.edu/CaltechBOOK:1981.001@.
 
 \pagebreak
 

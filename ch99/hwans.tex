@@ -902,6 +902,19 @@ $\int e^u u^{1/p-1}\der u$. If the exponent $1/p-1$ equals a nonnegative integer
 through $n$ integrations by parts, we can reduce this to the form $\int e^x\der x$.
 This requires $p=1$, 1/2, 1/3, \ldots
 
+\hwsolnhdr{vladimir-arnold}
+This is a mess if attacked by brute force. The trick is to reexpress the function using partial fractions:
+\begin{equation*}
+  \frac{x^2+1}{x^3-x} = \frac{x^2+1}{2(x+1)}+\frac{x^2+1}{2(x-1)}-\frac{x^2+1}{x} \qquad .
+\end{equation*}
+Writing $u=x+1$ and $v=x-1$, this becomes
+\begin{equation*}
+  u^{-1}+v^{-1}-x^{-1}+\ldots \qquad ,
+\end{equation*}
+where \ldots represents terms that will not survive multiple differentiations. Since $\der u/\der x=\der v/\der x=1$,
+the chain rule tells us that differentiation with respect to $u$ or $v$ is the same as differentiation with respect
+to $x$. The result is $100!(u^{-101}+v^{-101}-x^{-101})$, where the notation $100!$ means $1\times2\times\ldots100$.
+
 \beginsolutions{6}
 
 \hwsolnhdr{x-squared-two-to-x-improper}

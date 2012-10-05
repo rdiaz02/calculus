@@ -146,7 +146,7 @@ post:
 
 prepress:
 	# The following makes Lulu not complain about missing fonts:
-	pdftk calc.pdf cat 3-end output temp.pdf
+	pdftk calc.pdf cat 3-end output calc_lulu.pdf
 	# Filtering through gs used to be necessary to convince Lulu not to complain about missing fonts.
 	# Now that should no longer be necessary, because recent versions of pdftex embed all fonts, and fullembed.map prevents subsetting.
 	# See meki:computer:apps:ghostscript, scripts/create_fullembed_file, and http://tex.stackexchange.com/questions/24002/turning-off-font-subsetting-in-pdftex

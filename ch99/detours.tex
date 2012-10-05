@@ -32,56 +32,66 @@ which is an inflection point (p. \pageref{inflection}).
 Our definition fills in the
 ``gap tooth'' in the derivative function in the obvious way.
 
+As an example, we demonstrate this explicitly.
+Define the line $\ell(t)=bt$ with slope $b$, passing
+through the origin. For $b<0$, $\ell$ cuts the graph of $t^3$ once at the origin, going down and to the right.
+For $b>0$, $\ell$ cuts the graph of $t^3$ in three places, at $t=0$ and $\pm\sqrt{b}$.
+Picking any positive value of  $d$ less than $\sqrt{b}$,
+we find that $\ell$ cuts the graph at the origin, going up and to the right. Therefore
+$b=0$ gives the tangent line at the origin.
+
+
 \pagebreak
 
 \detour{polynomial-proof}{Derivatives of polynomials}\index{derivative!of a polynomial}
 
-Some ideas in this proof are due to Michael Livshits.
+Some ideas in this proof are due to Tom Goodwillie.
 
-We want to prove that the derivative of $t^k$ is $kt^{k-1}$, for $k=1$, 2, 3, \ldots. It suffices to
-prove that the derivative equals $k$ when evaluated at $t=1$, since we can
-then apply the kind of scaling argument\footnote{Scaling fails in the special case of $t=0$ and odd $k$,
-so we have to fill in the ``gap tooth''
-as mentioned in the preceding section.} used on page \pageref{scaling} to
-show that the derivative of $t^2/2$ was $t$. The proposed tangent line at $(1,1)$
-has the equation $\ell(t)=k(t-1)+1$, so what we need to prove is that
-the polynomial $t^k-[k(t-1)+1]$ is greater than or equal to zero throughout some
-region around $t=1$.
+Theorem: For $n=0$, 1, 2, \ldots, the derivative of the function $x$ defined by
+$x(t)=t^n$ is $\dot{x}=nt^{n-1}$.
 
-Figure \figref{polyn-derivative-proof-secant} shows a typical case. 
-The graph of $3(t-1)+1$ lies entirely below the graph of $t^3$ in a large region.
-It does pop back up above it at $t=-2$, but that's far away, and the definition of
-the tangent line only requires that some region around $(1,1)$ be free of such
-crossing points. In fact, a little experimentation shows that these crossings occur
-only for odd $k$, and always for $t<0$. This suggests that we ought to aim for
-a general proof that there are no crossings for $t \ge 0$.
+The results for $n=0$ and 1 hold by direct application of the definition of the derivative.
 
-%%graph%% polyn-derivative-proof-secant func=x**3 format=eps xlo=-3 xhi=2 ylo=-15 yhi=10 with=lines x=t y=x ytic_spacing=5 ; func=3*(x-1)+1 with=lines
-\smallfig{polyn-derivative-proof-secant}{The graphs of $t^3$ and $3(t-1)+1$.}
+For $n>1$, it suffices to
+prove $\dot{x}(0)=0$ and $\dot{x}(1)=n$, since the result for other
+nonzero values of $t$ then follows by the kind of scaling argument
+used on page \pageref{scaling} for the $n=2$ case.
 
-Suppose that such a crossing happens at the point $(t,t^k)$. Then the slope of the
-line $\ell(t)$ is $k$, so we must have
+We use the following properties of the derivative, all of which follow immediately from its
+definition as the slope of the tangent line:
+
+\begin{itemize}
+\item[\emph{Shift}.] Shifting a function $x(t)$ horizontally to form a new function $x(t+c)$ gives a derivative
+         at any newly shifted point that is the same as the derivative at the corresponding point on the unshifted graph.
+\item[\emph{Flip}.] Flipping the function $x(t)$ to form a new function $x(-t)$ negates
+         its derivative at $t=0$.
+\item[\emph{Add}.] The derivative of the sum or difference of two functions is the sum or difference of their derivatives.
+\end{itemize}
+
+For even $n$, $\dot{x}(0)=0$ follows from the flip property, since $x(-t)$ is the same function as $x(t)$.
+For $n=3,$ 5, \ldots, we apply the definition of the derivative in the same manner as was done in the preceding
+section for $n=3$.
+
+We now need to show that $\dot{x}(1)=n$. Define the function $u$ as
+\begin{align*}
+  u(t) &= x(t+1)-x(t) \\
+       &= 1+nt + \ldots \qquad ,
+\end{align*}
+where the second line follows from the binomial theorem, and \ldots represents terms involving $t^2$ and
+higher powers. Since we've already established the results for $n=0$ and 1,
+differentiation gives
 \begin{equation*}
-  \frac{t^k-1}{t-1} = k \qquad .
+  \dot{u}(t) = n + \ldots \qquad .
 \end{equation*}
-The left-hand side is the quotient of two polynomials, and we expect it to divide without
-a remainder, because $t^k-1$ equals zero at $t=1$, and therefore it must have $t-1$ as a factor.
-If we try the example
-of $k=3$, we find that the quotient has
-the very simple form $t^2+t+1$, i.e., a polynomial of order $k-1$ whose
-coefficients are all equal to 1. We can easily verify that this works for
-all $k\ge 1$, by checking the multiplication
+Now let's evaluate this at $t=0$, where, as shown earlier, the terms represented by \ldots all vanish.
+Applying the add and shift properties, we have
 \begin{equation*}
-  t^k-1 = (t-1)(t^{k-1}+t^{k-2}+\ldots+1) \qquad ,
+  \dot{x}(1)-\dot{x}(0) = n  \qquad .
 \end{equation*}
-in which all the terms in the expansion of the right-hand side cancel except for $t^k$ and $-1$.
-Let's refer to the quotient as $Q(t)=t^{k-1}+t^{k-2}+\ldots+1$.
-How can we get $Q(t)=k$? Clearly we have a solution for $t=1$, since there are $k$ terms,
-each equal to 1. For $t>1$, all the terms except the constant one are greater than 1, so
-there can't be any solution. For $0 \le t < 1$, all the terms except the constant
-one are positive and less than 1, so again there can't be any solution.
-This completes the proof that there are no crossings for $t \ge 0$, which establishes
-the desired result. The result is also true for any real value of $k$; see example \ref{eg:der-x-to-any-k}
+But since $\dot{x}(0)=0$, this completes the proof.
+
+Although this proof was for integer exponents $n\ge 1$, the result is also true for any
+real value of $n$; see example \ref{eg:der-x-to-any-k}
 on p.~\pageref{eg:der-x-to-any-k}.
 
 \detour{sin-rigor}{Details of the proof of the derivative of the sine function}\index{derivative!of the sine}

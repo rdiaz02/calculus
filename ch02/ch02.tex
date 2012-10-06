@@ -528,9 +528,28 @@ leftmost one, we have
 \begin{equation*}
   \frac{\der z}{\der x} =   \frac{\der z}{\der y}  \cdot \frac{\der y}{\der x} \qquad .
 \end{equation*}
-This relation, called the chain rule, allows us to calculate a derivative of a function defined by one function
-inside another. The proof, given on page \pageref{detour:chain-rule}, is essentially just the application of the transfer principle. (As is often the case,
-the proof using the hyperreals is much simpler than the one using real numbers and limits.)
+This is called the chain rule. It says that if a change in $x$ causes $y$ to change, and $y$ then causes $z$ to change,
+then this chain of changes has a cascading effect. Mathematically, 
+there is no big mystery here. We simply cancel $\der y$ on the top and bottom. The only minor subtlety
+is that we would like to be able to be sloppy by using an expression like $\der y/\der x$ to mean
+both the quotient of two infinitesimal numbers and a derivative, which is defined as the standard part
+of this quotient. This sloppiness turns out to be all right, as proved on page \pageref{detour:chain-rule}.
+
+\begin{eg}
+\egquestion Jane hikes 3 kilometers in an hour, and hiking burns 70 calories per kilometer. At what rate
+does she burn calories?
+
+\eganswer We let $x$ be the number of hours she's spent hiking so far, $y$ the distance covered,
+and $z$ the calories spent. Then
+\begin{align*}
+  \frac{\der z}{\der x} &= \left(\frac{70\ \zu{cal}}{1\ \cancel{\zu{km}}}\right)
+                                     \left(\frac{3\ \cancel{\zu{km}}}{1\ \zu{hr}}\right) \\
+          &= 210\ \zu{cal}/\zu{hr} \qquad .
+\end{align*}
+\end{eg}
+
+The chain rule lets us find the derivative of a function that has been built out of one function
+stuck inside another.
 
 \begin{eg}
 \egquestion Find the derivative of the function $z(x)=\sin(x^2)$.

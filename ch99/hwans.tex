@@ -462,6 +462,17 @@ function can't oscillate back and forth without having any maxima at all, so the
 similar argument applies to the minima.
 
 
+\hwsolnhdr{absval-derivative}\\*
+The function $f$ has a kink at $x=0$, so it has no uniquely defined tangent line there, and its derivative
+at that point is undefined. In terms of infinitesimals, positive values of $\der x$ give
+$\der f/\der x=(\der x+\der x)/\der x=2$, while negative ones give $\der f/\der x=(-\der x+\der x)/\der x=0$.
+Since the standard part of the quotient $\der y/\der x$ depends on the specific value of $\der x$, the derivative is
+undefined.
+
+The function $g$ has no kink at $x=0$. The graph of $x|x|$ looks like two half-parabolas glued together, and since
+both of them have slopes of 0 at $x=0$, the slope of the tangent line is well defined, and is zero. In terms of
+infinitesimals, $\der g/\der y$ is the standard part of $|\der x|+1$, which is 1.
+
 \hwsolnhdr{air-res-v}\\*
 (a) As suggested, let $c=\sqrt{g/A}$, so that  $d = A \ln\cosh ct=A\ln\left(e^{ct}+e^{-ct}\right)$.
 Applying the chain rule, the velocity is

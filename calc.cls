@@ -4,7 +4,7 @@
 \LoadClass[9pt]{book}
 
 \RequirePackage{mytocloft,titlesec,titletoc,multicol,makeidx,wrapfig,fancyhdr,calc,amssymb,fancyvrb,ifthen,framed,alphalph,cancel,url,learn-cmd-syntax}
-\RequirePackage[pdftex]{color}%see pdftex mailing list, 2004 May 22-23
+\RequirePackage{color}%see pdftex mailing list, 2004 May 22-23
 \renewcommand{\sfdefault}{phv}
 \RequirePackage[EULERGREEK]{sansmath}
 \RequirePackage[leqno]{amsmath}

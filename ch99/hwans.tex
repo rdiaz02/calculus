@@ -1137,6 +1137,12 @@ and see if they produce something real. In fact, we can anticipate that it will 
 the coefficients are complex conjugates of one another, and when a quadratic has two complex
 roots, they are conjugates. The result is $(x-y)(x^2+xy+y^2)$.
 
+\hwsolnhdr{diffeq-with-composition}
+Applying the differential equation to the form suggested gives $abx^{b-1}=a^{b+1}x^{b^2}$.
+The exponents must be equal on both sides, so $b$ must be a solution of $b^2-b+1$. The solutions
+are $b=(1\pm\sqrt{3}i)/2$. For a more detailed discussion of this cute problem, see
+\url{mathoverflow.net/questions/111066}.
+
 \hwsolnhdr{partial-fraction-high-power}
 (a) Let $m=10,000$. We know that integrals of this form can be done, at least in theory, using partial fractions.
 The ten thousand roots of the polynomial will be ten thousand points evenly spaced around
@@ -1162,8 +1168,3 @@ Integration gives
 (Thanks to math.stackexchage.com user zulon for suggesting the residue mathod, and to
 Robert Israel for pointing out that for $|x|<1$ this can also be expressed as a hypergeometric function:
 $(- x)\ {}_2F_1\left(\frac{1}{m},1; 1+\frac{1}{m}; x^m\right)$.)
-
-\hwsolnhdr{diffeq-with-composition}
-Applying the differential equation to the form suggested gives $abx^{b-1}=a^{b+1}x^{b^2}$.
-The exponents must be equal on both sides, so $b$ must be a solution of $b^2-b+1$. The solutions
-are $b=(1\pm\sqrt{3}i)/2$.

@@ -144,7 +144,11 @@ clean:
 post:
 	cp calc.pdf $(WEB_DIR)
 
+all_figures:
+	perl -e 'foreach my $$f(<*/figs/*.svg>) {system("scripts/render_one_figure.pl $$f")}'
+
 prepress:
+	scripts/preflight_figs.pl
 	# The following makes Lulu not complain about missing fonts:
 	pdftk calc.pdf cat 3-end output calc_lulu.pdf
 	# Filtering through gs used to be necessary to convince Lulu not to complain about missing fonts.

@@ -27,7 +27,7 @@ exit(0) unless $xml=~m@file:///@;
 my $cwd = Cwd::getcwd();
 
 my @changes = ();
-while ($xml=~m@(file://(/.*))@g) {
+while ($xml=~m@(file://(/[^'"]*))@g) {
   my $whole = $1;
   my $path = $2;
   my $rel = relativise($path,File::Basename::dirname(abs_path($svg)),$cwd);

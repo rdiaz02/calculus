@@ -370,12 +370,24 @@ if $util=~/[a-z]/ then
       # epub 3 wants something more like:
       #   <dc:identifier id="pub-id">urn:isbn:9780316000000</dc:identifier>
       #   <meta refines="#pub-id" property="identifier-type" scheme="onix:codelist5">15</meta>
+      # Stacey has:
+      #   <dc:identifier id="pub-id">urn:uuid:577f82c9-a78c-493d-a162-9086930d4451</dc:identifier>
+      #   <meta refines="#pub-id" property="identifier-type" scheme="xsd:string">15</meta>
       # -
+      #---------- Patch the table of contents.
+      toc = "#{tmpdir}/index.html"
+      xml = ''
+      File.open(toc,'r') { |f|
+        xml = f.gets(nil) # nil means read whole file
+        # no changes actually needed
+      }
+      File.open(toc,'w') { |f| f.print xml }
+      #---------- Patch package file.
       package_document = "#{tmpdir}/content.opf" # this is what calibre generates; other people's epubs can have it in, e.g., OPS/package.opf
       xml = ''
       File.open(package_document,'r') { |f|
         xml = f.gets(nil) # nil means read whole file
-        new_pkg = '<package xmlns="http://www.idpf.org/2007/opf" version="3.0" xml:lang="en" unique-identifier="uuid_id">'
+        new_pkg = '<package xmlns="http://www.idpf.org/2007/opf" version="3.0" xml:lang="en" unique-identifier="pub-id">'
         xml.gsub!(/<package[^>]+>/,new_pkg)
         if xml=~/(<dc:creator([^>]+)>([^<]+)<\/dc:creator>)/ then
           whole,attributes,author = [Regexp::quote($1),$2,$3]
@@ -401,10 +413,8 @@ if $util=~/[a-z]/ then
         end
         if xml=~/(<dc:identifier([^>]+)>([^<]+)<\/dc:identifier>)/ then
           whole,attributes,identifier = [Regexp::quote($1),$2,$3]
-          i = "<dc:identifier id=\"uuid_id\">#{identifier}</dc:identifier>\n"
-          # i = i +"<meta refines=\"#uuid_id\" property=\"identifier-type\" scheme=\"uuid\"></meta>"
-          #   ...it's upset about zero-length content, but I don't know what goes there
-          #      also: Undefined property: uuid
+          i = "<dc:identifier id=\"pub-id\">urn:uuid:#{identifier}</dc:identifier>\n"
+          i = i +"<meta refines=\"#pub-id\" property=\"identifier-type\" scheme=\"xsd:string\">15</meta>"
           xml.gsub!(/#{whole}/) {i}
         end
         xml.gsub!(/(<item\s+([^\/]|"[^"]*")*\/>)/) {

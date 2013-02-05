@@ -162,10 +162,11 @@ post_source:
 	git push
 
 preflight:
+	@chmod +x scripts/* scripts/custom/* gen_graph.rb
 	@perl -e 'foreach $$f(<scripts/custom/*>) {system($$f)}'
 
 setup:
-	chmod +x scripts/* gen_graph.rb 
+	chmod +x scripts/* scripts/custom/* gen_graph.rb 
 	@echo "If the following command doesn't give a compiler error, you have a sufficiently up to date version of ruby."
 	ruby -e 'print ("ab" =~ /(?<!a)b/)'
 	@echo "If the following command doesn't give a compiler error, you have a sufficiently up to date version of libjson-perl."

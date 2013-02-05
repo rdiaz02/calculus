@@ -75,7 +75,7 @@ web:
 	scripts/make_web.pl # html 4
 
 handheld:
-	# see meki/zzz_misc/publishing for notes on this
+	# see meki:computer:general for notes on this
 	make preflight
 	scripts/translate_to_html.rb --write_config_and_exit --modern --override_config_with="handheld.config"
 	rm -f calc_handheld/ch*/*html calc_handheld/index.*html
@@ -110,7 +110,8 @@ epub:
 
 mobi:
 	# Before doing this, do a "make handheld".
-	ebook-convert calc_handheld/index.html calc.mobi $(GENERIC_OPTIONS_FOR_CALIBRE) --rescale-images --cover=ch00/figs/handheld-cover.jpg
+	#  --rescale-images no longer seems to exist in calibre 0.9
+	ebook-convert calc_handheld/index.html calc.mobi $(GENERIC_OPTIONS_FOR_CALIBRE) --cover=ch00/figs/handheld-cover.jpg
 
 epubcheck:
 	java -jar /usr/bin/epubcheck/epubcheck.jar calc.epub 2>err

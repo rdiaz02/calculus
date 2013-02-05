@@ -299,28 +299,12 @@
         {}{}
         {}
 %========================= graphicx package=========================
-\newif\ifpdf
-\ifx\pdfoutput\undefined
-\pdffalse % we are not running PDFLaTeX
-\else
-\pdfoutput=1 % we are running PDFLaTeX
-\pdftrue
-\fi
-
-\ifpdf
-\usepackage[pdftex]{graphicx}
-\else
 \usepackage{graphicx}
-\fi
 %========================= AtBeginDocument stuff=========================
 \AtBeginDocument{
   \newboolean{hwhavetrailing}
   %------------------------------- pdf stuff
-	\ifpdf
 	\DeclareGraphicsExtensions{.pdf,.jpg,.png}
-	\else
-	\DeclareGraphicsExtensions{.eps,.jpg,.png}
-	\fi
   \newcommand{\chapdir}{glub}
 }
 

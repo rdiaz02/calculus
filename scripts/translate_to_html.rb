@@ -379,7 +379,31 @@ if $util=~/[a-z]/ then
       xml = ''
       File.open(toc,'r') { |f|
         xml = f.gets(nil) # nil means read whole file
-        # no changes actually needed
+        # calibre generates: <!DOCTYPE html> <html xmlns="http://www.w3.org/1999/xhtml">
+        # want: <html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops">
+        xml.gsub!(/<\!DOCTYPE[^>]*>/,'') # why doesn't this work?
+        xml.gsub!(/<p [^>]*>/,'<li>')
+        xml.gsub!(/<\/p>/,'</li>')
+        xml.gsub!(/<b [^>]*>/,'')
+        xml.gsub!(/<\/b>/,'')
+        # li elements are only allowed to contain a elements:
+        preserve = ''
+        xml.scan(/(<li><a [^>]*>[^>]*<\/a><\/li>)/) { # match the legal pattern
+          preserve = preserve + $1 + "\n"
+        }
+        xml.gsub!(Regexp.new("<li>.*<\/li>",Regexp::MULTILINE),preserve) # delete everything from the first li to the last and replace it with the ok ones
+        if xml=~/(<html([^>]*)>)/ then
+          whole,attrs = [$1,$2]
+          xml.gsub!(/#{Regexp::quote(whole)}/) {"<html #{attrs} xmlns:epub=\"http://www.idpf.org/2007/ops\">"}
+        end
+        if xml=~/(<body[^>]*>)/ then
+          whole = $1
+          xml.gsub!(/#{Regexp::quote(whole)}/) {"#{whole}\n<nav epub:type=\"toc\" id=\"toc\"><ol>"}
+        end
+        if xml=~/(<\/body[^>]*>)/ then
+          whole = $1
+          xml.gsub!(/#{Regexp::quote(whole)}/) {"</ol></nav>\n#{whole}"}
+        end
       }
       File.open(toc,'w') { |f| f.print xml }
       #---------- Patch package file.
@@ -404,13 +428,14 @@ if $util=~/[a-z]/ then
           # http://idpf.org/epub/30/spec/epub30-publications.html#last-modified-date
           "<meta property=\"dcterms:modified\">#{Time.now.strftime '%Y-%m-%dT%H:%M:%SZ'}</meta>"
         }
-        if false then # The following doesn't satisfy epubcheck. It knows that an ncx isn't what it's looking for.
-          toc = "<item href=\"toc.ncx\" media-type=\"application/x-dtbncx+xml\" id=\"ncx\"/>"
-              # ... kludge, depends on exact format that comes out of calibre
-          xml.gsub!(/#{Regexp::quote(toc)}/) {
-            "<item properties=\"nav\" href=\"toc.ncx\" media-type=\"application/xhtml+xml\" id=\"ncx\"/>"
-          }
+        # <item  href="index.html" id="html" media-type="application/xhtml+xml"/>
+        if xml=~/(<item([^>]+)(href="index.html")([^>]+)\/>)/ then
+          whole,before,href,after = [Regexp::quote($1),$2,$3,$4]
+          xml.gsub!(/#{whole}/) {"<item #{before} properties=\"nav\" #{href} #{after} />"}
         end
+        xml.gsub!(/#{Regexp::quote(toc)}/) {
+          "<item properties=\"nav\" href=\"toc.ncx\" media-type=\"application/xhtml+xml\" id=\"ncx\"/>"
+        }
         if xml=~/(<dc:identifier([^>]+)>([^<]+)<\/dc:identifier>)/ then
           whole,attributes,identifier = [Regexp::quote($1),$2,$3]
           i = "<dc:identifier id=\"pub-id\">urn:uuid:#{identifier}</dc:identifier>\n"

@@ -392,6 +392,12 @@ if $util=~/[a-z]/ then
           preserve = preserve + $1 + "\n"
         }
         xml.gsub!(Regexp.new("<li>.*<\/li>",Regexp::MULTILINE),preserve) # delete everything from the first li to the last and replace it with the ok ones
+        # Strip chapter numbers, which are generated automatically by the ol:
+        xml.gsub!(/((<li><a [^>]*>)([^>]*)(<\/a><\/li>))/) {
+          whole,before,during,after = [$1,$2,$3,$4]
+          during.gsub!(/[\d\.]+\s*/,'')
+          before+during+after
+        }
         if xml=~/(<html([^>]*)>)/ then
           whole,attrs = [$1,$2]
           xml.gsub!(/#{Regexp::quote(whole)}/) {"<html #{attrs} xmlns:epub=\"http://www.idpf.org/2007/ops\">"}

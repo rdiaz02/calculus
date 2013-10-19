@@ -310,7 +310,7 @@ if $util=~/[a-z]/ then
       csv.split(/\n/).each { |line|
         # command,\currenthwlabel ,0,0,
         # environment,hw,0,1,1
-        if line=~/\A(command|environment),([^,]*),([^,]*),([^,]*),([^,]*)\Z/ then
+        if line=~/\A(command|environment)\*?,([^,]*),([^,]*),([^,]*),([^,]*)\Z/ then
           type,name,n_req,n_opt,default = [$1,$2,$3.to_i,$4.to_i,$5]
           name.gsub!(/\s/,'')
           name.gsub!(/\\/,'') if type=='command'

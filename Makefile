@@ -70,8 +70,8 @@ web:
 	@[ `which footex` ] || exit 1
 	@scripts/translate_to_html.rb --write_config_and_exit
 	scripts/prep_web.pl
-	WOPT='--modern' scripts/make_web.pl # xhtml
 	WOPT='--html5' scripts/make_web.pl # html 5
+	WOPT='--mathjax' scripts/make_web.pl # html 4 with mathjax
 	scripts/make_web.pl # html 4
 
 handheld:

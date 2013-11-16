@@ -223,14 +223,26 @@ $\xdot$'s, or that $\xdot$ is the difference between two successive $x$'s.
 But we already found a geometrical relationship between the two functions
 in the discrete case, and that can serve as our definition for the continuous
 case: $x$ is the area under the graph of $\xdot$, or, if you like,
-$\xdot$ is the slope of the tangent line on the graph of $x$. For now
+$\xdot$ is the slope of the graph of $x$. For now
 we'll concentrate on the slope idea.
 
 %%graph%% not-a-tangent-line func=x**2/2 format=eps xlo=0 xhi=2 ylo=0 yhi=2 with=lines x=t y=x samples=300 ytic_spacing=1 ; func=1.75*x-1.25 with=lines
 \smallfig[t]{not-a-tangent-line}{This line isn't a tangent line: it crosses the graph.}%
-The tangent\index{tangent line!informal definition}
-line is defined as the line that passes through the graph at a certain point,
-but, unlike the one in figure \figref{not-a-tangent-line}, doesn't cut across the graph.\footnote{For a more formal definition, see
+This definition is still a little vague, because we haven't defined what we mean
+by the ``slope'' of a curving graph. For a discrete graph like figure \figref{slope-interpretation},
+we could define it as the slope of the line drawn between neighboring points. Visually,
+it's clear that the continuous version of this is something like the line drawn
+in figure \figref{tangent-line}. This is referred to as the tangent line.
+
+We still need to convert this intuitive idea of a tangent line into a formal
+definition. In a typical example like figure \figref{tangent-line}, the tangent\index{tangent line!informal definition}
+line can be defined as the line that touches the graph at a certain point,
+but, unlike the line in figure \figref{not-a-tangent-line}, doesn't cut across 
+the graph at that point.\footnote{In the case where the original
+graph is itself a line, the tangent line simply coincides with the graph, and this also satisfies
+the definition, because the tangent line doesn't cut across the graph; it lies on top of it.
+There is one other exceptional case, called a point of inflection, which we won't worry about
+right now. For a more complicated definition that correctly handles all the cases, see
 page \pageref{detour:def-tangent}.} By measuring with a ruler on figure
 \figref{tangent-line}, we find that the slope is very close to 1, so evidently
 $\xdot(1)=1$.

@@ -2211,7 +2211,7 @@ def find_figure(name,width_type)
   # width_type = 'narrow' , 'wide' , 'fullpage' , 'raw'
 
   # Allow for kludges like fig('../../../lm/vw/figs/doppler',...), which I do in an E&M chapter of LM.
-  if name=~/^\.\.\/\.\.\/\.\.\/lm/ then
+  if name=~/^\.\./ then
     return name
   end
 

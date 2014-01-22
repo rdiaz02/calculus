@@ -114,13 +114,13 @@ $x^2$ with respect to $x$ and multiplied it by $\der x$. In
 symbols,
 \begin{align*}
   \der(x^2) &= \frac{\der(x^2)}{\der x} \cdot \der x \\
-           &= 2x \: \der x \qquad .
+           &= 2x \der x \qquad .
 \end{align*}
 That is, the change in $x^2$ is $2x$ times the change in $x$.
 Doing this to both sides of the original equation, we have
 \begin{gather*}
   \der(y^7+y) = \der(x^7+x^2)\\
-  7y^6\:\der y + 1\:\der y = 7x^6\:\der x + 2x\:\der x\\
+  7y^6\der y + 1\der y = 7x^6\der x + 2x\der x\\
   (7y^6+1)\der y = (7x^6+2x)\der x \\
   \frac{\der y}{\der x} = \frac{7x^6+2x}{7y^6+1} \qquad .
 \end{gather*}
@@ -178,7 +178,7 @@ seemingly impossible integral.
 \eganswer The only hope for reducing this to a form we can do is to let
 $u=\sqrt x$. Then $\der x=\der(u^2)=2u\der u$, so
 \begin{align*}
-  \int \frac{e^{\sqrt x}}{\sqrt x} \der x &=   \int \frac{e^u}{u} \cdot 2u\:\der u \\
+  \int \frac{e^{\sqrt x}}{\sqrt x} \der x &=   \int \frac{e^u}{u} \cdot 2u\der u \\
              &= 2 \int e^u \der u \\
              &= 2e^u \\
              &= 2e^{\sqrt{x}} \qquad .
@@ -209,7 +209,7 @@ But differentiating both sides of $x=\tan u$ gives
          &= (\der\sin u)(\cos u)^{-1}\\
          &  \quad +(\sin u)\der\left[(\cos u)^{-1}\right] \\
          &= \left(1+\tan^2 u\right)\der u \\
-         &= \sec^2 u\:\der u \qquad , 
+         &= \sec^2 u\der u \qquad , 
 \end{align*}
 so the integral becomes
 \begin{align*}
@@ -244,9 +244,9 @@ Pythagorean theorem to find its hypotenuse.
 triangle with hypotenuse 1 and a leg of length $x$, and were using the
 Pythagorean theorem to find the other leg, as in figure \figref{cos-substitution}.
 This motivates us to try the substitution $x=\cos u$, which gives
-$\der x=-\sin u\:\der u$ and $\sqrt{1-x^2}=\sqrt{1-\cos^2u}=\sin u$. The result is
+$\der x=-\sin u\der u$ and $\sqrt{1-x^2}=\sqrt{1-\cos^2u}=\sin u$. The result is
 \begin{align*}
-  \int \frac{\der x}{\sqrt{1-x^2}} &= \int \frac{-\sin u\:\der u}{\sin u} \\
+  \int \frac{\der x}{\sqrt{1-x^2}} &= \int \frac{-\sin u\der u}{\sin u} \\
                  &= u+c \\
                  &= \cos^{-1}x \qquad .
 \end{align*}
@@ -262,9 +262,9 @@ then we can calculate the easier one, and then by simple geometry determine
 the one we wanted. Identifying the large rectangle that surrounds both
 shaded areas, and the small white rectangle on the lower left, we have
 \begin{align*}
-  \int u\:\der v =& (\text{area of large rectangle})\\
+  \int u\der v =& (\text{area of large rectangle})\\
                 &-(\text{area of small rectangle})\\
-                &\int v\:\der u \qquad .
+                &\int v\der u \qquad .
 \end{align*}
 
 \fig{by-parts}{Integration by parts.}
@@ -272,13 +272,13 @@ shaded areas, and the small white rectangle on the lower left, we have
 In the case of an indefinite integral, we have a similar relationship
 derived from the product rule:
 \begin{gather*}
-  \:\der(uv) = u \:\der v + v \:\der u \\
-  u \:\der v = \der(uv) - v \:\der u 
+  \der(uv) = u \der v + v \der u \\
+  u \der v = \der(uv) - v \der u 
 \end{gather*}
 Integrating both sides, we have the following relation.
 \begin{important}[Integration by parts]
 \begin{equation*}
-  \int u \:\der v = uv - \int v \:\der u \qquad .
+  \int u \der v = uv - \int v \der u \qquad .
 \end{equation*}
 \end{important}
 Since a definite integral can always be done by evaluating an indefinite
@@ -295,23 +295,23 @@ a simplification.
 \begin{eg}
 \egquestion Evaluate
 \begin{equation*}
-  \int x \cos x \:\der x
+  \int x \cos x \der x
 \end{equation*}
 
 \egquestion There are two obvious possibilities for splitting up the integrand
 into factors,
 \begin{align*}
-  u \:\der v &= (x)(\cos x\:\der x) \\
+  u \der v &= (x)(\cos x\der x) \\
 \intertext{or}
-  u \:\der v &= (\cos x)(x\:\der x) \qquad .
+  u \der v &= (\cos x)(x\der x) \qquad .
 \end{align*}
 The first one is the one that lets us make progress. If $u=x$, then
-$\der u=\der x$, and if $\der v=\cos x\:\der x$, then integration
+$\der u=\der x$, and if $\der v=\cos x\der x$, then integration
 gives $v=\sin x$.
 \begin{align*}
-  \int x \cos x \:\der x &= \int u \:\der v \\
-                       &= uv - \int v \:\der u \\
-                       &= x\sin x-\int \sin x \:\der x \\
+  \int x \cos x \der x &= \int u \der v \\
+                       &= uv - \int v \der u \\
+                       &= x\sin x-\int \sin x \der x \\
                        &= x\sin x+\cos x
 \end{align*}
 Of the two possibilities we considered for $u$ and $\der v$, the reason
@@ -324,21 +324,21 @@ less.
 \end{eg}
 
 \begin{eg}
-\egquestion Evaluate $\int \ln x \:\der x$.
+\egquestion Evaluate $\int \ln x \der x$.
 
 \eganswer This one is a little tricky, because it isn't explicitly
 written as a product, and yet we can attack it using integration by
 parts. Let $u=\ln x$ and $\der v=\der x$.
 \begin{align*}
-  \int \ln x \:\der x &= \int u \:\der v \\
-                       &= uv - \int v \:\der u \\
+  \int \ln x \der x &= \int u \der v \\
+                       &= uv - \int v \der u \\
                        &= x\ln x-\int x \frac{\der x}{x} \\
                        &= x\ln x-x
 \end{align*}
 \end{eg}
 
 \begin{eg}\label{eg:integrate-x-squared-times-exp}
-\egquestion Evaluate $\int x^2 e^x \:\der x$.
+\egquestion Evaluate $\int x^2 e^x \der x$.
 
 \eganswer
 Integration by parts lets us split the integrand into two factors, integrate one, differentiate the
@@ -347,13 +347,13 @@ $x^2$ increases the exponent, which makes the problem look harder, whereas diffe
 knocks the exponent down a step, which makes it look easier. Let $u=x^2$ and $\der v=e^x \der x$,
 so that $\der u=2x\der x$ and $v=e^x$. We then have
 \begin{equation*}
-  \int x^2 e^x \:\der x = x^2 e^x - 2 \int x e^x\der x \qquad .
+  \int x^2 e^x \der x = x^2 e^x - 2 \int x e^x\der x \qquad .
 \end{equation*}
 Although we don't immediately know how to evaluate this new integral, we can subject it to the
 same type of integration by parts, now with $u=x$ and $\der v=e^x \der x$. After the second
 integration by parts, we have:
 \begin{align*}
-  \int x^2 e^x \:\der x &= x^2 e^x - 2 \left(x e^x -\int e^x\der x \right) \\
+  \int x^2 e^x \der x &= x^2 e^x - 2 \left(x e^x -\int e^x\der x \right) \\
                         &= x^2 e^x - 2 \left(x e^x - e^x \right) \\
                         &= (x^2-2x+2)e^x \\
 \end{align*}
@@ -374,7 +374,7 @@ we can rewrite it over a common denominator like this:
 \end{align*}
 But note that the original form is easily integrated to give
 \begin{multline*}
-  \int \left(\frac{-1}{x-1}+\frac{1}{x+1}\right)\:\der x \\
+  \int \left(\frac{-1}{x-1}+\frac{1}{x+1}\right)\der x \\
     =-\ln(x-1)+\ln(x+1)+c \qquad ,
 \end{multline*}
 while faced with the form \linebreak[4] $-2/(x^2-1)$, we wouldn't have known how to
@@ -527,7 +527,7 @@ Yacas to expand the integrand in terms of partial fractions:
 We can now rewrite the integral like this:
 
 \begin{align*}
-   &\frac{2}{25} \int \frac{x\:\der x}{x^2+1} \\
+   &\frac{2}{25} \int \frac{x\der x}{x^2+1} \\
   +&\frac{3}{50} \int \frac{\der x}{x^2+1} \\
   +&\frac{1}{300} \int \frac{\der x}{x-7} \\
   -&\frac{1}{12} \int \frac{\der x}{x-1} \\
@@ -722,14 +722,14 @@ Evaluate
 \begin{hw}
 Evaluate
 \begin{equation*}
-  \int x\sqrt{a-x}\:\der x \qquad .
+  \int x\sqrt{a-x}\der x \qquad .
 \end{equation*}
 \end{hw}
 
 \begin{hw}
 Evaluate
 \begin{equation*}
-  \int \sqrt{x^4+bx^2} \:\der x \qquad ,
+  \int \sqrt{x^4+bx^2} \der x \qquad ,
 \end{equation*}
 where $b$ is a constant.
 \end{hw}
@@ -737,30 +737,30 @@ where $b$ is a constant.
 \begin{hw}
 Evaluate
 \begin{equation*}
-  \int x e^{-x^2} \:\der x \qquad .
+  \int x e^{-x^2} \der x \qquad .
 \end{equation*}
 \end{hw}
 
 \begin{hw}
 Evaluate
 \begin{equation*}
-  \int x e^x \:\der x \qquad .
+  \int x e^x \der x \qquad .
 \end{equation*}
 \end{hw}
 
 \begin{hw}
 Use integration by parts to evaluate the following integrals.
 \begin{gather*}
-  \int \sin^{-1} x\:\der x \\
-  \int \cos^{-1} x\:\der x \\
-  \int \tan^{-1} x\:\der x 
+  \int \sin^{-1} x\der x \\
+  \int \cos^{-1} x\der x \\
+  \int \tan^{-1} x\der x 
 \end{gather*}
 \end{hw}
 
 \begin{hw}
 Evaluate
 \begin{equation*}
-  \int x^2 \sin x \:\der x \qquad .
+  \int x^2 \sin x \der x \qquad .
 \end{equation*}
 Hint: Use integration by parts more than once.
 \end{hw}
@@ -789,7 +789,7 @@ Evaluate
 \begin{hw}\label{hw:integration-by-parts-twice-trick}
 Apply integration by parts \emph{twice} to
 \begin{equation*}
-  \int e^{-x}\cos x \:\der x \qquad ,
+  \int e^{-x}\cos x \der x \qquad ,
 \end{equation*}
 examine what happens, and manipulate the result in order to solve the original integral.
 (An approach that doesn't rely on tricks is given in example \ref{eg:int-exp-cos-euler} on p.~\pageref{eg:int-exp-cos-euler}.)
@@ -800,7 +800,7 @@ Plan, \emph{but do not actually carry out} the steps that would be required in o
 the result of example \ref{eg:integrate-x-squared-times-exp} on p.~\pageref{eg:integrate-x-squared-times-exp}
 in order to evaluate
 \begin{equation*}
-  \int x^a b^{-x} \:\der x \qquad ,
+  \int x^a b^{-x} \der x \qquad ,
 \end{equation*}
 where $a$ and $b$ are constants.
 Which is easier, the generalization from 2 to $a$, or the one from $e$ to $b$?

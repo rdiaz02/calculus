@@ -116,7 +116,7 @@ In the Leibniz notation,\index{Leibniz notation!integral}
 the thing we've just calculated, by two different techniques, is written like
 this:
 \begin{equation*}
-  \int_{0}^{100} t \:\der t = 5,000
+  \int_{0}^{100} t \der t = 5,000
 \end{equation*}
 It looks a lot like the $\Sigma$ notation, with the $\Sigma$ replaces by a flattened-out letter ``S.''
 The $t$ is a dummy variable. What I've been casually referring to as an integral is really two different
@@ -176,7 +176,7 @@ That is, integration undoes differentiation, and differentiation undoes integrat
 \begin{eg}\label{eg:hyperbola}
 \egquestion Interpret the indefinite integral
 \begin{equation*}
-  \int_{1}^{2} \frac{1}{t}\:\der t \qquad .
+  \int_{1}^{2} \frac{1}{t}\der t \qquad .
 \end{equation*}
 graphically; then evaluate it it both symbolically and numerically, and check that the two results
 are consistent.
@@ -270,7 +270,7 @@ Similarly, a definite integral can also be thought of as a kind of average. In g
 a function of $x$, then the average, or mean, value of $y$ on the interval from $x=a$ to $b$ can be
 defined as
 \begin{equation*}
-  \bar{y} = \frac{1}{b-a} \int_a^b y\:\der x \qquad .
+  \bar{y} = \frac{1}{b-a} \int_a^b y\der x \qquad .
 \end{equation*}
 In the continuous case, dividing by $b-a$ accomplishes the same thing as dividing by the
 number of things in the discrete case.
@@ -281,7 +281,7 @@ is a constant.
 
 \eganswer If $y$ is a constant, then we can take it outside of the integral, so
 \begin{align*}
-  \bar{y} &= \frac{1}{b-a} y \int_a^b 1\:\der x \\
+  \bar{y} &= \frac{1}{b-a} y \int_a^b 1\der x \\
                      &= \frac{1}{b-a} y \left.x\right|_a^b \\
                      &= \frac{1}{b-a} y (b-a) \\
                      &= y
@@ -293,7 +293,7 @@ is a constant.
 0 to 1.
 
 \begin{align*}
-  \bar{y} &= \frac{1}{1-0} \int_0^1 x^2\:\der x \\
+  \bar{y} &= \frac{1}{1-0} \int_0^1 x^2\der x \\
                      &= \left.\frac{1}{3}x^3\right|_0^1 \\
                      &= \frac{1}{3}
 \end{align*}
@@ -441,7 +441,7 @@ that is required by normalization.
 
 \eganswer
 \begin{align*}
-  1 &= \int_0^1 k(1-x)\:\der x \\
+  1 &= \int_0^1 k(1-x)\der x \\
     &= \left.kx-\frac{1}{2}kx^2\right|_0^1 \\
     &= k-k/2 \\
   k &= 2
@@ -512,7 +512,7 @@ For a discrete-valued variable with $n$ possible values, the average would be
 \end{equation*}
 and in the case of a continuous variable, this becomes an integral,
 \begin{equation*}
-  \bar{x} = \int_a^b x\:\frac{\der P}{\der x} \: \der x \qquad .
+  \bar{x} = \int_a^b x\:\frac{\der P}{\der x} \der x \qquad .
 \end{equation*}
 
 \begin{eg}
@@ -521,9 +521,9 @@ find the average value of $x$.
 
 \eganswer
 \begin{align*}
-  \bar{x} &= \int_0^1 x\:\frac{\der P}{\der x} \: \der x \\
-          &= \int_0^1 x \cdot 2(1-x)\:\der x \\
-          &= 2\int_0^1 (x-x^2)\:\der x \\
+  \bar{x} &= \int_0^1 x\:\frac{\der P}{\der x} \der x \\
+          &= \int_0^1 x \cdot 2(1-x)\der x \\
+          &= 2\int_0^1 (x-x^2)\der x \\
           &= 2\left. \left(\frac{1}{2}x^2-\frac{1}{3}x^3\right) \right|_0^1 \\
           &= \frac{1}{3}
 \end{align*}
@@ -534,7 +534,7 @@ also want to have some idea of the amount of variation above and below the avera
 The most common way of measuring this is the \emph{standard deviation},\index{standard deviation}
 defined by
 \begin{equation*}
-  \sigma = \sqrt{\int_a^b (x-\bar{x})^2\:\frac{\der P}{\der x} \: \der x} \qquad .
+  \sigma = \sqrt{\int_a^b (x-\bar{x})^2\:\frac{\der P}{\der x} \der x} \qquad .
 \end{equation*}
 The idea here is that if there was no variation at all above or below the average,
 then the quantity $(x-\bar{x})$ would be zero whenever $\der P/\der x$ was nonzero, and
@@ -547,9 +547,9 @@ find the standard deviation of $x$.
 
 \eganswer The square of the standard deviation is
 \begin{align*}
-  \sigma^2 &= \int_0^1 (x-\bar{x})^2\:\frac{\der P}{\der x} \: \der x \\
-          &= \int_0^1 (x-1/3)^2\cdot2(1-x) \: \der x \\
-          &= 2 \int_0^1 \left(-x^3+\frac{5}{3}x^2-\frac{7}{9}x+\frac{1}{9}\right) \: \der x \\
+  \sigma^2 &= \int_0^1 (x-\bar{x})^2\:\frac{\der P}{\der x} \der x \\
+          &= \int_0^1 (x-1/3)^2\cdot2(1-x) \der x \\
+          &= 2 \int_0^1 \left(-x^3+\frac{5}{3}x^2-\frac{7}{9}x+\frac{1}{9}\right) \der x \\
           &= \frac{1}{18} \qquad ,
 \intertext{so the standard deviation is}
   \sigma &= \frac{1}{\sqrt{18}} \\
@@ -571,7 +571,7 @@ to evaluate the definite integral
 \begin{hwwithsoln}{integrate-sin-cancel}
 Evaluate the integral
 \begin{equation*}
-  \int_0^{2\pi} \sin x \:\der x \qquad ,
+  \int_0^{2\pi} \sin x \der x \qquad ,
 \end{equation*}
 and draw a sketch to explain why your result comes out the way it does.
 \end{hwwithsoln}
@@ -602,7 +602,7 @@ a discontinuous function for which the theorem fails.
 
 \begin{hw}
 Sketch the graphs of $y=x^2$ and $y=\sqrt{x}$ for $0\le x\le 1$. Graphically, what relationship
-should exist between the integrals $\int_0^1 x^2\:\der x$ and $\int_0^1 \sqrt{x}\:\der x$? Compute both
+should exist between the integrals $\int_0^1 x^2\der x$ and $\int_0^1 \sqrt{x}\der x$? Compute both
 integrals, and verify that the results are related in the expected way.
 \end{hw}
 

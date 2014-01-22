@@ -285,7 +285,7 @@ we have $a=1/3$.
 
 \begin{align*}
   \frac{\der x}{\der t} &= \frac{(t+\der t)^4-t^4}{\der t} \\
-                        &= \frac{4t^3\:\der t + 6t^2\der t^2 + 4t\:\der t^3+\der t^4}{\der t} \\
+                        &= \frac{4t^3\der t + 6t^2\der t^2 + 4t\der t^3+\der t^4}{\der t} \\
                         &= 4t^3 + \ldots \qquad ,
 \end{align*}
 where \ldots indicates infinitesimal terms.
@@ -303,7 +303,7 @@ The identity $\cos(\alpha+\beta)=\cos\alpha\cos\beta-\sin\alpha\sin\beta$ then g
 The small-angle approximations  $\cos \der t\approx 1$ and $\sin \der t\approx \der t$
 result in
 \begin{align*}
-\frac{\der x}{\der t}   &= \frac{-\sin t \: \der t}{\der t} \\
+\frac{\der x}{\der t}   &= \frac{-\sin t \der t}{\der t} \\
                         &= -\sin t \qquad .
 \end{align*}
 
@@ -828,7 +828,7 @@ The result is 1.46.
 The derivative of the cosine is minus the sine, so to get a function whose
 derivative is the sine, we need minus the cosine.
 \begin{align*}
-  \int_0^{2\pi} & \sin x \:\der x \\
+  \int_0^{2\pi} & \sin x \der x \\
     &= \left.(-\cos x)\right|_0^{2\pi} \\
     &= (-\cos 2\pi)-(-\cos 0) \\
     &= (-1)-(-1) \\
@@ -858,7 +858,7 @@ it spends more time above 1/2 than below it, so we expect the average to be
 somewhat greater than 1/2.
 The exact result is
 \begin{align*}
-  \overline{\sin} &= \frac{1}{\pi-0}\int_0^\pi \sin x\:\der x \\
+  \overline{\sin} &= \frac{1}{\pi-0}\int_0^\pi \sin x\der x \\
              &= \frac{1}{\pi}\left.(- \cos x)\right|_0^\pi \\
              &= \frac{1}{\pi}[-\cos\pi-(-\cos 0)] \\
              &= \frac{2}{\pi} \qquad ,

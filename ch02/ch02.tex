@@ -47,7 +47,7 @@ number you could imagine, but it's not zero. The area of the square is increased
 analogous to the finite numbers $0.21$ and $0.0201$ we calculated earlier. Where before we divided by a finite
 change in $t$ such as $0.1$ or $0.01$, now we divide by $\der t$, producing
 \begin{align*}
-  \frac{\der x}{\der t} &=  \frac{2t\:\der t +\der t^2}{\der t} \\
+  \frac{\der x}{\der t} &=  \frac{2t\der t +\der t^2}{\der t} \\
                         &= 2t+\der t
 \end{align*}
 for the derivative. On a graph like figure \figref{close-up}, $\der x/\der t$ is the slope of the tangent line: the change
@@ -61,7 +61,7 @@ that the earlier approximate results, 2.1 and 2.01, were getting closer and clos
 To show the power of infinitesimals and the Leibniz notation, let's prove that the derivative of $t^3$ is $3t^2$:
 \begin{align*}
   \frac{\der x}{\der t} &= \frac{(t+\der t)^3-t^3}{\der t} \\
-                        &= \frac{3t^2\:\der t + 3t\:\der t^2 + \der t^3}{\der t} \\
+                        &= \frac{3t^2\der t + 3t\der t^2 + \der t^3}{\der t} \\
                         &= 3t^2 + \ldots \qquad ,
 \end{align*}
 where the dots indicate infinitesimal terms that we can neglect.
@@ -151,7 +151,7 @@ and with the trig identity $\sin(\alpha+\beta)=\sin\alpha\cos\beta+\cos\alpha\si
 Applying the small-angle approximations $\sin u\approx u$ and $\cos u\approx 1$,
 we have
 \begin{align*}
-\frac{\der x}{\der t}   &= \frac{\cos t \: \der t}{\der t} + \ldots\\
+\frac{\der x}{\der t}   &= \frac{\cos t \der t}{\der t} + \ldots\\
                         &= \cos t + \ldots \qquad ,
 \end{align*}
 where ``\ldots'' represents the error caused by the small-angle approximations.
@@ -443,7 +443,7 @@ an amount
 \begin{gather*}
   (x+\der x)(y+\der y)-xy \\
       = y\der x + x\der y+\der x\der y \qquad , \\
-\intertext{and dividing by \der t makes this into}
+\intertext{and dividing by $\der t$ makes this into}
       \frac{\der x}{\der t}\cdot y +  x \cdot \frac{\der y}{\der t} + \frac{\der x \der y}{\der t} \qquad ,
 \end{gather*}
 whose standard part is the result to be proved.

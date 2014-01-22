@@ -106,7 +106,7 @@ as follows:
   \der x &= \sin(t+\der t)-\sin t \qquad , \\
          &= \sin t \: \cos \der t \\
          &\quad + \cos t \: \sin \der t - \sin t \\
-         &= \cos t \: \der t + \ldots\qquad .
+         &= \cos t \der t + \ldots\qquad .
 \end{align*}
 We want to prove prove that the error ``\ldots'' introduced by the small-angle approximations really
 is of order $\der t^2$. 
@@ -612,8 +612,8 @@ $\xdot(b)$. We have to establish that this equals the following:
   \frac{\der}{\der b} \int_a^b \xdot(t) \der t 
     &= \st \frac{1}{\der b}\left[\int_a^{b+\der b}  \xdot(t) \der t - \int_a^b  \xdot(t) \der t\right] \\
     &= \st \frac{1}{\der b}\int_b^{b+\der b}  \xdot(t) \der t \\
-    &= \st \frac{1}{\der b}\lim_{H\rightarrow\infty} \sum_{i=0}^H  \xdot(b\:+\:i\:\der b/H) \frac{\der b}{H} \\
-    &= \st \lim_{H\rightarrow\infty} \frac{1}{H} \sum_{i=0}^H  \xdot(b\:+\:i\:\der b/H)
+    &= \st \frac{1}{\der b}\lim_{H\rightarrow\infty} \sum_{i=0}^H  \xdot(b\:+\:i\der b/H) \frac{\der b}{H} \\
+    &= \st \lim_{H\rightarrow\infty} \frac{1}{H} \sum_{i=0}^H  \xdot(b\:+\:i\der b/H)
 \end{align*}
 Since $\xdot$ is continuous, all the values of $\xdot$ occurring inside the sum can differ
 only infinitesimally from $\xdot(b)$. Therefore the quantity inside the limit differs only infinitesimally from

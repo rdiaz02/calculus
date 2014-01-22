@@ -44,7 +44,7 @@ For convenience, we'll imagine that the rectangle's
 lower left corner is at the origin. Then the area is given by this integral:
 \begin{align*}
   \text{area} &= \int_{y=0}^b \int_{x=0}^a \der A \\
-              &= \int_{y=0}^b \int_{x=0}^a \der x \:\der y 
+              &= \int_{y=0}^b \int_{x=0}^a \der x \der y 
 \end{align*}
 Notice how the leftmost integral sign, over $y$, and the rightmost differential, $\der y$,
 act like bookends, or the pieces of bread on a sandwich. Inside them, we have
@@ -55,9 +55,9 @@ lower limits of the integrals with $x=$ and $y=$ helps to keep it straight which
 integral goes with with differential. The result is
 \begin{align*}
   \text{area} &= \int_{y=0}^b \int_{x=0}^a \der A \\
-              &= \int_{y=0}^b \int_{x=0}^a \der x \:\der y \\
+              &= \int_{y=0}^b \int_{x=0}^a \der x \der y \\
               &= \int_{y=0}^b \left(\int_{x=0}^a \der x\right) \der y \\
-              &= \int_{y=0}^b a \:\der y \\
+              &= \int_{y=0}^b a \der y \\
               &= a \int_{y=0}^b \der y \\
               &= ab \qquad .
 \end{align*}
@@ -72,9 +72,9 @@ up the same way as the one before, but for a particular value of $y$, values of
 $x$ only run from 0 (on the $y$ axis) to $y$ (on the hypotenuse). We then have
 \begin{align*}
   \text{area} &= \int_{y=0}^a \int_{x=0}^y \der A \\
-              &= \int_{y=0}^a \int_{x=0}^y \der x \:\der y \\
+              &= \int_{y=0}^a \int_{x=0}^y \der x \der y \\
               &= \int_{y=0}^a \left(\int_{x=0}^y \der x\right) \der y \\
-              &= \int_{y=0}^a y \:\der y \\
+              &= \int_{y=0}^a y \der y \\
               &= \frac{1}{2}a^2
 \end{align*}
 Note that in this example, because the upper end of the $x$ values depends
@@ -91,10 +91,10 @@ $\der V = \der x \der y \der z$.
 
 \begin{align*}
   \text{volume} &= \int_{z=0}^a \int_{y=0}^a \int_{x=0}^a \der V \\
-              &= \int_{z=0}^a \int_{y=0}^a \int_{x=0}^a \der x \: \der y \: \der z \\
-              &= \int_{z=0}^a \int_{y=0}^a a \: \der y \: \der z \\
-              &= a \int_{z=0}^a \int_{y=0}^a \der y \: \der z \\
-              &= a \int_{z=0}^a a \: \der z \\
+              &= \int_{z=0}^a \int_{y=0}^a \int_{x=0}^a \der x \der y \der z \\
+              &= \int_{z=0}^a \int_{y=0}^a a \der y \der z \\
+              &= a \int_{z=0}^a \int_{y=0}^a \der y \der z \\
+              &= a \int_{z=0}^a a \der z \\
               &= a^2 \int_{z=0}^a \der z \\
               &= a^3
 \end{align*}
@@ -110,11 +110,11 @@ or $y=\sqrt{R^2-x^2}$. Since the $y$ integral's limit depends on $x$, the $x$
 integral has to be on the outside.
 The area is
 \begin{align*}
-  \text{area} &= \int_{x=-R}^r \int_{y=0}^{\sqrt{R^2-x^2}} \der y \: \der x\\
+  \text{area} &= \int_{x=-R}^r \int_{y=0}^{\sqrt{R^2-x^2}} \der y \der x\\
               &= \int_{x=-R}^r \sqrt{R^2-x^2} \der x\\
-              &= r \int_{x=-R}^r \sqrt{1-(x/R)^2} \: \der x \qquad .
+              &= r \int_{x=-R}^r \sqrt{1-(x/R)^2} \der x \qquad .
 \intertext{Substituting $u=x/R$,}
-  \text{area} & = R^2 \int_{u=-1}^1 \sqrt{1-u^2} \: \der u 
+  \text{area} & = R^2 \int_{u=-1}^1 \sqrt{1-u^2} \der u 
 \end{align*}
 The definite integral equals $\pi$, as you can
 find using a trig substitution or simply by looking it
@@ -148,7 +148,7 @@ and passing through its center.
 
 \begin{align*}
 	I	&= \int R^2 \der m \\
-		&= \int_{-L/2}^{L/2} x^2\:\frac{M}{L}\:\der x \\
+		&= \int_{-L/2}^{L/2} x^2\:\frac{M}{L}\der x \\
 \intertext{[$r=|x|$, so $R^2=x^2$]}
 		&= \frac{1}{12}ML^2
 \end{align*}
@@ -164,9 +164,9 @@ let $x$ be the rotation axis.
 	I	&=  \int R^2 \der m \\
 		&= \rho \int R^2 \der V \\
 		&= \rho \int_{b/2}^{b/2} \int_{b/2}^{b/2} \int_{b/2}^{b/2} \left(y^2+z^2\right)
-					 \der x\: \der y\: \der z \\
+					 \der x\der y\der z \\
 		&= \rho b \int_{b/2}^{b/2} \int_{b/2}^{b/2}  \left(y^2+z^2\right)
-					 \der y \: \der z 
+					 \der y \der z 
 \end{align*}
 The fact that the last step is a trivial integral results
 from the symmetry of the problem. The integrand of the
@@ -174,13 +174,13 @@ remaining double integral breaks down into two terms, each
 of which depends on only one of the variables, so we break
 it into two integrals,
 \begin{align*}
-		I =& \rho b \int_{b/2}^{b/2} \int_{b/2}^{b/2}  y^2 \der y\: \der z \\
-			&+ \rho b \int_{b/2}^{b/2} \int_{b/2}^{b/2}  z^2 \der y\: \der z
+		I =& \rho b \int_{b/2}^{b/2} \int_{b/2}^{b/2}  y^2 \der y\der z \\
+			&+ \rho b \int_{b/2}^{b/2} \int_{b/2}^{b/2}  z^2 \der y\der z
 \end{align*}
 which we know have identical results. We therefore only need
 to evaluate one of them and double the result:
 \begin{align*}
-	I	&= 2\rho b \int_{b/2}^{b/2} \int_{b/2}^{b/2}  z^2 \der y\: \der\: z \\
+	I	&= 2\rho b \int_{b/2}^{b/2} \int_{b/2}^{b/2}  z^2 \der y\der\: z \\
 		&= 2 \rho b^2 \int_{b/2}^{b/2} z^2 \der z \\
 		&= \frac{1}{6} \rho b^5 \\
 		&= \frac{1}{6} M b^2
@@ -201,9 +201,9 @@ axes. These rectangular coordinates are known as Cartesian coordinates, in his h
 
 As a logical extension of Descartes' idea, one can find different ways of defining coordinates on
 the plane, such as the polar coordinates in figure \figref{polar-coordinates}. In polar coordinates,
-the differential of area, figure \figref{da-polar} can be written as $\der a=R \:\der R\:\der \phi$. The idea
+the differential of area, figure \figref{da-polar} can be written as $\der a=R \der R\der \phi$. The idea
 is that since $\der R$ and $\der \phi$ are infinitesimally small, the shaded area in the figure is very
-nearly a rectangle, measuring $\der R$ is one dimension and $R\:\der \phi$ in the other. (The latter follows
+nearly a rectangle, measuring $\der R$ is one dimension and $R\der \phi$ in the other. (The latter follows
 from the definition of radian measure.)
 
 \smallfig{da-polar}{The differential of area in polar coordinates}
@@ -215,11 +215,11 @@ passing perpendicularly through its center.
 \eganswer
 \begin{align*}
   I &= \int R^2 \der M \\
-    &= \int R^2 \frac{\der M}{\der a}\:\der a \\
-    &= \int R^2 \frac{M}{\pi b^2}\:\der a \\
-    &= \frac{M}{\pi b^2}\int_{R=0}^b \int_{\phi=0}^{2\pi} R^2 \cdot R \:\der \phi\:\der R \\
-    &= \frac{M}{\pi b^2}\int_{R=0}^b R^3 \int_{\phi=0}^{2\pi} \der \phi\:\der R \\
-    &= \frac{2 M}{ b^2}\int_{R=0}^b R^3 \:\der R \\
+    &= \int R^2 \frac{\der M}{\der a}\der a \\
+    &= \int R^2 \frac{M}{\pi b^2}\der a \\
+    &= \frac{M}{\pi b^2}\int_{R=0}^b \int_{\phi=0}^{2\pi} R^2 \cdot R \der \phi\der R \\
+    &= \frac{M}{\pi b^2}\int_{R=0}^b R^3 \int_{\phi=0}^{2\pi} \der \phi\der R \\
+    &= \frac{2 M}{ b^2}\int_{R=0}^b R^3 \der R \\
     &= \frac{M b^4}{2}
 \end{align*}
 \end{eg}
@@ -254,7 +254,7 @@ the Cartesian plane, and considering it as the integral of a single function tha
 \end{align*}
 Switching to polar coordinates, we have
 \begin{align*}
-  I^2 &=  \int_0^{2\pi} \int_0^\infty e^{-R^2} R \der R \:\der \phi \\
+  I^2 &=  \int_0^{2\pi} \int_0^\infty e^{-R^2} R \der R \der \phi \\
       &=  2\pi \int_0^\infty e^{-R^2} R \der R \qquad ,
 \end{align*}
 which can be done using the substitution $u=R^2$, $\der u=2R \der R$:
@@ -275,7 +275,7 @@ is an angle that wraps around the axis.
 \fig{cylindrical-coordinates}{Cylindrical coordinates.}
 
 The differential of volume in cylindrical coordinates can be\index{volume!in cylindrical coordinates}
-written as $\der v = R \: \der R \: \der z \der \phi$. This follows from adding a third dimension,
+written as $\der v = R \der R \der z \der \phi$. This follows from adding a third dimension,
 along the $z$ axis, to the rectangle in figure \figref{da-polar}.
 
 \begin{eg}
@@ -297,10 +297,10 @@ Then since we have $r_{max}(z=0)=0$, and $r_{max}(h)=b$, evidently $r_{max}=zb/h
 
 \begin{align*}
   v &= \int \der v \\
-    &= \int_{z=0}^h \int_{r=0}^{zb/h} \int_{\phi=0}^{2\pi} R \: \der\phi \:\der R \: \der z \\
-    &= 2\pi \int_{z=0}^h \int_{r=0}^{zb/h} R \:\der R \: \der z \\
-    &= 2\pi \int_{z=0}^h (zb/h)^2/2 \: \der z \\
-    &= \pi (b/h)^2 \int_{z=0}^h z^2 \: \der z \\
+    &= \int_{z=0}^h \int_{r=0}^{zb/h} \int_{\phi=0}^{2\pi} R \der\phi \der R \der z \\
+    &= 2\pi \int_{z=0}^h \int_{r=0}^{zb/h} R \der R \der z \\
+    &= 2\pi \int_{z=0}^h (zb/h)^2/2 \der z \\
+    &= \pi (b/h)^2 \int_{z=0}^h z^2 \der z \\
     &= \frac{\pi b^2 h}{3}
 \end{align*}
 
@@ -316,7 +316,7 @@ from the equator.
 
 \fig{spherical-coordinates}{Spherical coordinates.}
 
-The differential of volume in spherical coordinates is $\der v = r^2\sin\theta \:\der r\:\der\theta\:\der\phi$.\index{volume!in spherical coordinates}
+The differential of volume in spherical coordinates is $\der v = r^2\sin\theta \der r\der\theta\der\phi$.\index{volume!in spherical coordinates}
 
 \begin{eg}
 \egquestion Find the volume of a sphere.
@@ -324,9 +324,9 @@ The differential of volume in spherical coordinates is $\der v = r^2\sin\theta \
 \eganswer
 \begin{align*}
   v &= \int \der v \\
-    &= \int_{\theta=0}^\pi \int_{r=0}^{r=b} \int_{\phi=0}^{2\pi} r^2\sin\theta \:\der\phi \:\der r\:\der\theta \\
-    &= 2\pi \int_{\theta=0}^\pi \int_{r=0}^{r=b}  r^2\sin\theta \:\der r\:\der\theta \\
-    &= 2\pi\cdot\frac{b^3}{3} \int_{\theta=0}^\pi \sin\theta \:\der\theta \\
+    &= \int_{\theta=0}^\pi \int_{r=0}^{r=b} \int_{\phi=0}^{2\pi} r^2\sin\theta \der\phi \der r\der\theta \\
+    &= 2\pi \int_{\theta=0}^\pi \int_{r=0}^{r=b}  r^2\sin\theta \der r\der\theta \\
+    &= 2\pi\cdot\frac{b^3}{3} \int_{\theta=0}^\pi \sin\theta \der\theta \\
     &= \frac{4\pi b^3}{3}
 \end{align*}
 \end{eg}

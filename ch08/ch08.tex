@@ -186,8 +186,8 @@ suggested a special-purpose trick for doing this integral. An approach that does
 is to rewrite the cosine in terms of exponentials:
 \begin{align*}
   \int e^x & \cos x \der x \\
-      &= \int e^x \left(\frac{e^{ix}+e^{-ix}}{2}\right) \:\der x \\
-      &= \frac{1}{2} \int (e^{(1+i)x}+e^{(1-i)x})\:\der x \\
+      &= \int e^x \left(\frac{e^{ix}+e^{-ix}}{2}\right) \der x \\
+      &= \frac{1}{2} \int (e^{(1+i)x}+e^{(1-i)x})\der x \\
       &= \frac{1}{2} \left( \frac{e^{(1+i)x}}{1+i}+\frac{e^{(1-i)x}}{1-i} \right)+ c
 \end{align*}
 
@@ -318,7 +318,7 @@ Write the function $\tan x$ in terms of complex exponentials.
 \end{hw}
 
 \begin{hw}
-Evaluate $\int \sin^3 x\: \der x$.
+Evaluate $\int \sin^3 x\der x$.
 \end{hw}
 
 \begin{hwwithsoln}{addition-theorem-for-sine}
@@ -330,7 +330,7 @@ $a$ and $b$.
 \begin{hwwithsoln}{fourier-ish-integral}
 Evaluate
 \begin{equation*}
-  \int_0^{\pi/2} \cos x \: \cos 2x \: \der x \qquad .
+  \int_0^{\pi/2} \cos x \: \cos 2x \der x \qquad .
 \end{equation*}
 \end{hwwithsoln}
 
@@ -356,7 +356,7 @@ Evaluate
 \begin{hw}
 Evaluate
 \begin{equation*}
-  \int e^{-ax}\cos bx \: \der x \qquad .
+  \int e^{-ax}\cos bx \der x \qquad .
 \end{equation*}
 \end{hw}
 

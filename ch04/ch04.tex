@@ -12,7 +12,7 @@ position changes over time. But in most cases, it's numerical integration that's
 interesting, not numerical differentiation.
 
 As a warm-up, let's see how to do a running sum of a discrete function using Yacas.
-The following program computers the sum $1+2+\ldots+100$ discussed to on page
+The following program computes the sum $1+2+\ldots+100$ discussed to on page
 \pageref{gauss-story}. Now that we're writing real computer programs with Yacas, it would be a good
 idea to enter each program into a file before trying to run it. In fact, some
 of these examples won't run properly if you just start up Yacas and type them in
@@ -38,7 +38,7 @@ The semicolons are to separate one instruction from the next, and they become ne
 now that we're doing real programming.
 Line 1 of this program defines the variable \verb@n@, which will take on all the values
 from 1 to 100. Line 2 says that we haven't added anything up yet, so our running
-sum is zero do far. Line 3 says to keep on repeating the instructions inside the
+sum is zero so far. Line 3 says to keep on repeating the instructions inside the
 square brackets until \verb@n@ goes past 100. Line 4 updates the running sum, and
 line 5 updates the value of \verb@n@. If you've never done any programming before,
 a statement like \verb@n:=n+1@ might seem like nonsense --- how can a number equal
@@ -75,7 +75,7 @@ To integrate the function $\xdot(t)=t$, we know we need some function with a $t^
 since we want something whose derivative is $t$, and differentiation reduces the power
 by one. The derivative of $t^2$ would be $2t$ rather than $t$, so what we want is
 $x(t)=t^2/2$. Let's compute the area of the triangle that stretches along the $t$ axis
-from 0 to 100: $x(100)=100^/2=5000$.
+from 0 to 100: $x(100)=100^2/2=5000$.
 
 \smallfig{integral-of-t}{Graphical interpretation of the integral of the function $\xdot(t)=t$.}
 
@@ -174,14 +174,14 @@ The idea it expresses is that integration and differentiation are inverse operat
 That is, integration undoes differentiation, and differentiation undoes integration.
 
 \begin{eg}\label{eg:hyperbola}
-\egquestion Interpret the indefinite integral
+\egquestion Interpret the definite integral
 \begin{equation*}
   \int_{1}^{2} \frac{1}{t}\der t \qquad .
 \end{equation*}
 graphically; then evaluate it it both symbolically and numerically, and check that the two results
 are consistent.
 
-\smallfig{hyperbola-area}{The indefinite integral $\int_1^2 (1/t)\der t$.}
+\smallfig{hyperbola-area}{The definite integral $\int_1^2 (1/t)\der t$.}
 
 \eganswer Figure \figref{hyperbola-area} shows the graphical interpretation. The numerical calculation
 requires a trivial variation on the program from example \ref{eg:riemann}:
@@ -579,7 +579,7 @@ and draw a sketch to explain why your result comes out the way it does.
 \begin{hwwithsoln}{estimate-then-integrate}
 Sketch the graph that represents the definite integral
 \begin{equation*}
-  \int_0^2 -x^2+2x \qquad ,
+  \int_0^2 (-x^2+2x)\der x \qquad ,
 \end{equation*}
 and estimate the result roughly from the graph. Then evaluate the
 integral exactly, and check against your estimate.

@@ -41,7 +41,7 @@ line connecting the points $(1,1)$ and $(1.01,1.0201)$ is 2.01, which is even cl
 Another method of visualizing the idea is that we can interpret $x=t^2$ as the area of a square with sides of length $t$,
 as suggested in figure \figref{t-squared-geometrically}. We increase $t$ by an infinitesimally small number $\der t$.
 The $\der$ is Leibniz's notation for a very small difference,\index{Leibniz notation!infinitesimal}
-and $\der t$ is to be read is a single symbol,
+and $\der t$ is to be read as a single symbol,
 ``dee-tee,'' not as a number $d$ multiplied by a number $t$. The idea is that $\der t$ is smaller than any ordinary
 number you could imagine, but it's not zero. The area of the square is increased by $\der x = 2t\der t +\der t^2$, which is
 analogous to the finite numbers $0.21$ and $0.0201$ we calculated earlier. Where before we divided by a finite
@@ -275,7 +275,7 @@ one number divided by another, it was merely a symbol for something called a lim
 \lim_{\Delta t\rightarrow 0} \frac{\Delta x}{\Delta t} \qquad ,
 \end{equation*}
 where $\Delta x$ and $\Delta t$ represented finite changes. I'll give a formal definition (actually two different formal
-definitions) of the term ``limit'' in section \ref{sec:limits}, but intuitively the concept is that is that we can get as good
+definitions) of the term ``limit'' in section \ref{sec:limits}, but intuitively the concept is that we can get as good
 an approximation to the derivative as we like, provided that we make $\Delta t$ small enough.
 
 That satisfied me until we got to a certain topic
@@ -373,7 +373,7 @@ expressions like the one that occurred when we wanted to differentiate $t^2$ usi
 \begin{equation*}
   \frac{\der \left(t^2\right)}{\der t} = 2t+\der t  \qquad .
 \end{equation*}
-I argued earlier than $2t+\der t$ is so close to $2t$ that for all practical purposes, the
+I argued earlier that $2t+\der t$ is so close to $2t$ that for all practical purposes, the
 answer is really $2t$. But is it really valid in general to say that $2t+\der t$ is the
 same hyperreal number as $2t$? No. We can apply the transfer principle to the
 following statement about the reals:
@@ -490,7 +490,7 @@ second derivative is supposed to have units of acceleration, in units of meters 
 second, also written $(\munit/\sunit)/\sunit$, or $\munit/\sunit^2$. (The acceleration of falling
 objects on Earth is $9.8\ \munit/\sunit^2$ in these units.) The Leibniz notation is meant to suggest
 exactly this: the top of the fraction looks like it has units of meters, because we're not squaring $x$,
-while the bottom of the fraction looks like it has units of seconds, because it looks like we're
+while the bottom of the fraction looks like it has units of seconds squared, because it looks like we're
 squaring $\der t$. Therefore the units come out right. It's important to realize, however, that
 the symbol $\der$ isn't a number (not a real one, and not a hyperreal one, either), so we can't really
 square it; the notation is not to be taken as a literal statement about infinitesimals.
@@ -786,7 +786,7 @@ The interpretation of the minus sign is that if $u$ increases, $v/u$ decreases.
   \frac{\der}{\der x} \left(\frac{v}{u}\right) &= \frac{1}{u}\cdot\frac{\der v}{\der x} - \frac{v}{u^2} \cdot \frac{\der u}{\der x} \\
             &= \frac{1}{1+3x} - \frac{3x}{(1+3x)^2}
 \end{align*}
-One way to check that the result makes sense it to consider extreme values of $x$. For very large values of $x$, the
+One way to check that the result makes sense is to consider extreme values of $x$. For very large values of $x$, the
 1 on the bottom of $x/(1+3x)$ becomes negligible compared to the $3x$, and the function $y$ approaches $x/3x=1/3$ as a limit.
 Therefore we expect that the derivative $\der y/\der x$ should approach zero, since the derivative of a constant is
 zero. It works: plugging in bigger and bigger numbers for $x$ in the expression for the derivative does give
@@ -836,7 +836,7 @@ the program's output.
 First I asked it to differentiate $x^2$ with respect to x, and it told me the result was $2x$.
 Then I did the derivative of $e^{x^2}$, which
 I also could have done fairly easily by hand.
-(If you're trying this out on a computer as you real along, make sure to capitalize functions
+(If you're trying this out on a computer as you read along, make sure to capitalize functions
 like Exp, Sin, and Cos.)
 Finally I tried an example where I didn't know the answer off the top of my head, and that would
 have been a little tedious to calculate by hand.

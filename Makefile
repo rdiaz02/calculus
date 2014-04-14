@@ -24,7 +24,7 @@ SHOW_ERRORS = \
         close F; \
         exit(1)
 DO_PDFLATEX = echo "$(DO_PDFLATEX_RAW)" ; perl -e 'if (system("$(DO_PDFLATEX_RAW)")) {$(SHOW_ERRORS)}'
-GENERIC_OPTIONS_FOR_CALIBRE =  --authors "Benjamin Crowell" --language en --title "Calculus" --toc-filter="[0-9]\.[0-9]"
+GENERIC_OPTIONS_FOR_CALIBRE =  --authors "Benjamin Crowell" --language en --title "Brief Calculus" --toc-filter="[0-9]\.[0-9]"
 WEB_DIR = /home/bcrowell/Lightandmatter/calc
 
 # Since book1 comes first, it's the default target --- you can just do ``make'' to make it.

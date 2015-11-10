@@ -77,18 +77,18 @@ section for $n=3$.
 We now need to show that $\dot{x}(1)=n$. Define the function $u$ as
 \begin{align*}
   u(t) &= x(t+1)-x(t) \\
-       &= 1+nt + \ldots \qquad ,
+       &= 1+nt + \ldots\eqquad,
 \end{align*}
 where the second line follows from the binomial theorem, and \ldots represents terms involving $t^2$ and
 higher powers. Since we've already established the results for $n=0$ and 1,
 differentiation gives
 \begin{equation*}
-  \dot{u}(t) = n + \ldots \qquad .
+  \dot{u}(t) = n + \ldots\eqquad.
 \end{equation*}
 Now let's evaluate this at $t=0$, where, as shown earlier, the terms represented by \ldots all vanish.
 Applying the add and shift properties, we have
 \begin{equation*}
-  \dot{x}(1)-\dot{x}(0) = n  \qquad .
+  \dot{x}(1)-\dot{x}(0) = n\eqquad.
 \end{equation*}
 But since $\dot{x}(0)=0$, this completes the proof.
 
@@ -103,10 +103,10 @@ Some ideas in this proof are due to Jerome Keisler (see references, p. \pageref{
 On page \pageref{eg:derivative-of-sin}, I computed the derivative of $\sin t$ to be $\cos t$
 as follows:
 \begin{align*}
-  \der x &= \sin(t+\der t)-\sin t \qquad , \\
+  \der x &= \sin(t+\der t)-\sin t\eqquad, \\
          &= \sin t \: \cos \der t \\
          &\quad + \cos t \: \sin \der t - \sin t \\
-         &= \cos t \der t + \ldots\qquad .
+         &= \cos t \der t + \ldots\eqquad.
 \end{align*}
 We want to prove prove that the error ``\ldots'' introduced by the small-angle approximations really
 is of order $\der t^2$. 
@@ -141,12 +141,12 @@ it does it. Not knowing the inner workings of the black box makes the demonstrat
 In any case, this preliminary check makes it sound like it's reasonable to go on and try to produce a
 real proof. We have
 \begin{equation*}
-  \sin(t+\der t) = \sin t + \cos t \der t - E \qquad ,
+  \sin(t+\der t) = \sin t + \cos t \der t - E\eqquad,
 \end{equation*}
 where the error $E$ introduced by the approximations is
 \begin{align*}
   E = &\sin t (1-\cos \der t) \\
-    + &\cos t (\der t - \sin \der t) \qquad .
+    + &\cos t (\der t - \sin \der t)\eqquad.
 \end{align*}
 
 \smallfig{sin-rigor}{Geometrical interpretation of the error term.}
@@ -464,7 +464,7 @@ In the statement of the chain rule on page \pageref{sec:chain-rule}, I followed 
 derivatives as $\der y/\der x$, when actually the derivative is the standard part, $\st(\der y/\der x)$. In more rigorous
 notation, the chain rule should be stated like this:
 \begin{equation*}
-  \st\left(\frac{\der z}{\der x}\right) =   \st\left(\frac{\der z}{\der y}\right) \st\left(\frac{\der y}{\der x}\right) \qquad .
+  \st\left(\frac{\der z}{\der x}\right) =   \st\left(\frac{\der z}{\der y}\right) \st\left(\frac{\der y}{\der x}\right)\eqquad.
 \end{equation*}
 The transfer principle allows us to rewrite the left-hand side as $\st[(\der z/\der y)(\der y/\der x)]$, and then
 we can get the desired result using the identity $\st(ab)=\st(a)\st(b)$.
@@ -478,7 +478,7 @@ need to bring in the definition of $e$, or of the exponential function $e^x$, so
 
 We can take the definition of $e^x$ to be\label{definition-of-exp}\index{exponential!definition of}
 \begin{align*}
-  e^x = \lim_{n\rightarrow \infty} \left(1+\frac{x}{n}\right)^n \qquad .
+  e^x = \lim_{n\rightarrow \infty} \left(1+\frac{x}{n}\right)^n\eqquad.
 \end{align*}
 The idea behind this relation is similar to the idea of compound interest. If the interest rate is 10\%, compounded
 annually, then $x=0.1$, and the balance grows by a factor $(1+x)=1.1$ in one year. If, instead, we want to compound the
@@ -492,7 +492,7 @@ tells is that the derivative of $(1+x/n)^n$ is the derivative of the raising-to-
 multiplied by the derivative of the inside stuff, $\der(1+x/n)/\der x=1/n$. We then have
 \begin{align*}
   \frac{\der \left(1+\frac{x}{n}\right)^n}{\der x} &= \left[n\left(1+\frac{x}{n}\right)^{n-1}\right]\cdot \frac{1}{n} \\
-            &= \left(1+\frac{x}{n}\right)^{n-1} \qquad .
+            &= \left(1+\frac{x}{n}\right)^{n-1}\eqquad.
 \end{align*}
 But evaluating this at $x=0$ simply gives 1, so at $x=0$, the approximation to the derivative is exactly 1 for all values of
 $n$ --- it's not even necessary to imagine going to larger and larger values of $n$. This establishes that $c=1$,
@@ -526,7 +526,7 @@ of calculus, we have $u(x)=\int_0^x \dot{u}(x')\der x'$, and the mean value theo
 for some $p$ between 0 and $x$, $u(x)=x\dot{u}(p)$. Likewise for a $q$ in this interval, $v(x)=x\dot{v}(q)$. 
 So
 \begin{equation*}
-  \lim_{x\rightarrow 0} \frac{u}{v} = \lim_{\substack{p\rightarrow 0 \\q\rightarrow 0}} \frac{\dot{u}(p)}{\dot{v}(q)} \qquad ,
+  \lim_{x\rightarrow 0} \frac{u}{v} = \lim_{\substack{p\rightarrow 0 \\q\rightarrow 0}} \frac{\dot{u}(p)}{\dot{v}(q)}\eqquad,
 \end{equation*}
 but since both $p$ and $q$ are closer to zero than $x$ is, the limit as they simultaneously approach zero is
 the same as the limit as $x$ approaches zero.
@@ -562,7 +562,7 @@ to a form involving a limit at 0.
 Define $t=x-\pi$. Solving for $x$ gives $x=t+\pi$. We substitute into the above expression
 to find
 \begin{equation*}
-  \lim_{x\rightarrow \pi}\frac{\sin x}{x-\pi} =   \lim_{t\rightarrow 0}\frac{\sin (t+\pi)}{t} \qquad .
+  \lim_{x\rightarrow \pi}\frac{\sin x}{x-\pi} =   \lim_{t\rightarrow 0}\frac{\sin (t+\pi)}{t}\eqquad.
 \end{equation*}
 If all we knew was the $\rightarrow0$ form of l'H\^{o}pital's rule, then this would suffice
 to reduce the problem to one we knew how to solve. In fact, this kind of change of variable works in
@@ -577,18 +577,18 @@ To prove that l'H\^{o}pital's rule works in general for $\infty/\infty$ forms,
 we do a change of variable on the \emph{outputs} of the functions $u$ and $v$
 rather than their inputs. Suppose that our original problem is of the form
 \begin{equation*}
-  \lim \frac{u}{v} \qquad ,
+  \lim \frac{u}{v}\eqquad,
 \end{equation*}
 where both functions blow up.\footnote{Think about what happens when only $u$ blows up,
 or only $v$.} We then define $U=1/u$ and $V=1/v$. We now have
 \begin{equation*}
-  \lim \frac{u}{v} = \lim \frac{1/U}{1/V} =\lim \frac{V}{U} \qquad ,
+  \lim \frac{u}{v} = \lim \frac{1/U}{1/V} =\lim \frac{V}{U}\eqquad,
 \end{equation*}
 and since $U$ and $V$ both approach zero, we have reduced the problem to one that can be solved
 using the version of l'H\^{o}pital's rule already proved
 for indeterminate forms like $0/0$. Differentiating and applying the chain rule, we have
 \begin{equation*}
-  \lim \frac{u}{v} = \lim \frac{\dot{V}}{\dot{U}} = \lim \frac{-v^{-2}\dot{v}}{-u^{-2}\dot{u}} \qquad .
+  \lim \frac{u}{v} = \lim \frac{\dot{V}}{\dot{U}} = \lim \frac{-v^{-2}\dot{v}}{-u^{-2}\dot{u}}\eqquad.
 \end{equation*}
 Since $\lim ab=\lim a \lim b$ provided that $\lim a$ and $\lim b$ are both defined, we can rearrange
 factors to produce the desired result.

@@ -143,7 +143,7 @@ Now this is just like problem \ref{hw:diff-symbolic-const}, except that the cons
 look more complicated. The result is
 \begin{align*}
   \dot{a} &=2\ell_\zu{o}^2\alpha +2\ell_\zu{o}^2\alpha^2T \\
-          &=2\ell_\zu{o}^2\left(\alpha +\alpha^2T\right) \qquad .
+          &=2\ell_\zu{o}^2\left(\alpha +\alpha^2T\right)\eqquad.
 \end{align*}
 
 We expect the units of the result to be area per unit temperature, e.g., degrees per square meter.
@@ -221,7 +221,7 @@ The other method of checking that $r=a$ is a minimum is to take the second deriv
 $k$ are irrelevant, and can be set to 1. We then have
 \begin{align*}
  \dot{E} &= -12r^{-13}+12r^{-7} \\
- \ddot{E} &= 156r^{-14}-84r^{-8}  \qquad .
+ \ddot{E} &= 156r^{-14}-84r^{-8}\eqquad.
 \end{align*}
 Plugging in $r=\pm 1$, we get a positive result, which confirms that the concavity is upward.
 
@@ -253,7 +253,7 @@ $f(x)=(x-1)^2/2-2$ and $g(x)=(x+1)^2/2+1$, neither of which has an extremum at $
 Considering $V$ as a function of $h$, with $b$ treated as a constant, we have for the slope
 of its graph
 \begin{align*}
-  \dot{V} &= \frac{e_V}{e_h} \qquad ,\\
+  \dot{V} &= \frac{e_V}{e_h}\eqquad,\\
 \intertext{so}
   e_V &= \dot{V}\cdot e_h \\
       &= \frac{1}{3}b e_h
@@ -286,7 +286,7 @@ we have $a=1/3$.
 \begin{align*}
   \frac{\der x}{\der t} &= \frac{(t+\der t)^4-t^4}{\der t} \\
                         &= \frac{4t^3\der t + 6t^2\der t^2 + 4t\der t^3+\der t^4}{\der t} \\
-                        &= 4t^3 + \ldots \qquad ,
+                        &= 4t^3 + \ldots\eqquad,
 \end{align*}
 where \ldots indicates infinitesimal terms.
 The derivative is the standard part of this, which is $4t^3$.
@@ -298,13 +298,13 @@ The derivative is the standard part of this, which is $4t^3$.
 \end{equation*}
 The identity $\cos(\alpha+\beta)=\cos\alpha\cos\beta-\sin\alpha\sin\beta$ then gives
 \begin{equation*}
-  \frac{\der x}{\der t} = \frac{\cos t \: \cos \der t - \sin t \: \sin \der t - \cos t}{\der t} \qquad .\\
+  \frac{\der x}{\der t} = \frac{\cos t \: \cos \der t - \sin t \: \sin \der t - \cos t}{\der t}\eqquad.\\
 \end{equation*}
 The small-angle approximations  $\cos \der t\approx 1$ and $\sin \der t\approx \der t$
 result in
 \begin{align*}
 \frac{\der x}{\der t}   &= \frac{-\sin t \der t}{\der t} \\
-                        &= -\sin t \qquad .
+                        &= -\sin t\eqquad.
 \end{align*}
 
 \hwsolnhdr{infinite-subtraction}
@@ -377,7 +377,7 @@ result $u+v$.
 This would be a horrible problem if we had to expand this as a polynomial with 101 terms,
 as in chapter 1! But now we know the chain rule, so it's easy. The derivative is
 \begin{equation*}
-  \left[100(2x+3)^{99}\right][2] \qquad ,
+  \left[100(2x+3)^{99}\right][2]\eqquad,
 \end{equation*}
 where the first factor in brackets is the derivative of the function on the outside, and
 the second one is the derivative of the ``inside stuff.'' Simplifying a little, the
@@ -387,7 +387,7 @@ answer is $200(2x+3)^{99}$.
 \hwsolnhdr{one-and-two-hundred}\\*
 Applying the product rule, we get
 \begin{equation*}
-  (x+1)^{99}(x+2)^{200}+  (x+1)^{100}(x+2)^{199} \qquad .
+  (x+1)^{99}(x+2)^{200}+  (x+1)^{100}(x+2)^{199}\eqquad.
 \end{equation*}
 (The chain rule was also required, but in a trivial way --- for both of
 the factors, the derivative of the ``inside stuff'' was one.)
@@ -419,7 +419,7 @@ the function $-(a/b)\cos(bx+c)$.
 \hwsolnhdr{square-three-times}\\*
 The chain rule gives
 \begin{equation*}
-  \frac{\der}{\der x} ((x^2)^2)^2 = 2((x^2)^2)(2(x^2))(2x) = 8x^7 \qquad ,
+  \frac{\der}{\der x} ((x^2)^2)^2 = 2((x^2)^2)(2(x^2))(2x) = 8x^7\eqquad,
 \end{equation*}
 which is the same as the result we would have gotten by differentiating $x^8$.
 
@@ -436,7 +436,7 @@ the derivative of sin is cos, and the derivative of cos is $-\sin$.
 the cosine are positive, so}
   \cos\theta = \sin\theta \\
   \tan\theta = 1\\
-  \theta = 45\degunit \qquad .
+  \theta = 45\degunit\eqquad.
 \end{gather*}
 To check that this is really a maximum, not a minimum or an inflection point, we could resort
 to the second derivative test, but we know the graph of $R(\theta)$ is zero at $\theta=0$
@@ -490,7 +490,7 @@ infinitesimals, $\der g/\der y$ is the standard part of $|\der x|+1$, which is 1
 (a) As suggested, let $c=\sqrt{g/A}$, so that  $d = A \ln\cosh ct=A\ln\left(e^{ct}+e^{-ct}\right)$.
 Applying the chain rule, the velocity is
 \begin{equation*}
-  A\frac{ce^{ct}-ce^{-ct}}{\cosh ct} \qquad .
+  A\frac{ce^{ct}-ce^{-ct}}{\cosh ct}\eqquad.
 \end{equation*}
 (b) The expression can be rewritten as $Ac\tanh ct$.\\
 (c) For large $t$, the $e^{-ct}$ terms become negligible, so the velocity is $Ace^{ct}/e^{ct}=Ac$.
@@ -528,7 +528,7 @@ By the chain rule, the result is $2/(2t+1)$.
 \hwsolnhdr{unnecessary-prod}\\*
 Using the product rule, we have
 \begin{equation*}
-  \left(\frac{\der}{\der x}3\right)\sin x + 3\left(\frac{\der}{\der x}\sin x\right) \qquad ,
+  \left(\frac{\der}{\der x}3\right)\sin x + 3\left(\frac{\der}{\der x}\sin x\right)\eqquad,
 \end{equation*}
 but the derivative of a constant is zero, so the first term goes away, and we get $3\cos x$, which
 is what we would have had just from the usual method of treating multiplicative constants.
@@ -551,14 +551,14 @@ The area and volume are
 \begin{align*}
   A &= 2\pi r \ell + 2 \pi r^2 \\
 \intertext{and}
-  V &= \pi r^2 \ell \qquad .
+  V &= \pi r^2 \ell\eqquad.
 \end{align*}
 The strategy is to use the equation for $A$, which is a constant,
 to eliminate the variable $\ell$, and then maximize $V$ in terms of $r$.
 \begin{gather*}
   \ell = (A-2\pi r^2)/2\pi r \\
 \intertext{Substituting this expression for $\ell$ back into the equation for $V$,}
-  V = \frac{1}{2}rA-\pi r^3 \qquad .
+  V = \frac{1}{2}rA-\pi r^3\eqquad.
 \intertext{To maximize this with respect to $r$, we take the derivative and set it
 equal to zero.}
   0 = \frac{1}{2}A-3\pi r^2 \\
@@ -595,7 +595,7 @@ as $1/x$, since $x$ is assumed negative.
 \hwsolnhdr{odd-even}\\*
 Since $f(x)=f(-x)$, 
 \begin{equation*}
-  \frac{\der f(x)}{\der x} =   \frac{\der f(-x)}{\der x} \qquad .
+  \frac{\der f(x)}{\der x} =   \frac{\der f(-x)}{\der x}\eqquad.
 \end{equation*}
 But by the chain rule, the right-hand side equals $-f'(x)$, as claimed.
 
@@ -604,7 +604,7 @@ Let $f=\der x^k/\der x$ be the unknown function. Then
 \begin{align*}
   1 &= \frac{\der x}{\der x} \\
     &= \frac{\der }{\der x} \left(x^kx^{-k+1}\right) \\
-    &= fx^{-k+1}+x^k(-k+1)x^{-k} \qquad ,
+    &= fx^{-k+1}+x^k(-k+1)x^{-k}\eqquad,
 \end{align*}
 where we can use the ordinary rule for derivatives of powers on $x^{-k+1}$, since $-k+1$ is positive. Solving for
 $f$, we have the desired result.
@@ -645,7 +645,7 @@ Converting these into Leibniz notation, we find
 \begin{align*}
   \frac{\der f}{\der x} &=   \frac{\der g}{\der h}
 \intertext{and}
-  \frac{\der f}{\der x} &=   \frac{\der g}{\der h}\cdot h  \qquad .
+  \frac{\der f}{\der x} &=   \frac{\der g}{\der h}\cdot h\eqquad.
 \end{align*}
 To prove something is not true in general, it suffices to find one counterexample. Suppose
 that $g$ and $h$ are both unitless, and $x$ has units of seconds. The value of $f$ is defined by
@@ -654,7 +654,7 @@ of inverse seconds (``per second''). But this doesn't match the units of either 
 because they're both unitless.
 The correct chain rule, however, works. In the equation
 \begin{equation*}
-  \frac{\der f}{\der x} =   \frac{\der g}{\der h}\cdot \frac{\der h}{\der x}  \qquad ,
+  \frac{\der f}{\der x} =   \frac{\der g}{\der h}\cdot \frac{\der h}{\der x}\eqquad,
 \end{equation*}
 the right-hand side consists of a unitless factor multiplied by a factor with units of
 inverse seconds, so its units are inverse seconds, matching the left-hand side.
@@ -667,15 +667,15 @@ we can change to a variable $x=f^2$,
 and then once the optimal value of $x$ is found we can take its square root in order to find
 the optimal $f$. The function to be optimized is then
 \begin{equation*}
-  a(x-f_\zu{o}^2)^2+bx \qquad .
+  a(x-f_\zu{o}^2)^2+bx\eqquad.
 \end{equation*}
 Differentiating this and setting the derivative equal to zero, we find
 \begin{equation*}
-  2a(x-f_\zu{o}^2)+b = 0 \qquad,
+  2a(x-f_\zu{o}^2)+b = 0\eqquad,
 \end{equation*}
 which results in $x=f_\zu{o}^2-b/2a$, or
 \begin{equation*}
-  f = \sqrt{f_\zu{o}^2-b/2a} \qquad,
+  f = \sqrt{f_\zu{o}^2-b/2a}\eqquad,
 \end{equation*}
 (choosing the positive root, since $f$ represents a frequencies, and frequencies are positive by definition).
 Note that the quantity inside the square root involves the square of a frequency, but then we take its
@@ -730,7 +730,8 @@ which is itself an infinitesimal, and therefore the standard part of $f+g$ evalu
 
 \hwsolnhdr{limits-with-exp-one-over-x}
 
-The shape of the graph can be found by considering four cases: large negative $x$, small negative $x$, small positive $x$, and large positive $x$.
+The shape of the graph can be found by considering four cases:
+ large negative $x$, small negative $x$, small positive $x$, and large positive $x$.
 In these four cases, the function is respectively close to 1, large, small, and close to 1.
 
 %%graph%% soln-limits-with-exp-one-over-x func=exp(-1/x) format=eps xlo=-3 xhi=3 ylo=0 yhi=8 x=t y=x ytic_spacing=4 more_space_below=6 more_space_above=10
@@ -769,11 +770,11 @@ L'H\^{o}pital's rule only works when both the numerator and the denominator go t
 \hwsolnhdr{lhospital-twice}
 Applying l'H\^{o}pital's rule once gives
 \begin{equation*}
-  \lim_{u\rightarrow 0} \frac{2u}{e^u-e^{-u}} \qquad ,
+  \lim_{u\rightarrow 0} \frac{2u}{e^u-e^{-u}}\eqquad,
 \end{equation*}
 which is still an indeterminate form. Applying the rule a second time, we get
 \begin{equation*}
-  \lim_{u\rightarrow 0} \frac{2}{e^u+e^{-u}} = 1 \qquad .
+  \lim_{u\rightarrow 0} \frac{2}{e^u+e^{-u}} = 1\eqquad.
 \end{equation*}
 As a numerical check, plugging $u=0.01$ into the original expression results
 in $0.9999917$.
@@ -785,7 +786,7 @@ gives -0.9997.
 \hwsolnhdr{lhospital-at-infinity}
 Let $u=1/x$. Then
 \begin{equation*}
-  \frac{\der f/\der x}{\der g/\der x}  =   \frac{\der f/\der u}{\der g/\der u}  \qquad ,
+  \frac{\der f/\der x}{\der g/\der x}  =   \frac{\der f/\der u}{\der g/\der u}\eqquad,
 \end{equation*}
 simply by algebraic manipulation of the infinitesimals. (If we want to interpret these quantities as
 derivatives, then our notational convention is that they stand for the standard parts of the quotients
@@ -861,7 +862,7 @@ The exact result is
   \overline{\sin} &= \frac{1}{\pi-0}\int_0^\pi \sin x\der x \\
              &= \frac{1}{\pi}\left.(- \cos x)\right|_0^\pi \\
              &= \frac{1}{\pi}[-\cos\pi-(-\cos 0)] \\
-             &= \frac{2}{\pi} \qquad ,
+             &= \frac{2}{\pi}\eqquad,
 \end{align*}
 which is, as expected, somewhat more than 1/2.
 
@@ -933,11 +934,11 @@ This requires $p=1$, 1/2, 1/3, \ldots
 \hwsolnhdr{vladimir-arnold}
 This is a mess if attacked by brute force. The trick is to reexpress the function using partial fractions:
 \begin{equation*}
-  \frac{x^2+1}{x^3-x} = \frac{x^2+1}{2(x+1)}+\frac{x^2+1}{2(x-1)}-\frac{x^2+1}{x} \qquad .
+  \frac{x^2+1}{x^3-x} = \frac{x^2+1}{2(x+1)}+\frac{x^2+1}{2(x-1)}-\frac{x^2+1}{x}\eqquad.
 \end{equation*}
 Writing $u=x+1$ and $v=x-1$, this becomes
 \begin{equation*}
-  u^{-1}+v^{-1}-x^{-1}+\ldots \qquad ,
+  u^{-1}+v^{-1}-x^{-1}+\ldots\eqquad,
 \end{equation*}
 where \ldots represents terms that will not survive multiple differentiations. Since $\der u/\der x=\der v/\der x=1$,
 the chain rule tells us that differentiation with respect to $u$ or $v$ is the same as differentiation with respect
@@ -1010,11 +1011,11 @@ $2/n-2/(n+1)$. Let the partial sums be $s_n=\sum_1^n a_n$. For insight, let's wr
 This is called a telescoping series.\index{telescoping series}\index{series!telescoping}
 The second part of one term cancels out with the first part of the next. Therefore we have 
 \begin{equation*}
-  s_3 = \frac{2}{1}-\frac{2}{4} \qquad ,
+  s_3 = \frac{2}{1}-\frac{2}{4}\eqquad,
 \end{equation*}
 and in general
 \begin{equation*}
-  s_n = \frac{2}{1}-\frac{2}{n+1} \qquad .
+  s_n = \frac{2}{1}-\frac{2}{n+1}\eqquad.
 \end{equation*}
 Letting $n\rightarrow\infty$, we find that the series sums to 2.
 
@@ -1092,7 +1093,7 @@ A similar argument suggests that the sum diverges for $p=0$.
 First we rewrite the integrand as
 \begin{align*}
   & \frac{1}{4}\left(e^{ix}+e^{-ix}\right)\left(e^{2ix}+2^{-2ix}\right) \\
-  &= \frac{1}{4}\left(e^{3ix}+e^{-3ix}+e^{ix}+e^{-ix}\right) \qquad .
+  &= \frac{1}{4}\left(e^{3ix}+e^{-3ix}+e^{ix}+e^{-ix}\right)\eqquad.
 \end{align*}
 The indefinite integral is
 \begin{equation*}
@@ -1159,11 +1160,11 @@ of the $A_k$ by attempting to solve 10,000 equations in the 10,000 unknowns $A_k
 of resources (either memory or CPU time).\\
 (c) The expressions look nicer if we let $\omega=e^{2\pi/m}$, so that $r_k=\omega^k$. The residue method gives
 \begin{equation*}
-  \frac{1}{x^m-1} = \sum \frac{1}{(x-\omega^k)m \omega^{k(m-1)}} \qquad .
+  \frac{1}{x^m-1} = \sum \frac{1}{(x-\omega^k)m \omega^{k(m-1)}}\eqquad.
 \end{equation*}
 Integration gives
 \begin{equation*}
-  \int \frac{\der x}{x^m-1} = \sum \frac{1}{m \omega^{k(m-1)}}\ln\left(x-\omega^k\right) \qquad .
+  \int \frac{\der x}{x^m-1} = \sum \frac{1}{m \omega^{k(m-1)}}\ln\left(x-\omega^k\right)\eqquad.
 \end{equation*}
 (Thanks to math.stackexchage.com user zulon for suggesting the residue mathod, and to
 Robert Israel for pointing out that for $|x|<1$ this can also be expressed as a hypergeometric function:

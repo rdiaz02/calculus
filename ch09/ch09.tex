@@ -16,7 +16,7 @@ recipe: for each row, $r$, from 1 to 8, consider the columns, $c$, from 1 to 8,
 and add one to the count for each one of them. Using the sigma notation, this
 becomes
 \begin{equation*}
-  \sum_{r=1}^8 \sum_{c=1}^8 1 \qquad .
+  \sum_{r=1}^8 \sum_{c=1}^8 1\eqquad.
 \end{equation*}
 If you're familiar with computer programming, then you can think of this as
 a sum that could be calculated using a loop nested inside another loop.
@@ -24,7 +24,7 @@ To evaluate the result (again, assuming we don't know how to multiply, so we
 have to use brute force), we can first evaluate the inside sum, which equals
 8, giving
 \begin{equation*}
-  \sum_{r=1}^8 8 \qquad .
+  \sum_{r=1}^8 8\eqquad.
 \end{equation*}
 Notice how the ``dummy'' variable $c$ has disappeared. Finally we do the outside
 sum, over $r$, and find the result of 64.
@@ -59,7 +59,7 @@ integral goes with with differential. The result is
               &= \int_{y=0}^b \left(\int_{x=0}^a \der x\right) \der y \\
               &= \int_{y=0}^b a \der y \\
               &= a \int_{y=0}^b \der y \\
-              &= ab \qquad .
+              &= ab\eqquad.
 \end{align*}
 
 \begin{eg}[Area of a triangle]
@@ -112,7 +112,7 @@ The area is
 \begin{align*}
   \text{area} &= \int_{x=-R}^r \int_{y=0}^{\sqrt{R^2-x^2}} \der y \der x\\
               &= \int_{x=-R}^r \sqrt{R^2-x^2} \der x\\
-              &= r \int_{x=-R}^r \sqrt{1-(x/R)^2} \der x \qquad .
+              &= r \int_{x=-R}^r \sqrt{1-(x/R)^2} \der x\eqquad.
 \intertext{Substituting $u=x/R$,}
   \text{area} & = R^2 \int_{u=-1}^1 \sqrt{1-u^2} \der u 
 \end{align*}
@@ -232,7 +232,7 @@ In statistics, the standard ``bell curve'' (also known as the normal distributio
 is shaped like $e^{-x^2}$. An area under this curve is proportional to the probability that $x$
 lies within a certain range. To fix the constant of proportionality, we need to evaluate
 \begin{equation*}
-  I = \int_{-\infty}^\infty e^{-x^2} \der x \qquad ,
+  I = \int_{-\infty}^\infty e^{-x^2} \der x\eqquad,
 \end{equation*}
 which corresponds to a probability of 1.
 As discussed on p.~\pageref{impossible-integrals}, the corresponding indefinite integral can't be
@@ -255,7 +255,7 @@ the Cartesian plane, and considering it as the integral of a single function tha
 Switching to polar coordinates, we have
 \begin{align*}
   I^2 &=  \int_0^{2\pi} \int_0^\infty e^{-R^2} R \der R \der \phi \\
-      &=  2\pi \int_0^\infty e^{-R^2} R \der R \qquad ,
+      &=  2\pi \int_0^\infty e^{-R^2} R \der R\eqquad,
 \end{align*}
 which can be done using the substitution $u=R^2$, $\der u=2R \der R$:
 \begin{align*}
@@ -376,7 +376,7 @@ even the nuclei in matter under ordinary conditions are often not
 spherical but deformed, typically with an elongated ellipsoidal shape like an American football.
 One simple way of describing such a shape is with the equation
 \begin{align*}
-  r \le b[1+c(\cos^2\theta-k)] \qquad ,
+  r \le b[1+c(\cos^2\theta-k)]\eqquad,
 \end{align*}
 where $c=0$ for a sphere, $c>0$ for an elongated shape, and $c<0$ for a flattened one.
 Usually for nuclei in ordinary matter, $c$ ranges from about 0 to $+0.2$. The constant

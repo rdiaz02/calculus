@@ -5,7 +5,7 @@
 
 \LoadClass[9pt]{book}
 
-\RequirePackage{mytocloft,titlesec,titletoc,multicol,makeidx,wrapfig,fancyhdr,calc,amssymb,fancyvrb,ifthen,framed,alphalph,cancel,url,learn-cmd-syntax}
+\RequirePackage{mytocloft,titlesec,titletoc,multicol,makeidx,wrapfig,fancyhdr,calc,amssymb,fancyvrb,ifthen,framed,alphalph,cancel,url,learn-cmd-syntax,navigator}
 \RequirePackage{color}%see pdftex mailing list, 2004 May 22-23
 \renewcommand{\sfdefault}{phv}
 \RequirePackage[EULERGREEK]{sansmath}
@@ -18,6 +18,10 @@
 \newcommand{\lmserifmath}{\mathversion{normal}\everymath{}\everydisplay{}}
 
 % ========================== low-level stuff =========================================
+\newcommand{\eqquad}{}  
+% I used to have flying punctuation after displayed math, e.g.,  
+%      x=7 \qquad .  
+% I decided that looked bad, so I replaced the qquads with this do-nothing macro.  
 \newcommand{\zerosizebox}[3]{
   \makebox[0mm][l]{%
     \hspace{#1}%
@@ -279,6 +283,9 @@
 \newcommand{\formatlikesubsection}[1]{{\bfseries\sffamily\raggedright{}#1}\normalsize}
 \newcommand{\printthesection}{Section\ \thesection} % for titlesec, hw environment
 %==============================toc==================================
+\newcommand{\link}[2]{\jumplink{anchor-#1}{#2}} % navigator package
+\newcommand{\brieftocentry}[3][\quad]% #1=\hfill (LM and Me.) or \quad (other books), #2=label, #3=title, 
+            {\link{#2}{\ref{#2}} & \link{#2}{#3} #1 \link{#1}{\pageref{#2}}}
 %For the following, see the documentation for tocloft.sty:
 %titletoc stuff:
 \newcommand{\formatchtoc}[3]{%

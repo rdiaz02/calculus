@@ -25,7 +25,7 @@ clearly give an infinite result, but this is only because the terms are all stay
 smaller and smaller, and get smaller fast enough, then the result can be finite. For example, consider the geometric
 series in the case where $x=1/2$, for which we expect the result $1/(1-1/2)=2$. We have
 \begin{equation*}
-  1 + \frac{1}{2} + \frac{1}{4} + \frac{1}{8} + \frac{1}{16} + \ldots \qquad ,
+  1 + \frac{1}{2} + \frac{1}{4} + \frac{1}{8} + \frac{1}{16} + \ldots\eqquad,
 \end{equation*}
 which at the successive steps of addition equals 1, $1\frac{1}{2}$, $1\frac{3}{4}$, $1\frac{7}{8}$,  $1\frac{15}{16}$, \ldots.
 We're getting closer and closer to 2, cutting the distance in half at each step. Clearly we can get as close as we like to 2,
@@ -40,7 +40,7 @@ of the partial sums.
 
 It's instructive to see what happens to the geometric series with $x=0.1$. The geometric series becomes\label{geometric-tenths}
 \begin{equation*}
-  1 + 0.1 + 0.01 + 0.001 + \ldots \qquad .
+  1 + 0.1 + 0.01 + 0.001 + \ldots\eqquad.
 \end{equation*}
 The partial sums are 1, 1.1, 1.11, 1.111, \ldots We can see vividly here that adding another term will only affect
 the result in a certain decimal place, without affecting any of the earlier ones. For instance, if we needed a
@@ -82,7 +82,7 @@ Once we know that a particular series converges, we can also easily infer the co
 of other series whose terms get smaller faster. For example, we can be certain
 that if the geometric series converges, so does the series
 \begin{equation*}
-  \frac{1}{1} + \frac{1}{1\times 2} + \frac{1}{1\times 2 \times 3} +\ldots \qquad ,
+  \frac{1}{1} + \frac{1}{1\times 2} + \frac{1}{1\times 2 \times 3} +\ldots\eqquad,
 \end{equation*}
 whose terms get smaller faster than any base raised to the power $n$.
 
@@ -219,7 +219,7 @@ to the fifth derivative of $e^x$, which is 1. The first, second, \ldots derivati
 The notation for a product like $1\cdot2\cdot\ldots\cdot n$ is $n!$, read\index{factorial} ``$n$ factorial.'' So to get a term
 for our polynomial whose fifth derivative is 1, we need $x^5/5!$. The result for the infinite series is
 \begin{equation*}
-  e^x = \sum_{n=0}^\infty \frac{x^n}{n!} \qquad ,
+  e^x = \sum_{n=0}^\infty \frac{x^n}{n!}\eqquad,
 \end{equation*}
 where the special case of $0!=1$ is assumed.\footnote{This makes sense, because, for example, 4!=5!/5, 3!=4!/4, etc., so
 we should have 0!=1!/1.} This infinite series is called the \emph{Taylor series} for $e^x$, evaluated around $x=0$, and it's true, although I haven't proved it,
@@ -228,11 +228,11 @@ that this particular Taylor series always converges to $e^x$, no matter how far 
 In general, the Taylor series
 around $x=0$ for a function $y$ is
 \begin{equation*}
-  T_0(x) = \sum_{n=0}^\infty a_n x^n \qquad ,
+  T_0(x) = \sum_{n=0}^\infty a_n x^n\eqquad,
 \end{equation*}
 where the condition for equality of the nth order derivative is
 \begin{equation*}
-  \left. a_n = \frac{1}{n!}\frac{\der^n y}{\der x^n}\right|_{x=0} \qquad .
+  \left. a_n = \frac{1}{n!}\frac{\der^n y}{\der x^n}\right|_{x=0}\eqquad.
 \end{equation*}
 Here the notation $\left.\right|_{x=0}$ means that the derivative is to be evaluated at $x=0$.
 
@@ -312,7 +312,7 @@ indefinitely. Evaluating these derivatives at $x=0$, we have
 0, 1, 0, $-1$, \ldots. All the even-order terms of the series are zero, and all the odd-order
 terms are $\pm1/n!$. The result is
 \begin{equation*}
-  \sin x = x - \frac{1}{3!}x^3 + \frac{1}{5!}x^5 - \ldots \qquad .
+  \sin x = x - \frac{1}{3!}x^3 + \frac{1}{5!}x^5 - \ldots\eqquad.
 \end{equation*}
 The linear term is the familiar small-angle approximation $\sin x\approx x$.
 
@@ -324,7 +324,7 @@ diminish quickly, even for large values of $x$.
 \begin{eg}\label{eg:taylor-lhospital}
 Suppose that we want to evaluate a limit of the form
 \begin{equation*}
-  \lim_{x\rightarrow 0} \frac{u(x)}{v(x)} \qquad ,
+  \lim_{x\rightarrow 0} \frac{u(x)}{v(x)}\eqquad,
 \end{equation*}
 where $u(0)=v(0)=0$.
 L'H\^{o}pital's rule tells us that we can do this by taking derivatives on the top and bottom
@@ -339,11 +339,11 @@ and $v''=2b+\ldots$.
 A function's Taylor series doesn't have to be evaluated around $x=0$. The Taylor series around some other
 center $x=c$ is given by
 \begin{equation*}
-  T_c(x) = \sum_{n=0}^\infty a_n (x-c)^n \qquad ,
+  T_c(x) = \sum_{n=0}^\infty a_n (x-c)^n\eqquad,
 \end{equation*}
 where 
 \begin{equation*}
-  \left. \frac{a_n}{n!} = \frac{\der^n y}{\der x^n}\right|_{x=c} \qquad .
+  \left. \frac{a_n}{n!} = \frac{\der^n y}{\der x^n}\right|_{x=c}\eqquad.
 \end{equation*}
 To see that this is the right generalization, we can do a change of variable,
 defining a new function $g(x)=f(x-c)$. The radius of convergence is to be measured
@@ -367,7 +367,7 @@ find that the $nth$ derivative equals $\pm (n-1)!$, so the coefficients of the T
 series are $\pm (n-1)!/n!=\pm1/n$, except for the $n=0$ term, which is zero because
 $\ln 1=0$. The resulting series is
 \begin{equation*}
-  \ln x = (x-1) - \frac{1}{2}(x-1)^2 + \frac{1}{3}(x-1)^3 + \ldots \qquad .
+  \ln x = (x-1) - \frac{1}{2}(x-1)^2 + \frac{1}{3}(x-1)^3 + \ldots\eqquad.
 \end{equation*}
 We can predict that its radius of convergence can't be any greater than 1, because
 $\ln x$ blows up at 0, which is at a distance of 1 from 1.
@@ -426,7 +426,7 @@ the theoretical minimum amount of energy  that would have to be used up by burni
 
 Einstein's theory of relativity states that the correct equation is actually
 \begin{equation*}
-  K = \left(\frac{1}{\sqrt{1-\frac{v^2}{c^2}}}-1\right)mc^2 \qquad ,
+  K = \left(\frac{1}{\sqrt{1-\frac{v^2}{c^2}}}-1\right)mc^2\eqquad,
 \end{equation*}
 where $c$ is the speed of light. The fact that it diverges as $v \rightarrow c$ is interpreted
 to mean that no object can be accelerated to the speed of light.
@@ -464,7 +464,7 @@ resistance is\footnote{Jan Benacka
 and Igor Stubna, \emph{The Physics Teacher}, 43 (2005) 432.}
 \begin{align*}
   E &= \frac{g-g_{vacuum}}{g} \\
-   & = 1-\frac{2b}{\ln^2\left(e^b+\sqrt{e^{2b}-1}\right)} \qquad ,
+   & = 1-\frac{2b}{\ln^2\left(e^b+\sqrt{e^{2b}-1}\right)}\eqquad,
 \end{align*}
 where $b=h/A$, and
 $A$ is a constant that depends on the size, shape, and mass of the object, and the density of
@@ -482,7 +482,7 @@ multiplying all the terms by some constant factor.
 \begin{hw}
 The identity
 \begin{equation*}
-  \int_0^1 x^{-x} \der x = \sum_{n=1}^\infty n^{-n} \qquad .
+  \int_0^1 x^{-x} \der x = \sum_{n=1}^\infty n^{-n}\eqquad.
 \end{equation*}
 is known as the ``Sophomore's dream,'' because at first glance it looks like the
 kind of plausible but false statement that someone would naively dream up.\index{Sophomore's dream}
@@ -518,7 +518,7 @@ other great mathematicians of his time, and was famous enough to be given a spec
 the Basel problem.\index{Basel problem}\index{Euler} Here we present an argument based closely on Euler's
 and pose the problem of how to exploit Euler's technique further in order to prove
 \begin{equation*}
-  \frac{1}{1^4}+\frac{1}{2^4}+\frac{1}{3^4}+\ldots = \frac{\pi^4}{90} \qquad .
+  \frac{1}{1^4}+\frac{1}{2^4}+\frac{1}{3^4}+\ldots = \frac{\pi^4}{90}\eqquad.
 \end{equation*}
 
 From the Taylor series for the sine function, we find the related series
@@ -552,7 +552,7 @@ converge, or not?
 \begin{hw}[2]
 Evaluate
 \begin{equation*}
-  \lim_{n\rightarrow\infty} \cos(\pi\sqrt{n^2-n}) \qquad ,
+  \lim_{n\rightarrow\infty} \cos(\pi\sqrt{n^2-n})\eqquad,
 \end{equation*}
 where $n$ is an integer.
 \end{hw}
@@ -560,7 +560,7 @@ where $n$ is an integer.
 \begin{hwwithsoln}[2]{sum-of-n-squared-two-to-n}
 Determine the convergence of the series
 \begin{equation*}
-  \sum_{n=0}^{\infty} n^2 2^{-n} \qquad ,
+  \sum_{n=0}^{\infty} n^2 2^{-n}\eqquad,
 \end{equation*}
 and if it converges, evaluate it.
 \end{hwwithsoln}
@@ -568,7 +568,7 @@ and if it converges, evaluate it.
 \begin{hwwithsoln}[2]{sum-of-n-squared-two-to-n}
 Determine the convergence of the series
 \begin{equation*}
-  \sum_{n=0}^{\infty} n^2 2^{-n} \qquad ,
+  \sum_{n=0}^{\infty} n^2 2^{-n}\eqquad,
 \end{equation*}
 and if it converges, evaluate it.
 \end{hwwithsoln}

@@ -26,6 +26,7 @@ SHOW_ERRORS = \
 DO_PDFLATEX = echo "$(DO_PDFLATEX_RAW)" ; perl -e 'if (system("$(DO_PDFLATEX_RAW)")) {$(SHOW_ERRORS)}'
 GENERIC_OPTIONS_FOR_CALIBRE =  --authors "Benjamin Crowell" --language en --title "Brief Calculus" --toc-filter="[0-9]\.[0-9]"
 WEB_DIR = /home/bcrowell/Lightandmatter/calc
+PROBLEMS_CSV = problems.csv
 
 # Since book1 comes first, it's the default target --- you can just do ``make'' to make it.
 
@@ -151,7 +152,7 @@ all_figures:
 prepress:
 	scripts/preflight_figs.pl
 	# The following makes Lulu not complain about missing fonts:
-	pdftk calc.pdf cat 3-end output calc_lulu.pdf
+	scripts/pdf_extract_pages.rb calc.pdf 3-end calc_lulu.pdf
 	# Filtering through gs used to be necessary to convince Lulu not to complain about missing fonts.
 	# Now that should no longer be necessary, because recent versions of pdftex embed all fonts, and fullembed.map prevents subsetting.
 	# See meki:computer:apps:ghostscript, scripts/create_fullembed_file, and http://tex.stackexchange.com/questions/24002/turning-off-font-subsetting-in-pdftex
@@ -163,7 +164,7 @@ post_source:
 
 preflight:
 	@chmod +x scripts/* scripts/custom/* gen_graph.rb
-	@perl -e 'foreach $$f(<scripts/custom/*>) {system($$f)}'
+	@perl -e 'if (-e "scripts/custom/enable") {foreach $$f(<scripts/custom/*.pl>) {$$c="$$f $(BOOK) $(PROBLEMS_CSV)"; system($$c)}}'
 
 setup:
 	chmod +x scripts/* scripts/custom/* gen_graph.rb 

@@ -169,12 +169,29 @@ def fatal_error(message)
   exit(-1)
 end
 
+# returns contents or nil on error; for more detailed error reporting, see slurp_file_with_detailed_error_reporting()
+def slurp_file(file)
+  x = slurp_file_with_detailed_error_reporting(file)
+  return x[0]
+end
+
+# returns [contents,nil] normally [nil,error message] otherwise
+def slurp_file_with_detailed_error_reporting(file)
+  begin
+    File.open(file,'r') { |f|
+      t = f.gets(nil) # nil means read whole file
+      if t.nil? then t='' end # gets returns nil at EOF, which means it returns nil if file is empty
+      return [t,nil]
+    }
+  rescue
+    return [nil,"Error opening file #{file} for input: #{$!}."]
+  end
+end
+
 def file_contains(file,regexp)
-  File.open(file,'r') { |f|
-    x = f.gets(nil) # nil means read whole file
-    return (regexp =~ x)!=nil
-  }
-  return nil
+  x = slurp_file(file)
+  if x.nil? then return nil end
+  return (regexp =~ x)!=nil
 end
 
 # This can read either JSON or YAML (since JSON is a subset of YAML).
@@ -305,38 +322,36 @@ if $util=~/[a-z]/ then
     infile = $1
     unless File.exist?(infile) then fatal_error("in learn_commands: input file #{infile} does not exist") end
     results = {'command'=>[],'environment'=>[]}
-    File.open(infile,'r') { |f|
-      csv = f.gets(nil) # nil means read whole file
-      csv.split(/\n/).each { |line|
-        # command,\currenthwlabel ,0,0,
-        # environment,hw,0,1,1
-        if line=~/\A(command|environment)\*?,([^,]*),([^,]*),([^,]*),([^,]*)\Z/ then
-          type,name,n_req,n_opt,default = [$1,$2,$3.to_i,$4.to_i,$5]
-          name.gsub!(/\s/,'')
-          name.gsub!(/\\/,'') if type=='command'
-          ignore = name=~/"/ || name=~/\\/ || name=~/\?/ # commands that are probably internal to some package, or that are likely to cause an error
-          info = {"n_req"=>n_req,"n_opt"=>n_opt}
-          if n_opt>0 then info['default']=default end
-          results[type].push("    \"#{name.gsub(/\\/,'\\\\\\\\')}\":#{JSON.generate(info)}") unless ignore
-        else
-          unless line=~/\A\s*\Z/ || line=="command,\\,,0,0," then fatal_error("in learn_commands: syntax error in this line of #{infile}: #{line}") end
-        end
-      }
-      s = {'command'=>'','environment'=>''}
-      results.each_key { |type|
-        s[type] = "  \"#{type}\":{\n"+results[type].join(",\n")+"\n  }\n"
-      }
-      s = "{\n"+s.values.join(",\n")+"\n}\n"
-      outfile = "learned_commands.json"
-      File.open(outfile,'w') { |f|
-        f.print s
-      }
-      begin
-        JSON.parse(s)
-      rescue JSON::ParserError
-        fatal_error("in learn_commands: the JSON I generated in file #{outfile} has invalid syntax")
+    csv = slurp_file(infile)
+    csv.split(/\n/).each { |line|
+      # command,\currenthwlabel ,0,0,
+      # environment,hw,0,1,1
+      if line=~/\A(command|environment)\*?,([^,]*),([^,]*),([^,]*),([^,]*)\Z/ then
+        type,name,n_req,n_opt,default = [$1,$2,$3.to_i,$4.to_i,$5]
+        name.gsub!(/\s/,'')
+        name.gsub!(/\\/,'') if type=='command'
+        ignore = name=~/"/ || name=~/\\/ || name=~/\?/ # commands that are probably internal to some package, or that are likely to cause an error
+        info = {"n_req"=>n_req,"n_opt"=>n_opt}
+        if n_opt>0 then info['default']=default end
+        results[type].push("    \"#{name.gsub(/\\/,'\\\\\\\\')}\":#{JSON.generate(info)}") unless ignore
+      else
+        unless line=~/\A\s*\Z/ || line=="command,\\,,0,0," then fatal_error("in learn_commands: syntax error in this line of #{infile}: #{line}") end
       end
     }
+    s = {'command'=>'','environment'=>''}
+    results.each_key { |type|
+      s[type] = "  \"#{type}\":{\n"+results[type].join(",\n")+"\n  }\n"
+    }
+    s = "{\n"+s.values.join(",\n")+"\n}\n"
+    outfile = "learned_commands.json"
+    File.open(outfile,'w') { |f|
+      f.print s
+    }
+    begin
+      JSON.parse(s)
+    rescue JSON::ParserError
+      fatal_error("in learn_commands: the JSON I generated in file #{outfile} has invalid syntax")
+    end
   end
   if $util=~/patch_epub3:(.*)/ then
     handled = true
@@ -376,99 +391,96 @@ if $util=~/[a-z]/ then
       # -
       #---------- Patch the table of contents.
       toc = "#{tmpdir}/index.html"
-      xml = ''
-      File.open(toc,'r') { |f|
-        xml = f.gets(nil) # nil means read whole file
-        # calibre generates: <!DOCTYPE html> <html xmlns="http://www.w3.org/1999/xhtml">
-        # want: <html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops">
-        xml.gsub!(/<\!DOCTYPE[^>]*>/,'') # why doesn't this work?
-        xml.gsub!(/<p [^>]*>/,'<li>')
-        xml.gsub!(/<\/p>/,'</li>')
-        xml.gsub!(/<b [^>]*>/,'')
-        xml.gsub!(/<\/b>/,'')
-        # li elements are only allowed to contain a elements:
-        preserve = ''
-        xml.scan(/(<li><a [^>]*>[^>]*<\/a><\/li>)/) { # match the legal pattern
-          preserve = preserve + $1 + "\n"
-        }
-        xml.gsub!(Regexp.new("<li>.*<\/li>",Regexp::MULTILINE),preserve) # delete everything from the first li to the last and replace it with the ok ones
-        # Strip chapter numbers, which are generated automatically by the ol:
-        xml.gsub!(/((<li><a [^>]*>)([^>]*)(<\/a><\/li>))/) {
-          whole,before,during,after = [$1,$2,$3,$4]
-          during.gsub!(/[\d\.]+\s*/,'')
-          before+during+after
-        }
-        if xml=~/(<html([^>]*)>)/ then
-          whole,attrs = [$1,$2]
-          xml.gsub!(/#{Regexp::quote(whole)}/) {"<html #{attrs} xmlns:epub=\"http://www.idpf.org/2007/ops\">"}
-        end
-        if xml=~/(<body[^>]*>)/ then
-          whole = $1
-          xml.gsub!(/#{Regexp::quote(whole)}/) {"#{whole}\n<nav epub:type=\"toc\" id=\"toc\"><ol>"}
-        end
-        if xml=~/(<\/body[^>]*>)/ then
-          whole = $1
-          xml.gsub!(/#{Regexp::quote(whole)}/) {"</ol></nav>\n#{whole}"}
-        end
+      xml = slurp_file(toc)
+      if xml.nil? then xml='' end
+      # calibre generates: <!DOCTYPE html> <html xmlns="http://www.w3.org/1999/xhtml">
+      # want: <html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops">
+      xml.gsub!(/<\!DOCTYPE[^>]*>/,'') # why doesn't this work?
+      xml.gsub!(/<p [^>]*>/,'<li>')
+      xml.gsub!(/<\/p>/,'</li>')
+      xml.gsub!(/<b [^>]*>/,'')
+      xml.gsub!(/<\/b>/,'')
+      # li elements are only allowed to contain a elements:
+      preserve = ''
+      xml.scan(/(<li><a [^>]*>[^>]*<\/a><\/li>)/) { # match the legal pattern
+        preserve = preserve + $1 + "\n"
       }
+      xml.gsub!(Regexp.new("<li>.*<\/li>",Regexp::MULTILINE),preserve) # delete everything from the first li to the last and replace it with the ok ones
+      # Strip chapter numbers, which are generated automatically by the ol:
+      xml.gsub!(/((<li><a [^>]*>)([^>]*)(<\/a><\/li>))/) {
+        whole,before,during,after = [$1,$2,$3,$4]
+        during.gsub!(/[\d\.]+\s*/,'')
+        before+during+after
+      }
+      if xml=~/(<html([^>]*)>)/ then
+        whole,attrs = [$1,$2]
+        xml.gsub!(/#{Regexp::quote(whole)}/) {"<html #{attrs} xmlns:epub=\"http://www.idpf.org/2007/ops\">"}
+      end
+      if xml=~/(<body[^>]*>)/ then
+        whole = $1
+        xml.gsub!(/#{Regexp::quote(whole)}/) {"#{whole}\n<nav epub:type=\"toc\" id=\"toc\"><ol>"}
+      end
+      if xml=~/(<\/body[^>]*>)/ then
+        whole = $1
+        xml.gsub!(/#{Regexp::quote(whole)}/) {"</ol></nav>\n#{whole}"}
+      end
       File.open(toc,'w') { |f| f.print xml }
       #---------- Patch package file.
       package_document = "#{tmpdir}/content.opf" # this is what calibre generates; other people's epubs can have it in, e.g., OPS/package.opf
-      xml = ''
-      File.open(package_document,'r') { |f|
-        xml = f.gets(nil) # nil means read whole file
-        new_pkg = '<package xmlns="http://www.idpf.org/2007/opf" version="3.0" xml:lang="en" unique-identifier="pub-id">'
-        xml.gsub!(/<package[^>]+>/,new_pkg)
-        if xml=~/(<dc:creator([^>]+)>([^<]+)<\/dc:creator>)/ then
-          whole,attributes,author = [Regexp::quote($1),$2,$3]
-          creator = "<dc:creator id=\"creator\">#{author}</dc:creator>"
-          attributes.scan(/opf:([^=]+)=\"([^"]*)\"/) {
-            property,value = [$1,$2]
-            creator = creator + "\n<meta refines=\"#creator\" property=\"#{property}\">#{value}</meta>"
+      xml = slurp_file(package_document)
+      if xml.nil? then xml='' end
+      xml = f.gets(nil) # nil means read whole file
+      new_pkg = '<package xmlns="http://www.idpf.org/2007/opf" version="3.0" xml:lang="en" unique-identifier="pub-id">'
+      xml.gsub!(/<package[^>]+>/,new_pkg)
+      if xml=~/(<dc:creator([^>]+)>([^<]+)<\/dc:creator>)/ then
+        whole,attributes,author = [Regexp::quote($1),$2,$3]
+        creator = "<dc:creator id=\"creator\">#{author}</dc:creator>"
+        attributes.scan(/opf:([^=]+)=\"([^"]*)\"/) {
+          property,value = [$1,$2]
+          creator = creator + "\n<meta refines=\"#creator\" property=\"#{property}\">#{value}</meta>"
+        }
+        creator = creator + "___placeholder___" # find a reasonable place to stick in some more required stuff
+        xml.gsub!(/#{whole}/) {creator}
+      end
+      # <meta property="dcterms:modified">2012-01-13T01:13:00Z</meta>
+      xml.gsub!(/___placeholder___/) {
+        # http://idpf.org/epub/30/spec/epub30-publications.html#last-modified-date
+        "<meta property=\"dcterms:modified\">#{Time.now.strftime '%Y-%m-%dT%H:%M:%SZ'}</meta>"
+      }
+      # <item  href="index.html" id="html" media-type="application/xhtml+xml"/>
+      if xml=~/(<item([^>]+)(href="index.html")([^>]+)\/>)/ then
+        whole,before,href,after = [Regexp::quote($1),$2,$3,$4]
+        xml.gsub!(/#{whole}/) {"<item #{before} properties=\"nav\" #{href} #{after} />"}
+      end
+      xml.gsub!(/#{Regexp::quote(toc)}/) {
+        "<item properties=\"nav\" href=\"toc.ncx\" media-type=\"application/xhtml+xml\" id=\"ncx\"/>"
+      }
+      if xml=~/(<dc:identifier([^>]+)>([^<]+)<\/dc:identifier>)/ then
+        whole,attributes,identifier = [Regexp::quote($1),$2,$3]
+        i = "<dc:identifier id=\"pub-id\">urn:uuid:#{identifier}</dc:identifier>\n"
+        i = i +"<meta refines=\"#pub-id\" property=\"identifier-type\" scheme=\"xsd:string\">15</meta>"
+        xml.gsub!(/#{whole}/) {i}
+      end
+      xml.gsub!(/(<item\s+([^\/]|"[^"]*")*\/>)/) {
+        item = $1 # e.g., item=<item href="ch01_split_000.xhtml" id="html15" media-type="application/xhtml+xml"/>
+        if item=~/media-type="application\/xhtml\+xml"/ then # don't do images, just html
+          #$stderr.print "item=#{item}\n"
+          if item=~/href="([^"]+)"/ then html_file="#{tmpdir}/#{$1}" end
+          p = []
+          ['math','svg','switch'].each { |x|
+            if x=='math' then y='mathml' else y=x end
+            if file_contains(html_file,/<#{x}/)==true then p.push(y) end
           }
-          creator = creator + "___placeholder___" # find a reasonable place to stick in some more required stuff
-          xml.gsub!(/#{whole}/) {creator}
-        end
-        # <meta property="dcterms:modified">2012-01-13T01:13:00Z</meta>
-        xml.gsub!(/___placeholder___/) {
-          # http://idpf.org/epub/30/spec/epub30-publications.html#last-modified-date
-          "<meta property=\"dcterms:modified\">#{Time.now.strftime '%Y-%m-%dT%H:%M:%SZ'}</meta>"
-        }
-        # <item  href="index.html" id="html" media-type="application/xhtml+xml"/>
-        if xml=~/(<item([^>]+)(href="index.html")([^>]+)\/>)/ then
-          whole,before,href,after = [Regexp::quote($1),$2,$3,$4]
-          xml.gsub!(/#{whole}/) {"<item #{before} properties=\"nav\" #{href} #{after} />"}
-        end
-        xml.gsub!(/#{Regexp::quote(toc)}/) {
-          "<item properties=\"nav\" href=\"toc.ncx\" media-type=\"application/xhtml+xml\" id=\"ncx\"/>"
-        }
-        if xml=~/(<dc:identifier([^>]+)>([^<]+)<\/dc:identifier>)/ then
-          whole,attributes,identifier = [Regexp::quote($1),$2,$3]
-          i = "<dc:identifier id=\"pub-id\">urn:uuid:#{identifier}</dc:identifier>\n"
-          i = i +"<meta refines=\"#pub-id\" property=\"identifier-type\" scheme=\"xsd:string\">15</meta>"
-          xml.gsub!(/#{whole}/) {i}
-        end
-        xml.gsub!(/(<item\s+([^\/]|"[^"]*")*\/>)/) {
-          item = $1 # e.g., item=<item href="ch01_split_000.xhtml" id="html15" media-type="application/xhtml+xml"/>
-          if item=~/media-type="application\/xhtml\+xml"/ then # don't do images, just html
-            #$stderr.print "item=#{item}\n"
-            if item=~/href="([^"]+)"/ then html_file="#{tmpdir}/#{$1}" end
-            p = []
-            ['math','svg','switch'].each { |x|
-              if x=='math' then y='mathml' else y=x end
-              if file_contains(html_file,/<#{x}/)==true then p.push(y) end
-            }
-            if item=~/properties="([^"]*)"/ then 
-              p.concat($1.split(/\s+/))
-            else
-              item.gsub!(/<item/,'<item properties=""')
-            end
-            item.gsub!(/(properties="[^"]*")/) {"properties=\"#{p.uniq.join(' ')}\""}
-            item.gsub!(/(properties=""\s*)/,' ')
-            #$stderr.print "p=#{p.join(' ')}, changed item to #{item}\n"
-          end # if html
-          item
-        }
+          if item=~/properties="([^"]*)"/ then 
+            p.concat($1.split(/\s+/))
+          else
+            item.gsub!(/<item/,'<item properties=""')
+          end
+          item.gsub!(/(properties="[^"]*")/) {"properties=\"#{p.uniq.join(' ')}\""}
+          item.gsub!(/(properties=""\s*)/,' ')
+          #$stderr.print "p=#{p.join(' ')}, changed item to #{item}\n"
+        end # if html
+        item
       }
       File.open(package_document,'w') { |f| f.print xml }
       # -
@@ -483,8 +495,8 @@ if $util=~/[a-z]/ then
         file = "#{tmpdir}/#{x}"
         if file=~/html\Z/ then
           #$stderr.print "file #{file}\n"
-          html = ''
-          File.open(file,'r') { |f| html = f.gets(nil) } # nil means read whole file
+          html = slurp_file(file)
+          if html.nil? then html='' end
           html.gsub!(/<meta[^>]+\/>/,'')
           # first line output by calibre 0.7.44 looks like this: <?xml version='1.0' encoding='utf-8'?>
           if html=~/\A<\?xml/ then
@@ -800,7 +812,16 @@ def preprocess(tex,command_data,style_files)
   # command_data looks like {"unitdot":{"n_req":0,"n_opt":0},...}; only lists commands that we've specifically been told to handle
   curly = "(?:(?:{[^{}]*}|[^{}]*)*)" # match anything, as long as any curly braces in it are paired properly, and not nested
   style = ''
-  style_files.each { |s|  File.open(s,'r') { |f| style = style + "\n" + f.gets(nil) }  }
+  style_files.each { |s|  style = style + "\n" + slurp_file(s) }
+
+  # delete material marked to be ignored by me
+  ignore_these_keys = []
+  tex.scan(/begin_ignore_for_web:(\d+)/) {
+    ignore_these_keys.push($1)
+  }
+  ignore_these_keys.each { |n|
+    tex.sub!(Regexp.new("%begin_ignore_for_web:#{n}.*%end_ignore_for_web:#{n}\n",Regexp::MULTILINE),'') 
+  }
 
   # Convert summary and hwsection environments into sections, which is what they really are, anyway.
   ['summary','hwsection'].each { |s|
@@ -1260,10 +1281,12 @@ def parse_section(tex,environment_data)
             top = "\n\n"
             bottom = "\n\n"
           else
-            top = "\n\n<div class=\"#{x}\">\n\n"
+            type_of_div = x
+            if x=='homeworkforcelabel' then type_of_div='homework' end
+            top = "\n\n<div class=\"#{type_of_div}\">\n\n"
             bottom = "\n\n</div>\n\n"
           end
-          if x=~/\A(homework|hw)\Z/ then 
+          if x=~/\A(homework|hw|homeworkforcelabel)\Z/ then 
             d = "<b>#{hw}</b>. " + d
             hw+=1
             if args[1]!='' && !$wiki && $config['forbid_anchors_and_links']==0 then top = top + "<a #{$anchor}=\"hw:#{arg}\"></a>" end
@@ -1493,9 +1516,7 @@ def handle_table_one(original)
         if $xhtml then ext='.xhtml' else ext='.html' end
         cache_file = cache_dir + '/table_' + hash + ext
         if (!$redo_all_tables) && File.exist?(cache_file) then
-          File.open(cache_file,'r') { |f|
-            return f.gets(nil) # nil means read whole file
-          }
+          return slurp_file(cache_file)
         end
 
         t = original.clone
@@ -1527,11 +1548,12 @@ def handle_table_one(original)
           if !File.exist?(temp) then $stderr.print "error, temp file #{temp} doesn't exist"; exit(-1) end
           fmt = 'html'
           if $xhtml then fmt='xhtml' end
-          unless system("#{$config['script_dir']}/latex_table_to_html.pl #{temp} #{$config['sty_dir']}/lmmath.sty #{fmt} >/dev/null") then $stderr.print "error, #{$?}"; exit(-1) end
-          File.open(temp_html,'r') { |f|
-            html = f.gets(nil) # nil means read whole file
-            html.gsub!(/\n*$/,"\n") # exactly one newline at the end
-          }
+          unless system("#{$config['script_dir']}/latex_table_to_html.pl #{temp} #{$config['sty_dir']}/lmmath.sty #{fmt} >/dev/null") then
+            $stderr.print "warning, error translating table to html, #{$?}"
+          end
+          html = slurp_file(temp_html)
+          if html.nil? then html='' end
+          html.gsub!(/\n*$/,"\n") # exactly one newline at the end
         end
         failed = false
         html.gsub!(/<img[^<>]*alt=\"([^"]*)\"[^<>]*>/) {failed=true; $1} # replace image with its alt tag
@@ -2048,6 +2070,8 @@ def parse_eensy_weensy(t)
   tex.gsub!(/\\index{#{curly}}/,'') # This actually gets taken care of earlier by duplicated code. Probably not necessary to have it here as well.
   tex.gsub!(/\\noindent/,'') # Should pay attention to this, but it would be really hard.
   tex.gsub!(/\\write18{#{curly}}/,'')
+  tex.gsub!(/\\anchor{#{curly}}/,'')
+  tex.gsub!(/\\link{#{curly}}/,'')
   # kludge, needed in SN 10:
   tex.gsub!(/\\formatlikecaption{/,'') 
   tex.gsub!(/\\normalsize/,'') 
@@ -2211,7 +2235,8 @@ def find_figure(name,width_type)
   # width_type = 'narrow' , 'wide' , 'fullpage' , 'raw'
 
   # Allow for kludges like fig('../../../lm/vw/figs/doppler',...), which I do in an E&M chapter of LM.
-  if name=~/^\.\./ then
+  # But don't do stuff like ../../../share/mechanics/fig/tractor, which shows up in chapter openers.
+  if name=~/^\.\./ && !(name=~/\.\.\/share/) then
     return name
   end
 
@@ -2613,7 +2638,12 @@ chipmunk.scan(/(\\\w+({[^}]*})?)/) {
   whole.gsub!(/\n.*/,'') # if it inadvertently eats thousands of lines and thinks it's one macro, don't print it all
   if !math_ok then macros_not_handled[whole]=1 end
 }
-unless macros_not_handled.keys.empty? then $stderr.print "Warning: the following macros were not handled in this chapter: "+macros_not_handled.keys.join(' ')+"\n" end
+unless macros_not_handled.keys.empty? then 
+  File.open("macros_not_handled",'a') { |f|
+    f.print "Warning: the following macros were not handled in chapter #{$ch}: "+macros_not_handled.keys.join(' ')+"\n" 
+  }
+  $stderr.print "Warning: some macros were not handled. See list in the file macros_not_handled.\n"
+end
 end
 #------------------------------------------------------------------------------------------------------------------------------------
 def print_footnotes_and_append_to_index(tex)

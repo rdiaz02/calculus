@@ -13,7 +13,7 @@ supposed to have been something of this flavor.}
 lit his pipe, confident of a long break. But almost immediately, a boy named
 Carl Friedrich Gauss brought up his answer: 5,050.\label{gauss-story}\index{Gauss, Carl Friedrich}
 %
-\smallfig{gauss-square}{Adding the numbers from 1 to 7.}
+\smallfig[h]{gauss-square}{Adding the numbers from 1 to 7.}
 %
 \smallfig[h]{gauss-solution}{A trick for finding the sum.}
 
@@ -29,7 +29,7 @@ with a total area of $7/2$, so the total shaded area is $(7^2+7)/2=28$.
 In general, the sum of the first $n$ numbers will be $(n^2+n)/2$, which explains
 Gauss's result: $(100^2+100)/2=5,050$.
 %
-\smallfig{gauss}{Carl Friedrich Gauss (1777-1855), a long time after graduating
+\smallfig[h]{gauss}{Carl Friedrich Gauss (1777-1855), a long time after graduating
 from elementary school.}\index{Gauss, Carl Friedrich!portrait}
 %
 \subsection{Two sides of the same coin}
@@ -53,7 +53,7 @@ years, the accumulated amount of garbage will be 5,050 tons. The pile of
 refuse grows more quickly every year; the rate of change of $x$ is not
 constant. Tabulating the examples we've done so far, we have this:
 
-\noindent\begin{tabular}{p{23mm}p{23mm}}
+\noindent\begin{tabular}{p{53mm}p{53mm}}
 \emph{rate of change} & \emph{accumulated result} \\
 13             & $13n$ \\
 $n$            & $(n^2+n)/2$
@@ -157,7 +157,7 @@ is $1/3$ is proved in problem \ref{hw:sum-of-squares-coeff} on p.~\pageref{hw:su
 %interp as slope, figure showing x, x', area->, slope<-
 %self-check: visualize for x=13n, x'=13
 
-\smallfig{pyramid}{A pyramid with a volume of $1^2+2^2+3^2$.}
+\smallfig[h]{pyramid}{A pyramid with a volume of $1^2+2^2+3^2$.}
 
 \begin{eg}
 Figure \figref{pyramid} shows a pyramid consisting of a single cubical block on top,
@@ -181,7 +181,7 @@ XII-6 and XII-7) two thousand years before calculus was invented.
 
 \section{Continuous change}
 
-\smallfig{newton}{Isaac Newton (1643-1727)}\index{Newton, Isaac}
+\smallfig[h]{newton}{Isaac Newton (1643-1727)}\index{Newton, Isaac}
 %
 Did you notice that I sneaked something past you in the example
 of water filling up a reservoir? The $x$ and $\xdot$ functions I've
@@ -203,7 +203,7 @@ is due to him (and he only used it for continuous functions). Because he was
 dealing with the continuous \emph{flow} of change, he called his new set of mathematical
 techniques the method of \emph{fluxions}, but nowadays it's known as the calculus.
 %%graph%% tangent-line func=x**2/2 format=eps xlo=0 xhi=2 ylo=0 yhi=2 with=lines x=t y=x samples=300 ytic_spacing=1 ; func=x-.5 with=lines
-\smallfig{tangent-line}{The function $x(t)=t^2/2$, and its tangent line at the point $(1,1/2)$.}
+\smallfig[h]{tangent-line}{The function $x(t)=t^2/2$, and its tangent line at the point $(1,1/2)$.}
 
 Newton was a physicist, and he needed to invent the calculus as part of his study
 of how objects move. If an object is moving in one dimension, we can specify its
@@ -268,7 +268,7 @@ it isn't, because the scales are different. The line in figure \figref{tangent-l
 of $\text{rise}/\text{run}=1/1=1$, but this one's slope is $4/2=2$. That means $\xdot(2)=2$.
 In general, this scaling argument shows that $\xdot(t)=t$ for any $t$.
 %%graph%% scaling func=x**2/2 format=eps xlo=0 xhi=4 ylo=0 yhi=8 with=lines x=t y=x samples=300 ytic_spacing=1 ; func=2*x-2 with=lines
-\smallfig{scaling}{The function $t^2/2$ again. How is this different from figure \figref{tangent-line}?}
+\smallfig[h]{scaling}{The function $t^2/2$ again. How is this different from figure \figref{tangent-line}?}
 
 This is called \emph{differentiating}: finding a formula for the function $\xdot$, given a formula
 for the function $x$. The term comes from the idea that for a discrete function, the slope is
@@ -436,7 +436,7 @@ as this: $x=t^3/2$.
 \end{eg}
 
 %%graph%% curvature func=x**2 format=eps xlo=-2 xhi=2 ylo=-1 yhi=8 with=lines x=t y=x samples=300 ytic_spacing=1 ; func=7*x**2 ; func=2*x
-\smallfig{curvature}{The functions $2t$, $t^2$ and $7t^2$.}
+\smallfig[h]{curvature}{The functions $2t$, $t^2$ and $7t^2$.}
 %
 The second derivative can be interpreted as a measure of the curvature of the graph,
 as shown in figure \figref{curvature}. The graph of the function $x=2t$ is a line,
@@ -445,7 +445,7 @@ The function $t^2$ has a second derivative of $2$, and the more tightly curved
 function $7t^2$ has a bigger second derivative, $14$.
 
 %%graph%% concavity func=x**2 format=eps xlo=-2 xhi=2 ylo=-1 yhi=4 with=lines x=t y=x samples=300 ytic_spacing=1 ; func=3-x**2
-\smallfig{concavity}{The functions $t^2$ and $3-t^2$.}
+\smallfig[h]{concavity}{The functions $t^2$ and $3-t^2$.}
 
 Positive and negative signs of the second derivative indicate concavity.\index{concavity}
 In figure \figref{concavity},
@@ -456,7 +456,7 @@ going in the direction of increasing $t$, then your steering wheel is turned to 
 a road shaped like $3-t^2$ it's turned to the right.
 
 %%graph%% inflection func=x**3 format=eps xlo=-2 xhi=2 ylo=-8 yhi=8 with=lines x=t y=x samples=300 ytic_spacing=2
-\smallfig{inflection}{The functions $t^3$ has an inflection point at $t=0$.}
+\smallfig[h]{inflection}{The functions $t^3$ has an inflection point at $t=0$.}
 
 Figure \figref{inflection} shows a third possibility. The function $t^3$ has a derivative $3t^2$
 and a second derivative $6t$, which equals
@@ -504,11 +504,11 @@ smooth. There are some other possibilities.
 In figure \figref{endpoint-min}, the function's minimum occurs at an end-point of its domain.
 %
 %%graph%% endpoint-min func=sqrt(x) format=eps xlo=-1 xhi=2 ylo=-.1 yhi=1.5 with=lines x=t y=x samples=300 ytic_spacing=1
-\smallfig{endpoint-min}{The function $x=\sqrt t$ has a minimum at $t=0$, which is not a place where $\xdot=0$. This
+\smallfig[h]{endpoint-min}{The function $x=\sqrt t$ has a minimum at $t=0$, which is not a place where $\xdot=0$. This
 point is the edge of the function's domain.}
 %
 %%graph%% kink-min func=abs(x) format=eps xlo=-1 xhi=1 ylo=0 yhi=2 with=lines x=t y=x samples=300 ytic_spacing=1
-\smallfig{kink-min}{The function $x=|t|$ has a minimum at $t=0$, which is not a place where $\xdot=0$. This
+\smallfig[h]{kink-min}{The function $x=|t|$ has a minimum at $t=0$, which is not a place where $\xdot=0$. This
 is a point where the function isn't differentiable.}
 
 Another possibility is that the function can have a minimum or maximum at some point where its derivative

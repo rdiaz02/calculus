@@ -13,7 +13,7 @@ can't be anything bigger, right?
 
 \section{Infinitesimals}\index{infinitesimal number}
 
-\smallfig[t]{leibniz}{Gottfried Leibniz (1646-1716)}%
+\smallfig[h]{leibniz}{Gottfried Leibniz (1646-1716)}%
 Actually mathematicians have invented many different logical systems for working
 with infinity, and in most of them infinity does come in different sizes and flavors.
 Newton, as well as the German mathematician Leibniz\index{Leibniz, Gottfried}
@@ -26,7 +26,7 @@ the number $1.1^2=1.21$. That 2 in the first decimal place is the same 2 that
 appears in the expression $2t$ for the derivative of $t^2$.
 
 %%graph%% close-up func=x**2 format=eps xlo=0.6 xhi=1.401 ylo=0.6 yhi=1.401 with=lines x=t y=x samples=300 xtic_spacing=.2 ytic_spacing=.2 border=1 ; func=2.1*x-1.1 with=lines
-\smallfig{close-up}{A close-up view of the function $x=t^2$, showing the line that connects the points $(1,1)$ and $(1.1,1.21)$.}
+\smallfig[h]{close-up}{A close-up view of the function $x=t^2$, showing the line that connects the points $(1,1)$ and $(1.1,1.21)$.}
 
 Figure  \figref{close-up} shows the idea visually. The line connecting the points $(1,1)$ and $(1.1,1.21)$ is almost
 indistinguishable from the tangent line on this scale. Its slope is $(1.21-1)/(1.1-1)=2.1$, which is very close to the
@@ -36,7 +36,7 @@ tangent line's slope of 2. It was a good approximation because the points were c
 If we needed a better approximation, we could try calculating $1.01^2=1.0201$. The slope of the
 line connecting the points $(1,1)$ and $(1.01,1.0201)$ is 2.01, which is even closer to the slope of the tangent line.
 
-\smallfig[b]{t-squared-geometrically}{A geometrical interpretation of the derivative of $t^2$.}%
+\smallfig[h]{t-squared-geometrically}{A geometrical interpretation of the derivative of $t^2$.}%
 %
 Another method of visualizing the idea is that we can interpret $x=t^2$ as the area of a square with sides of length $t$,
 as suggested in figure \figref{t-squared-geometrically}. We increase $t$ by an infinitesimally small number $\der t$.
@@ -137,7 +137,7 @@ Replacing 3 with $t$ and $0.01$ with $\der t$, this becomes
 \end{eg}
 
 %%graph%% derivative-of-sine func=sin(x) format=eps xlo=0 xhi=6.283 ylo=-1 yhi=1 with=lines x=t y=x samples=300 xtic_spacing=1 ytic_spacing=1 ; func=cos(x)
-\smallfig{derivative-of-sine}{Graphs of $\sin t$, and its derivative $\cos t$.}
+\smallfig[h]{derivative-of-sine}{Graphs of $\sin t$, and its derivative $\cos t$.}
 
 \begin{eg}\label{eg:derivative-of-sin}\index{derivative!of the sine}\index{sine!derivative of}
 The derivative of $x=\sin t$, with $t$ in units of radians, is
@@ -188,7 +188,7 @@ cranking out any derivative cookbook-style, without having to come
 up with any tricks.
 
 %%graph%% geometric-series func=1/(1-x) format=eps xlo=-1.0 xhi=1 ylo=0 yhi=3 with=lines x=t y=x samples=300 xtic_spacing=1 ytic_spacing=1
-\smallfig{geometric-series}{The function $x=1/(1-t)$.}
+\smallfig[h]{geometric-series}{The function $x=1/(1-t)$.}
 
 \begin{eg}\label{eg:geometric-series}
 \egquestion
@@ -254,7 +254,7 @@ possibility of the second derivative), there was clearly something to his critic
 sarcastically,\index{infinitesimal number!criticism of}\index{Berkeley, George}
 ``They are neither finite quantities, nor quantities infinitely small, nor yet nothing. May we not call them ghosts of departed quantities?''
 
-\smallfig[t]{berkeley}{Bishop George Berkeley (1685-1753)}%
+\smallfig[ht]{berkeley}{Bishop George Berkeley (1685-1753)}%
 %
 Infinitesimals seemed scary, because if you mishandled them, you could prove absurd things. For example, let $\der u$ be
 an infinitesimal. Then $2\der u$ is also infinitesimal. Therefore both $1/\der u$ and $1/(2\der u)$ equal infinity, so
@@ -286,7 +286,7 @@ but most of the time you could get away with treating them as if they were, and 
 answer in the end. \emph{Most of the time!?} That bothered me. How was I supposed to know when it \emph{wasn't}
 ``most of the time?''
 
-\smallfig{robinson}{Abraham Robinson (1918-1974)}
+\smallfig[h]{robinson}{Abraham Robinson (1918-1974)}
 
 But unknown to me and my teacher, mathematician Abraham Robinson\index{Robinson, Abraham}
 had already shown in the 1960's that it
@@ -465,7 +465,7 @@ the cavalry, which moves faster, covers a distance $\der x$ greater than that co
 $\der y$. However, the strip of territory conquered by the cavalry, $y \der x$, isn't as great as it could have been,
 because in our example $y$ isn't as big as $x$.
 %
-\fig{product-rule}{A geometrical interpretation of the product rule.}
+\fig[ht]{product-rule}{A geometrical interpretation of the product rule.}
 
 A helpful feature of the Leibniz notation is that one can easily use it to check whether the units of an
 answer make sense. If we measure distances in meters and time in seconds, then $xy$ has units of
@@ -563,7 +563,7 @@ Let $x$, $y$, and $z$ be the angular positions of the three gears. Then by the c
 
 \end{eg}
 
-\smallfig{gear-ratio}{Example \ref{eg:gear-ratio}.}
+\smallfig[h]{gear-ratio}{Example \ref{eg:gear-ratio}.}
 
 
 The chain rule lets us find the derivative of a function that has been built out of one function
@@ -658,7 +658,7 @@ it makes sense that the units are concentration divided by time, because the res
 represents the rate at which the concentration is changing.
 \end{eg}
 %%graph%% caffeine func=2*exp(-x/7) format=eps xlo=0 xhi=24 ylo=0 yhi=2.1 with=lines x=t y=c xtic_spacing=6 ytic_spacing=.5 more_space_below=5
-\smallfig{caffeine}{Example \ref{eg:caffeine}. A typical graph of the concentration of caffeine in the blood, in units of milligrams per
+\smallfig[h]{caffeine}{Example \ref{eg:caffeine}. A typical graph of the concentration of caffeine in the blood, in units of milligrams per
 liter, as a function of time, in hours.}
 
 \begin{eg}
@@ -699,7 +699,7 @@ $x$ to be a function of $y$. Applying this to the natural logarithm,
   \frac{\der \ln x}{\der x} &= \frac{1}{x}\eqquad.
 \end{align*}
 
-\fig{power-ladder}{Differentiation and integration of functions of the form $x^n$. Constants
+\fig[ht]{power-ladder}{Differentiation and integration of functions of the form $x^n$. Constants
 out in front of the functions are not shown, so keep in mind that, for example, the derivative
 of $x^2$ isn't $x$, it's $2x$.}
 
@@ -1261,7 +1261,7 @@ the maximum occurs close to, but not exactly at, $f_\zu{o}$.
 \end{hwwithsoln}
 
 %%graph%% resonance func=1/sqrt(3*(x**2-1)**2+x**2) xlo=0 xhi=3 ylo=0 yhi=1.1 with=lines xtic_spacing=1 ytic_spacing=.5 format=eps
-\smallfig{resonance}{The function of problem \ref{hw:resonance}, with $a=3$, $b=1$, and $f_\zu{o}=1$.}%
+\smallfig[h]{resonance}{The function of problem \ref{hw:resonance}, with $a=3$, $b=1$, and $f_\zu{o}=1$.}%
 
 \widefig[t]{hw-near-focal-point}{Problem \ref{hw:near-focal-point}. A set of light rays is emitted from
 the tip of the glamorous movie star's nose on the film, and reunited to form a spot on the screen which is the image of the

@@ -42,7 +42,7 @@ and $\arg(-u)=182\degunit$. Doubling 182 gives 364, which is actually a synonym 
 The tangent line has to pass through the point (3,9), and it also seems, at least approximately, to pass
 through (1.5,0). This gives it a slope of $(9-0)/(3-1.5)=9/1.5=6$, and that's exactly what $2t$ is at $t=3$.
 %%graph%% soln-check-twot-graph func=x**2 format=eps xlo=0 xhi=4 ylo=0 yhi=16 x=t y=x ytic_spacing=2 more_space_below=6 more_space_above=10 ; func=6*x-9
-\smallfig{soln-check-twot-graph}{Problem \ref{hw:check-twot-graph}.}
+\smallfig[h]{soln-check-twot-graph}{Problem \ref{hw:check-twot-graph}.}
 
 \hwsolnhdr{graph-sin-et}
 
@@ -51,7 +51,7 @@ through (-1.6,0). This gives it a slope of $(0.84-0)/(0-(-1.6))=0.84/1.6=0.53$. 
 can be found using the methods of chapter 2.
 
 %%graph%% soln-graph-sin-et func=sin(exp(x)) format=eps xlo=-2 xhi=2 ylo=-1 yhi=1.5 x=t y=x ytic_spacing=1 more_space_below=6 more_space_above=10 ; func=.540302*x+sin(1)
-\smallfig{soln-graph-sin-et}{Problem \ref{hw:graph-sin-et}.}
+\smallfig[h]{soln-graph-sin-et}{Problem \ref{hw:graph-sin-et}.}
 
 \pagebreak[4]
 
@@ -166,7 +166,7 @@ and solving for $t$, we find $t=-1/3$. Looking at the graph, it does look like t
 is down for $t<-1/3$, and up for $t>-1/3$.
 %
 %%graph%% soln-inflection func=x**3+x**2 format=eps xlo=-1 xhi=.5 ylo=0 yhi=0.5 x=t y=x ytic_spacing=.5 more_space_below=6 more_space_above=10
-\smallfig{soln-inflection}{Problem \ref{hw:inflection}.}
+\smallfig[h]{soln-inflection}{Problem \ref{hw:inflection}.}
 
 \hwsolnhdr{neg-power-graph}
 
@@ -175,7 +175,7 @@ see whether it really equals $kt^{k-1}=-1$. Before even doing the graph, I note 
 $1/t$ is decreasing for $t>0$, so its slope should indeed be negative.
 
 %%graph%% soln-neg-power-graph func=1/x format=eps xlo=0 xhi=3 ylo=0 yhi=3 x=t y=x ytic_spacing=1 more_space_below=6 more_space_above=10 ; func=-x+2
-\smallfig{soln-neg-power-graph}{Problem \ref{hw:neg-power-graph}.}
+\smallfig[h]{soln-neg-power-graph}{Problem \ref{hw:neg-power-graph}.}
 
 The tangent line seems to connect the points (0,2) and (2,0), so its slope does indeed look like it's $-1$.
 
@@ -215,7 +215,7 @@ reversed. It makes sense that $r=-a$ behaves the same as $r=a$, since physically
 regardless of whether we view it from in front or from behind.
 
 %%graph%% soln-lennard-jones func=x**12-2*x**6 format=eps xlo=-1.3 xhi=1.3 ylo=-2 yhi=8 x=r y=E ytic_spacing=2 more_space_below=6 more_space_above=10
-\smallfig{soln-lennard-jones}{Problem \ref{hw:lennard-jones}.}
+\smallfig[h]{soln-lennard-jones}{Problem \ref{hw:lennard-jones}.}
 
 The other method of checking that $r=a$ is a minimum is to take the second derivative. As before, the values of $a$ and
 $k$ are irrelevant, and can be set to 1. We then have
@@ -457,7 +457,7 @@ The derivative will therefore equal zero if and only if $\cos x=0$, which happen
 where the derivative of $\sin x$ is zero, at $x=\pi/2+\pi n$, where $n$ is an integer.
 %
 %%graph%% soln-sin-sin-sin func=sin(sin(sin(x))) format=eps xlo=-10 xhi=10 ylo=-1 yhi=1 ytic_spacing=1 xtic_spacing=10
-\smallfig{soln-sin-sin-sin}{Problem \ref{hw:sin-sin-sin}.}
+\smallfig[h]{soln-sin-sin-sin}{Problem \ref{hw:sin-sin-sin}.}
 
 This essentially completes the required demonstration, but there is one more technical issue, which
 is that it's conceivable that some of these could
@@ -735,7 +735,7 @@ The shape of the graph can be found by considering four cases:
 In these four cases, the function is respectively close to 1, large, small, and close to 1.
 
 %%graph%% soln-limits-with-exp-one-over-x func=exp(-1/x) format=eps xlo=-3 xhi=3 ylo=0 yhi=8 x=t y=x ytic_spacing=4 more_space_below=6 more_space_above=10
-\smallfig{soln-limits-with-exp-one-over-x}{Problem \ref{hw:limits-with-exp-one-over-x}.}
+\smallfig[h]{soln-limits-with-exp-one-over-x}{Problem \ref{hw:limits-with-exp-one-over-x}.}
 
 The four limits correspond to the four cases described above.
 
@@ -823,7 +823,7 @@ Continuity in terms of the Weierstrass limit holds because we can take $\delta=\
 The result is 1.46.
 
 %%graph%% soln-integrate-sin-cancel func=sin(x) format=eps xlo=0 xhi=6.282 ylo=-1 yhi=1 ytic_spacing=1 more_space_below=6 more_space_above=10
-\smallfig{soln-integrate-sin-cancel}{Problem \ref{hw:integrate-sin-cancel}.}
+\smallfig[h]{soln-integrate-sin-cancel}{Problem \ref{hw:integrate-sin-cancel}.}
 
 \hwsolnhdr{integrate-sin-cancel}\\*
 The derivative of the cosine is minus the sine, so to get a function whose
@@ -841,7 +841,7 @@ The area below the axis counts as negative area, so the total is zero.
 
 \hwsolnhdr{estimate-then-integrate}\\*
 %%graph%% soln-estimate-then-integrate func=-x**2+2*x format=eps xlo=0 xhi=2 ylo=0 yhi=1 ytic_spacing=1 more_space_below=6 more_space_above=10
-\smallfig{soln-estimate-then-integrate}{Problem \ref{hw:estimate-then-integrate}.}
+\smallfig[h]{soln-estimate-then-integrate}{Problem \ref{hw:estimate-then-integrate}.}
 
 The rectangular area of the graph is 2, and the area under the curve fills a little more than half of that, so let's guess 1.4.
 

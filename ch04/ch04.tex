@@ -65,7 +65,7 @@ it has no meaning outside the context of the sum. Figure \figref{discrete-sum} s
 graphical interpretation of the sum: we're adding up the areas of a series of rectangular
 strips. (For clarity, the figure only shows the sum going up to 7, rather than 100.)
 
-\smallfig{discrete-sum}{Graphical interpretation of the sum $1+2+\ldots+7$.}
+\smallfig[h]{discrete-sum}{Graphical interpretation of the sum $1+2+\ldots+7$.}
 
 Now how about an integral? Figure \figref{integral-of-t} shows the graphical interpretation
 of what we're trying to do: find the area of the shaded triangle.
@@ -77,7 +77,7 @@ by one. The derivative of $t^2$ would be $2t$ rather than $t$, so what we want i
 $x(t)=t^2/2$. Let's compute the area of the triangle that stretches along the $t$ axis
 from 0 to 100: $x(100)=100^2/2=5000$.
 
-\smallfig{integral-of-t}{Graphical interpretation of the integral of the function $\xdot(t)=t$.}
+\smallfig[h]{integral-of-t}{Graphical interpretation of the integral of the function $\xdot(t)=t$.}
 
 Figure \figref{riemann} shows how to accomplish the same thing numerically. We break up the area
 into a whole bunch of very skinny rectangles. Ideally, we'd like to make the width of each
@@ -87,7 +87,7 @@ $t=0$ to $t=100$ into $H$ rectangles, each with finite width $\der t=100/H$. Ins
 $H$ infinite, we make it the largest number we can without making the computer take too
 long to add up the areas of the rectangles.\index{integration!computer-aided!numerical}
 
-\smallfig{riemann}{Approximating the integral numerically.}
+\smallfig[h]{riemann}{Approximating the integral numerically.}
 
 \restartLineNumbers
 \begin{eg}\label{eg:riemann}
@@ -181,7 +181,7 @@ That is, integration undoes differentiation, and differentiation undoes integrat
 graphically; then evaluate it both symbolically and numerically, and check that the two results
 are consistent.
 
-\smallfig{hyperbola-area}{The definite integral $\int_1^2 (1/t)\der t$.}
+\smallfig[h]{hyperbola-area}{The definite integral $\int_1^2 (1/t)\der t$.}
 
 \eganswer Figure \figref{hyperbola-area} shows the graphical interpretation. The numerical calculation
 requires a trivial variation on the program from example \ref{eg:riemann}:
@@ -350,7 +350,7 @@ If you flip a coin, heads and tails both have probabilities of 1/2.
 The sum of the probabilities of all the possible outcomes has to have probability 1.
 This is called \emph{normalization}.\index{probability}\index{normalization}
 
-\smallfig{globe}{Normalization: the probability of picking land plus
+\smallfig[h]{globe}{Normalization: the probability of picking land plus
 the probability of picking water adds up to 1.}
 
 So far we've discussed random processes having only two
@@ -620,7 +620,7 @@ approximation, which takes into account the cooling of the air-gas mixture as it
 $F=kx^{-1.4}$. Compute the work done in this case.
 \end{hw}
 
-\smallfig{hw-piston}{Problem \ref{hw:piston}.}
+\smallfig[h]{hw-piston}{Problem \ref{hw:piston}.}
 
 \begin{hw}
 A certain variable $x$ varies randomly from -1 to 1, with probability distribution

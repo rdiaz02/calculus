@@ -149,7 +149,7 @@ and the tangent line is a good approximation to the exponential curve
 as long as we don't get too far away from the point of tangency.
 
 %%graph%% ex-tangent func=exp(x) format=eps xlo=-1 xhi=1 ylo=0 yhi=3 with=lines xtic_spacing=1 ytic_spacing=1 ; func=1+x
-\smallfig{ex-tangent}{The function $e^x$, and the tangent line at $x=0$.}
+\smallfig[h]{ex-tangent}{The function $e^x$, and the tangent line at $x=0$.}
 
 How big is the error? The actual value of $e^{0.1}$ is $1.10517091807565\ldots$, which
 differs from $1.1$ by about $0.005$. If we go farther from the point of tangency,
@@ -164,7 +164,7 @@ error. Our new and improved estimate is
 for small values of $x$.
 
 %%graph%% ex-quadratic func=exp(x) format=eps xlo=-1 xhi=1 ylo=0 yhi=3 with=lines xtic_spacing=1 ytic_spacing=1 ; func=1+x+x**2/2
-\smallfig{ex-quadratic}{The function $e^x$, and the approximation $1+x+x^2/2$.}
+\smallfig[h]{ex-quadratic}{The function $e^x$, and the approximation $1+x+x^2/2$.}
 
 Figure \figref{ex-quadratic} shows that the approximation is now extremely good for sufficiently small values of $x$.
 The difference is that whereas $1+x$ matched both the y-intercept and the slope of the curve, $1+x+x^2/2$ matches
@@ -176,7 +176,7 @@ function and its approximation are
 \end{gather*}
 
 %%graph%% ex-cubic func=exp(x) format=eps xlo=-1 xhi=1 ylo=0 yhi=3 with=lines xtic_spacing=1 ytic_spacing=1 ; func=1+x+x**2/2+x**3/6
-\smallfig{ex-cubic}{The function $e^x$, and the approximation $1+x+x^2/2+x^3/6$.}
+\smallfig[h]{ex-cubic}{The function $e^x$, and the approximation $1+x+x^2/2+x^3/6$.}
 %
 We can do even better. Suppose we want to match the third derivatives. All the derivatives of $e^x$, evaluated
 at $x=0$, are 1, so we just need to add on a term proportional to $x^3$ whose third derivative is one. Taking the

@@ -39,14 +39,14 @@
 
 %----------- page layout ----------------
 \setlength{\marginparwidth}{0mm}
-\setlength{\textwidth}{7.0in}
-\setlength{\textheight}{9.0in}
+\setlength{\textwidth}{7.42in}
+\setlength{\textheight}{9.82in}
 \setlength{\pdfpagewidth}{8.27in}
 \setlength{\pdfpageheight}{11.69in}
-\setlength{\hoffset}{-.25in}
-\setlength{\voffset}{-.3in}
+\setlength{\hoffset}{-.35in}
+\setlength{\voffset}{-.73in} %% -.3
 \setlength{\topmargin}{0in}
-\setlength{\oddsidemargin}{.25in}
+\setlength{\oddsidemargin}{0mm}
 \setlength{\evensidemargin}{0mm}
 
 %---------- my custom stuff for figures ------------

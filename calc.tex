@@ -3,12 +3,20 @@
 % http://creativecommons.org/licenses/by-sa/1.0/
 %
 \documentclass{calc}
+%% \documentclass{book}
 \pdfmapfile{=fullembed.map} % created by the script create_fullembed_file
 \let\ifpdf\relax % http://tex.stackexchange.com/questions/11414/package-ifpdf-error
 
-\makeindex
+
+\usepackage{hyperref}
+\usepackage[fontsize=16pt]{scrextend}
+%\changefontsizes[20pt]{16pt}
+% \makeindex
+
+
 
 \begin{document}
+
 
 \VerbatimFootnotes
 
@@ -16,11 +24,11 @@
 \include{ch00/cover}
 \include{ch00/frontmatter}
 
-\begin{multicols}{2}
+% \begin{multicols}{2}
   \tableofcontents
   \setcounter{unbalance}{0}
-\end{multicols}
-\twocolumn
+%\end{multicols}
+%% \twocolumn
 
 \formatchtoc{\Large}{}{4mm}
 %========================= main matter =========================

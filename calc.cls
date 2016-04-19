@@ -3,7 +3,7 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{calc}
 
-\LoadClass[9pt]{book}
+\LoadClass[12pt]{book}
 
 \RequirePackage{mytocloft,titlesec,titletoc,multicol,makeidx,wrapfig,fancyhdr,calc,amssymb,fancyvrb,ifthen,framed,alphalph,cancel,url,learn-cmd-syntax}
 \RequirePackage{color}%see pdftex mailing list, 2004 May 22-23
@@ -35,10 +35,10 @@
 
 %----------- page layout ----------------
 \setlength{\marginparwidth}{0mm}
-\setlength{\textwidth}{4.3in}
-\setlength{\textheight}{7.0in}
-\setlength{\pdfpagewidth}{6in}
-\setlength{\pdfpageheight}{9in}
+\setlength{\textwidth}{7.0in}
+\setlength{\textheight}{9.0in}
+\setlength{\pdfpagewidth}{8.27in}
+\setlength{\pdfpageheight}{11.69in}
 \setlength{\hoffset}{-.25in}
 \setlength{\voffset}{-.3in}
 \setlength{\topmargin}{0in}
@@ -47,9 +47,9 @@
 
 %---------- my custom stuff for figures ------------
 \newlength{\figwidth}
-\setlength{\figwidth}{53mm}
+\setlength{\figwidth}{110mm} %% 53
 \newlength{\smallfigwidth}
-\setlength{\smallfigwidth}{35mm}
+\setlength{\smallfigwidth}{80mm} %% 35
 
 %---------- floats --------------------
 \newlength{\defaultfloatsep}
@@ -262,7 +262,7 @@
 % symbol, so no italics.
 \newcommand{\formatfigref}[1]{#1}
 %============================= titlesec stuff ===================================
-\definecolor{secnumgray}{gray}{.55}
+\definecolor{secnumgray}{gray}{.75} %% 55
 \newcommand{\showsecnum}[1]{\color{secnumgray}#1}
 \titleformat{\chapter}
     {\normalfont\Huge\bfseries\sffamily\raggedright}{\thechapter}{5mm}

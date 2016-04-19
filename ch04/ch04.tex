@@ -12,7 +12,7 @@ position changes over time. But in most cases, it's numerical integration that's
 interesting, not numerical differentiation.
 
 As a warm-up, let's see how to do a running sum of a discrete function using Yacas.
-The following program computers the sum $1+2+\ldots+100$ discussed to on page
+The following program computes the sum $1+2+\ldots+100$ discussed to on page
 \pageref{gauss-story}. Now that we're writing real computer programs with Yacas, it would be a good
 idea to enter each program into a file before trying to run it. In fact, some
 of these examples won't run properly if you just start up Yacas and type them in
@@ -38,7 +38,7 @@ The semicolons are to separate one instruction from the next, and they become ne
 now that we're doing real programming.
 Line 1 of this program defines the variable \verb@n@, which will take on all the values
 from 1 to 100. Line 2 says that we haven't added anything up yet, so our running
-sum is zero do far. Line 3 says to keep on repeating the instructions inside the
+sum is zero so far. Line 3 says to keep on repeating the instructions inside the
 square brackets until \verb@n@ goes past 100. Line 4 updates the running sum, and
 line 5 updates the value of \verb@n@. If you've never done any programming before,
 a statement like \verb@n:=n+1@ might seem like nonsense --- how can a number equal
@@ -56,7 +56,7 @@ do this (assuming you saved the program in a file named \verb@sum.yacas@):
 Here the \verb@%@ symbol is the computer's prompt. The result is 5,050, as expected.
 One way of stating this result is
 \begin{equation*}
-  \sum_{n=1}^{100} n = 5050 \qquad .
+  \sum_{n=1}^{100} n = 5050\eqquad.
 \end{equation*}
 The capital Greek letter $\Sigma$, sigma, is used because it makes the ``s'' sound, and
 that's the first sound in the word ``sum.'' The $n=1$ below the sigma says the sum starts
@@ -75,7 +75,7 @@ To integrate the function $\xdot(t)=t$, we know we need some function with a $t^
 since we want something whose derivative is $t$, and differentiation reduces the power
 by one. The derivative of $t^2$ would be $2t$ rather than $t$, so what we want is
 $x(t)=t^2/2$. Let's compute the area of the triangle that stretches along the $t$ axis
-from 0 to 100: $x(100)=100^/2=5000$.
+from 0 to 100: $x(100)=100^2/2=5000$.
 
 \smallfig{integral-of-t}{Graphical interpretation of the integral of the function $\xdot(t)=t$.}
 
@@ -116,7 +116,7 @@ In the Leibniz notation,\index{Leibniz notation!integral}
 the thing we've just calculated, by two different techniques, is written like
 this:
 \begin{equation*}
-  \int_{0}^{100} t \:\der t = 5,000
+  \int_{0}^{100} t \der t = 5,000
 \end{equation*}
 It looks a lot like the $\Sigma$ notation, with the $\Sigma$ replaces by a flattened-out letter ``S.''
 The $t$ is a dummy variable. What I've been casually referring to as an integral is really two different
@@ -135,7 +135,7 @@ All the possible indefinite integrals are the same function except for an additi
 
 \eganswer Any function of the form
 \begin{equation*}
-  x(t)=t^2/2+c \qquad ,
+  x(t)=t^2/2+c\eqquad,
 \end{equation*}
 where $c$ is a constant, is an
 indefinite integral of this function, since its derivative is $t$.
@@ -146,7 +146,7 @@ If $\xdot$ is a function, then the definite integral of $\xdot$ from $a$ to $b$ 
 defined as
 \begin{multline*}
   \int_{a}^{b} \xdot(t) \der t \\
-= \lim_{H\rightarrow\infty} \sum_{i=0}^{H} \xdot\left(a+i\Delta t\right)\Delta t \qquad ,
+= \lim_{H\rightarrow\infty} \sum_{i=0}^{H} \xdot\left(a+i\Delta t\right)\Delta t\eqquad,
 \end{multline*}
 where $\Delta t=(b-a)/H$.
 
@@ -165,30 +165,23 @@ Let $x$ be an indefinite integral of $\xdot$, and let $\xdot$ be a continuous
 function (one whose graph is a single connected curve). Then
 
 \begin{equation*}
-  \int_{a}^{b} \xdot(t) \der t = x(b)-x(a) \qquad .
+  \int_{a}^{b} \xdot(t) \der t = x(b)-x(a)\eqquad.
 \end{equation*}
-
-Interpretation: In the simple examples we've been doing so far,
-we were able to choose an indefinite integral such that $x(0)=0$.
-In that case, $x(t)$ is interpreted as the area from 0 to $t$,
-so in the expression $x(b)-x(a)$, we're taking the area from
-0 to $a$, but subtracting out the area from 0 to $b$, which gives
-the area from $a$ to $b$. If we choose an indefinite integral with
-a different $c$, the $c$'s will just cancel out anyway in the
-difference  $x(b)-x(a)$.
 \end{important}
 
 The fundamental theorem is proved on page \pageref{detour:fundamental-thm-proof}.
+The idea it expresses is that integration and differentiation are inverse operations.
+That is, integration undoes differentiation, and differentiation undoes integration.
 
 \begin{eg}\label{eg:hyperbola}
-\egquestion Interpret the indefinite integral
+\egquestion Interpret the definite integral
 \begin{equation*}
-  \int_{1}^{2} \frac{1}{t}\:\der t \qquad .
+  \int_{1}^{2} \frac{1}{t}\der t\eqquad.
 \end{equation*}
-graphically; then evaluate it it both symbolically and numerically, and check that the two results
+graphically; then evaluate it both symbolically and numerically, and check that the two results
 are consistent.
 
-\smallfig{hyperbola-area}{The indefinite integral $\int_1^2 (1/t)\der t$.}
+\smallfig{hyperbola-area}{The definite integral $\int_1^2 (1/t)\der t$.}
 
 \eganswer Figure \figref{hyperbola-area} shows the graphical interpretation. The numerical calculation
 requires a trivial variation on the program from example \ref{eg:riemann}:
@@ -229,14 +222,14 @@ Let $f$ and $g$ be two functions of $x$, and let $c$ be a constant. We already k
 \begin{gather*}
   \frac{\der}{\der x}(f+g) = \frac{\der f}{\der x} + \frac{\der g}{\der x} \\
 \intertext{and}
-  \frac{\der}{\der x}(cf) = c\frac{\der f}{\der x} \qquad .
+  \frac{\der}{\der x}(cf) = c\frac{\der f}{\der x}\eqquad.
 \end{gather*}
 But since the indefinite integral is just the operation of undoing a derivative, the
 same kind of rules must hold true for indefinite integrals as well:
 \begin{gather*}
   \int(f+g)\der x =   \int f \der x +   \int g \der x \\
 \intertext{and}
-  \int(cf)\der x =   c \int f \der x \qquad .
+  \int(cf)\der x =   c \int f \der x\eqquad.
 \end{gather*}
 And since a definite integral can be found by plugging in the upper and lower limits of integration
 into the indefinite integral, the same properties must be true of definite integrals as well.
@@ -244,22 +237,22 @@ into the indefinite integral, the same properties must be true of definite integ
 \begin{eg}
 \egquestion Evaluate the indefinite integral
 \begin{equation*}
-  \int (x+2\sin x) \der x \qquad .
+  \int (x+2\sin x) \der x\eqquad.
 \end{equation*}
 
 \eganswer
 Using the additive property, the integral becomes
 \begin{equation*}
- \int x \der x +   \int 2\sin x \der x \qquad .
+ \int x \der x +   \int 2\sin x \der x\eqquad.
 \end{equation*}
 Then the property of scaling by a constant lets us change this to
 \begin{equation*}
-                             \int x \der x +   2 \int \sin x \der x \qquad .
+                             \int x \der x +   2 \int \sin x \der x\eqquad.
 \end{equation*}
 We need a function whose derivative is $x$, which would be $x^2/2$, and
 one whose derivative is $\sin x$, which must be $-\cos x$, so the result is
 \begin{equation*}
-                             \frac{1}{2}x^2 -   2 \cos x + c \qquad .
+                             \frac{1}{2}x^2 -   2 \cos x + c\eqquad.
 \end{equation*}
 \end{eg}
 
@@ -277,7 +270,7 @@ Similarly, a definite integral can also be thought of as a kind of average. In g
 a function of $x$, then the average, or mean, value of $y$ on the interval from $x=a$ to $b$ can be
 defined as
 \begin{equation*}
-  \bar{y} = \frac{1}{b-a} \int_a^b y\:\der x \qquad .
+  \bar{y} = \frac{1}{b-a} \int_a^b y\der x\eqquad.
 \end{equation*}
 In the continuous case, dividing by $b-a$ accomplishes the same thing as dividing by the
 number of things in the discrete case.
@@ -288,7 +281,7 @@ is a constant.
 
 \eganswer If $y$ is a constant, then we can take it outside of the integral, so
 \begin{align*}
-  \bar{y} &= \frac{1}{b-a} y \int_a^b 1\:\der x \\
+  \bar{y} &= \frac{1}{b-a} y \int_a^b 1\der x \\
                      &= \frac{1}{b-a} y \left.x\right|_a^b \\
                      &= \frac{1}{b-a} y (b-a) \\
                      &= y
@@ -300,7 +293,7 @@ is a constant.
 0 to 1.
 
 \begin{align*}
-  \bar{y} &= \frac{1}{1-0} \int_0^1 x^2\:\der x \\
+  \bar{y} &= \frac{1}{1-0} \int_0^1 x^2\der x \\
                      &= \left.\frac{1}{3}x^3\right|_0^1 \\
                      &= \frac{1}{3}
 \end{align*}
@@ -425,7 +418,7 @@ square on the graph paper is then
  (\text{unitless area of a square})\\
          =  (\text{width of square}\\
              \text{with distance units}) \\
-             \times (\text{height of square}) \qquad .
+             \times (\text{height of square})\eqquad.
 \end{align*}
 If the units are to cancel out, then the height of the
 square must evidently be a quantity with units of inverse
@@ -448,7 +441,7 @@ that is required by normalization.
 
 \eganswer
 \begin{align*}
-  1 &= \int_0^1 k(1-x)\:\der x \\
+  1 &= \int_0^1 k(1-x)\der x \\
     &= \left.kx-\frac{1}{2}kx^2\right|_0^1 \\
     &= k-k/2 \\
   k &= 2
@@ -515,11 +508,11 @@ tells us the relative probabilities of the various $x$ values.
 
 For a discrete-valued variable with $n$ possible values, the average would be
 \begin{equation*}
-  \bar{x} = \sum_{i=0}^n x\:P(x) \qquad ,
+  \bar{x} = \sum_{i=0}^n x\:P(x)\eqquad,
 \end{equation*}
 and in the case of a continuous variable, this becomes an integral,
 \begin{equation*}
-  \bar{x} = \int_a^b x\:\frac{\der P}{\der x} \: \der x \qquad .
+  \bar{x} = \int_a^b x\:\frac{\der P}{\der x} \der x\eqquad.
 \end{equation*}
 
 \begin{eg}
@@ -528,9 +521,9 @@ find the average value of $x$.
 
 \eganswer
 \begin{align*}
-  \bar{x} &= \int_0^1 x\:\frac{\der P}{\der x} \: \der x \\
-          &= \int_0^1 x \cdot 2(1-x)\:\der x \\
-          &= 2\int_0^1 (x-x^2)\:\der x \\
+  \bar{x} &= \int_0^1 x\:\frac{\der P}{\der x} \der x \\
+          &= \int_0^1 x \cdot 2(1-x)\der x \\
+          &= 2\int_0^1 (x-x^2)\der x \\
           &= 2\left. \left(\frac{1}{2}x^2-\frac{1}{3}x^3\right) \right|_0^1 \\
           &= \frac{1}{3}
 \end{align*}
@@ -541,7 +534,7 @@ also want to have some idea of the amount of variation above and below the avera
 The most common way of measuring this is the \emph{standard deviation},\index{standard deviation}
 defined by
 \begin{equation*}
-  \sigma = \sqrt{\int_a^b (x-\bar{x})^2\:\frac{\der P}{\der x} \: \der x} \qquad .
+  \sigma = \sqrt{\int_a^b (x-\bar{x})^2\:\frac{\der P}{\der x} \der x}\eqquad.
 \end{equation*}
 The idea here is that if there was no variation at all above or below the average,
 then the quantity $(x-\bar{x})$ would be zero whenever $\der P/\der x$ was nonzero, and
@@ -554,10 +547,10 @@ find the standard deviation of $x$.
 
 \eganswer The square of the standard deviation is
 \begin{align*}
-  \sigma^2 &= \int_0^1 (x-\bar{x})^2\:\frac{\der P}{\der x} \: \der x \\
-          &= \int_0^1 (x-1/3)^2\cdot2(1-x) \: \der x \\
-          &= 2 \int_0^1 \left(-x^3+\frac{5}{3}x^2-\frac{7}{9}x+\frac{1}{9}\right) \: \der x \\
-          &= \frac{1}{18} \qquad ,
+  \sigma^2 &= \int_0^1 (x-\bar{x})^2\:\frac{\der P}{\der x} \der x \\
+          &= \int_0^1 (x-1/3)^2\cdot2(1-x) \der x \\
+          &= 2 \int_0^1 \left(-x^3+\frac{5}{3}x^2-\frac{7}{9}x+\frac{1}{9}\right) \der x \\
+          &= \frac{1}{18}\eqquad,
 \intertext{so the standard deviation is}
   \sigma &= \frac{1}{\sqrt{18}} \\
          &\approx 0.236
@@ -571,14 +564,14 @@ find the standard deviation of $x$.
 Write a computer program similar to the one in example \ref{eg:hyperbola} on page \pageref{eg:hyperbola}
 to evaluate the definite integral
 \begin{equation*}
-  \int_0^1 e^{x^2} \qquad .
+  \int_0^1 e^{x^2}\eqquad.
 \end{equation*}
 \end{hwwithsoln}
 
 \begin{hwwithsoln}{integrate-sin-cancel}
 Evaluate the integral
 \begin{equation*}
-  \int_0^{2\pi} \sin x \:\der x \qquad ,
+  \int_0^{2\pi} \sin x \der x\eqquad,
 \end{equation*}
 and draw a sketch to explain why your result comes out the way it does.
 \end{hwwithsoln}
@@ -586,7 +579,7 @@ and draw a sketch to explain why your result comes out the way it does.
 \begin{hwwithsoln}{estimate-then-integrate}
 Sketch the graph that represents the definite integral
 \begin{equation*}
-  \int_0^2 -x^2+2x \qquad ,
+  \int_0^2 (-x^2+2x)\der x\eqquad,
 \end{equation*}
 and estimate the result roughly from the graph. Then evaluate the
 integral exactly, and check against your estimate.
@@ -609,7 +602,7 @@ a discontinuous function for which the theorem fails.
 
 \begin{hw}
 Sketch the graphs of $y=x^2$ and $y=\sqrt{x}$ for $0\le x\le 1$. Graphically, what relationship
-should exist between the integrals $\int_0^1 x^2\:\der x$ and $\int_0^1 \sqrt{x}\:\der x$? Compute both
+should exist between the integrals $\int_0^1 x^2\der x$ and $\int_0^1 \sqrt{x}\der x$? Compute both
 integrals, and verify that the results are related in the expected way.
 \end{hw}
 

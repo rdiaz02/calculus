@@ -5,9 +5,8 @@
 # or
 #    gen_graph.rb ch*/ch*.tex
 
-# This only works with gnuplot 4.1. (For 4.0, the offsets to the bounding box would
-# be different, and the set terminal command for eps would have to specify portrait.)
-# Pdftoppm and ImageMagick are also required.
+# This requires gnuplot, pdftoppm, and imagemagick.
+# It's invoked by doing a "make figures".
 
 # There is something called ruby-gnuplot, but its Debian package is currently broken.
 
@@ -19,6 +18,16 @@
 # For figures that are output as svg, this script does not actually produce
 # a pdf. IIRC, the ones that are output as svg are ones that need hand-editing,
 # so there's a version with -raw in the name, which I then edit using Inkscape.
+
+# For svg output, dots come out in the wrong style. See, for example,
+# slope-interpretation in ch 1. See https://groups.google.com/forum/#!topic/comp.graphics.apps.gnuplot/Le8nqOJ3FGQ
+
+# see my notes, apps:...:latex graphics:producing xy graphs
+
+# Gnuplot sucks. Should probably switch to matplotlib.
+# See sample code in sample_matplotlib.py
+
+$asswipe = true # change this to false in order to leave behind gnuplot code so I can look at it
 
 EPSTOPDF = "/usr/bin/epstopdf"
 
@@ -91,9 +100,11 @@ IO.foreach(file_name) {
                      # ... older versions of pdftoppm make temp-000001.ppm, newer ones temp-1.ppm
       print '  '+shell+"\n"
       unless system(shell) then $stderr.print "error, #{$?}"; exit(-1) end
-      shell = "cd ch#{chapter}/figs &&  rm temp-000001.ppm #{fig}.pdf #{fig}.eps #{cmd_file}"
-      print '  '+shell+"\n"
-      unless system(shell) then $stderr.print "error, #{$?}"; exit(-1) end
+      if $asswipe then
+        shell = "cd ch#{chapter}/figs && rm temp-000001.ppm #{fig}.pdf #{fig}.eps #{cmd_file}"
+        print '  '+shell+"\n"
+        unless system(shell) then $stderr.print "error, #{$?}"; exit(-1) end
+      end
     end
   end
 }

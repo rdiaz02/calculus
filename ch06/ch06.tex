@@ -12,7 +12,7 @@ finite or infinite.
 \eganswer The function blows up to infinity at one end of the region
 of integration, but let's just try evaluating it, and see what happens.
 \begin{align*}
-  \int_0^1 x^{-1/2}\:\der x &= \left.2x^{1/2}\right|_0^1 \\
+  \int_0^1 x^{-1/2}\der x &= \left.2x^{1/2}\right|_0^1 \\
                          &= 2
 \end{align*}
 
@@ -31,7 +31,7 @@ as we go higher and higher up.
 
 \eganswer 
 \begin{align*}
-  \int_0^1 x^{-2}\:\der x &= \left.-x^{-1}\right|_0^1 \\
+  \int_0^1 x^{-2}\der x &= \left.-x^{-1}\right|_0^1 \\
                          &= -1+\frac{1}{0}
 \end{align*}
 
@@ -58,9 +58,9 @@ These two examples were examples of improper integrals.
 Another type of improper integral is one in which one of the
 limits of integration is infinite. The notation
 \begin{equation*}
-  \int_a^\infty f(x)\:\der x
+  \int_a^\infty f(x)\der x
 \end{equation*}
-means the limit of $\int_a^H f(x)\:\der x$, where $H$ is
+means the limit of $\int_a^H f(x)\der x$, where $H$ is
 made to grow bigger and bigger. Alternatively, we can
 think of it as an integral in which the top end of the
 interval of integration is an infinite hyperreal number.
@@ -70,12 +70,12 @@ $-\infty$, or when both limits are infinite.
 \begin{eg}
 \egquestion Evaluate
 \begin{equation*}
-  \int_1^\infty x^{-2}\:\der x 
+  \int_1^\infty x^{-2}\der x 
 \end{equation*}
 
 \eganswer
 \begin{align*}
-  \int_1^H x^{-2}\:\der x &= \left.-x^{-1}\right|_1^H \\
+  \int_1^H x^{-2}\der x &= \left.-x^{-1}\right|_1^H \\
                &= -\frac{1}{H}+1
 \end{align*}
 As $H$ gets bigger and bigger, the result gets closer and closer
@@ -96,8 +96,8 @@ to take an object from the earth's surface, at $r=a$, and remove it to $r=\infty
 
 \eganswer
 \begin{align*}
-  W &= \int_a^\infty \frac{Gm_1m_2}{r^2} \: \der r \\
-    &= Gm_1m_2 \int_a^\infty r^{-2} \: \der r \\
+  W &= \int_a^\infty \frac{Gm_1m_2}{r^2} \der r \\
+    &= Gm_1m_2 \int_a^\infty r^{-2} \der r \\
     &= -Gm_1m_2 \left.r^{-1}\right|_a^\infty  \\
     &= \frac{Gm_1m_2}{a}
 \end{align*}
@@ -112,7 +112,7 @@ higher up, less work would have to be done.
 \begin{hw}
 Integrate
 \begin{equation*}
-  \int_0^\infty e^{-x} \der x \qquad ,
+  \int_0^\infty e^{-x} \der x\eqquad,
 \end{equation*}
 or show that it diverges.
 \end{hw}
@@ -120,7 +120,7 @@ or show that it diverges.
 \begin{hw}
 Integrate
 \begin{equation*}
-  \int_1^\infty \frac{\der x}{x} \qquad ,
+  \int_1^\infty \frac{\der x}{x}\eqquad,
 \end{equation*}
 or show that it diverges.
 \end{hw}
@@ -128,7 +128,7 @@ or show that it diverges.
 \begin{hw}
 Integrate
 \begin{equation*}
-  \int_0^1 \frac{\der x}{x} \qquad ,
+  \int_0^1 \frac{\der x}{x}\eqquad,
 \end{equation*}
 or show that it diverges.
 \end{hw}
@@ -136,7 +136,7 @@ or show that it diverges.
 \begin{hwwithsoln}{x-squared-two-to-x-improper}
 Integrate
 \begin{equation*}
-  \int_0^\infty x^2 2^{-x} \:\der x \qquad ,
+  \int_0^\infty x^2 2^{-x} \der x\eqquad,
 \end{equation*}
 or show that it diverges.
 \end{hwwithsoln}
@@ -144,7 +144,7 @@ or show that it diverges.
 \begin{hw}
 Integrate
 \begin{equation*}
-  \int_0^\infty e^{-x}\cos x \: \der x
+  \int_0^\infty e^{-x}\cos x \der x
 \end{equation*}
 or show that it diverges. (Problem \ref{hw:integration-by-parts-twice-trick} on p.~\pageref{hw:integration-by-parts-twice-trick} suggests
 a trick for doing the indefinite integral.)
@@ -153,7 +153,7 @@ a trick for doing the indefinite integral.)
 \begin{hw}
 Prove that
 \begin{equation*}
-  \int_0^\infty e^{-e^x} \: \der x
+  \int_0^\infty e^{-e^x} \der x
 \end{equation*}
 converges, but don't evaluate it.
 \end{hw}
@@ -168,7 +168,7 @@ is properly normalized.\\
 \begin{hw}[2]
 Prove
 \begin{equation*}
-  \int_0^\infty e^{-x}x^n\:\der x = n! \qquad .
+  \int_0^\infty e^{-x}x^n\der x = n!\eqquad.
 \end{equation*}
 \end{hw}
 

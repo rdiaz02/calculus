@@ -137,7 +137,7 @@ A particularly beautiful thing happens with the functions $e^x$, $\sin x$, and $
 \end{align*}
 If $x=i\phi$ is an imaginary number, we have
 \begin{equation*}
-  e^{i\phi} = \cos \phi + i \sin \phi \qquad ,
+  e^{i\phi} = \cos \phi + i \sin \phi\eqquad,
 \end{equation*}
 a result known as Euler's formula.\index{Euler's formula}
 The geometrical interpretation in the complex
@@ -150,7 +150,7 @@ applying the definition\footnote{See page \pageref{definition-of-exp} for an exp
 of where this definition comes from and why it makes sense.} of the exponential function
 makes it clear how natural it is:
 \begin{align*}
-  e^x = \lim_{n\rightarrow \infty} \left(1+\frac{x}{n}\right)^n \qquad .
+  e^x = \lim_{n\rightarrow \infty} \left(1+\frac{x}{n}\right)^n\eqquad.
 \end{align*}
 When $x=i\phi$ is imaginary, the quantity $(1+i\phi/n)$ represents a number
 lying just above 1 in the complex plane. For large $n$, $(1+i\phi/n)$
@@ -186,8 +186,8 @@ suggested a special-purpose trick for doing this integral. An approach that does
 is to rewrite the cosine in terms of exponentials:
 \begin{align*}
   \int e^x & \cos x \der x \\
-      &= \int e^x \left(\frac{e^{ix}+e^{-ix}}{2}\right) \:\der x \\
-      &= \frac{1}{2} \int (e^{(1+i)x}+e^{(1-i)x})\:\der x \\
+      &= \int e^x \left(\frac{e^{ix}+e^{-ix}}{2}\right) \der x \\
+      &= \frac{1}{2} \int (e^{(1+i)x}+e^{(1-i)x})\der x \\
       &= \frac{1}{2} \left( \frac{e^{(1+i)x}}{1+i}+\frac{e^{(1-i)x}}{1-i} \right)+ c
 \end{align*}
 
@@ -203,7 +203,7 @@ be a constant, which could be subsumed within the usual constant of integration.
 \begin{eg}
 Euler found the equation
 \begin{equation*}
-  \pi = 20\tan^{-1}\frac{1}{7}+8\tan^{-1}\frac{3}{79} \qquad ,
+  \pi = 20\tan^{-1}\frac{1}{7}+8\tan^{-1}\frac{3}{79}\eqquad,
 \end{equation*}
 which allowed the computation of $\pi$ to high precision in the era before electronic
 calculators, since the Taylor series for the inverse tangent converges rapidly for
@@ -239,7 +239,7 @@ $1/(x^2+1)=A/(x+i)+B/(x-i)$ gives $A=i/2$ and $B=-i/2$, so
                             &  -\frac{i}{2}\int \frac{\der x}{x-i} \\
       &= \frac{i}{2}\ln(x+i)\\
         &-\frac{i}{2}\ln(x-i) \\
-      &= \frac{i}{2}\ln\frac{x+i}{x-i} \qquad .
+      &= \frac{i}{2}\ln\frac{x+i}{x-i}\eqquad.
 \end{align*}
 The attractive thing about this approach, compared with the method
 used on page \pageref{eg:arctan}, is that it doesn't require any
@@ -262,7 +262,7 @@ be rewritten using Euler's formula as
 \begin{align*}
   \int \frac{\der x}{x^2+1} &= \frac{i}{2}\ln e^{i(\pi-2\tan^{-1}x)} \\
       &=  \frac{i}{2}\cdot i(\pi-2\tan^{-1}x) \\
-      &=  \tan^{-1}x + c \qquad .
+      &=  \tan^{-1}x + c\eqquad.
 \end{align*}
 In other words, it's the same result we found before, but found 
 without the need for trickery.
@@ -318,7 +318,7 @@ Write the function $\tan x$ in terms of complex exponentials.
 \end{hw}
 
 \begin{hw}
-Evaluate $\int \sin^3 x\: \der x$.
+Evaluate $\int \sin^3 x\der x$.
 \end{hw}
 
 \begin{hwwithsoln}{addition-theorem-for-sine}
@@ -330,7 +330,7 @@ $a$ and $b$.
 \begin{hwwithsoln}{fourier-ish-integral}
 Evaluate
 \begin{equation*}
-  \int_0^{\pi/2} \cos x \: \cos 2x \: \der x \qquad .
+  \int_0^{\pi/2} \cos x \: \cos 2x \der x\eqquad.
 \end{equation*}
 \end{hwwithsoln}
 
@@ -349,14 +349,14 @@ coefficients.
 \begin{hw}
 Evaluate
 \begin{equation*}
-  \int \frac{\der x}{x^3-x^2+4x-4} \qquad .
+  \int \frac{\der x}{x^3-x^2+4x-4}\eqquad.
 \end{equation*}
 \end{hw}
 
 \begin{hw}
 Evaluate
 \begin{equation*}
-  \int e^{-ax}\cos bx \: \der x \qquad .
+  \int e^{-ax}\cos bx \der x\eqquad.
 \end{equation*}
 \end{hw}
 

@@ -7,7 +7,7 @@ software. The following are the relevant packages on a Debian-based
 system such as Ubuntu:
   texlive-full
   gnuplot
-  pdftk
+  qpdf
   m4
   inkscape
   imagemagick

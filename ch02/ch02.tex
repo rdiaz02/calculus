@@ -41,13 +41,13 @@ line connecting the points $(1,1)$ and $(1.01,1.0201)$ is 2.01, which is even cl
 Another method of visualizing the idea is that we can interpret $x=t^2$ as the area of a square with sides of length $t$,
 as suggested in figure \figref{t-squared-geometrically}. We increase $t$ by an infinitesimally small number $\der t$.
 The $\der$ is Leibniz's notation for a very small difference,\index{Leibniz notation!infinitesimal}
-and $\der t$ is to be read is a single symbol,
+and $\der t$ is to be read as a single symbol,
 ``dee-tee,'' not as a number $d$ multiplied by a number $t$. The idea is that $\der t$ is smaller than any ordinary
 number you could imagine, but it's not zero. The area of the square is increased by $\der x = 2t\der t +\der t^2$, which is
 analogous to the finite numbers $0.21$ and $0.0201$ we calculated earlier. Where before we divided by a finite
 change in $t$ such as $0.1$ or $0.01$, now we divide by $\der t$, producing
 \begin{align*}
-  \frac{\der x}{\der t} &=  \frac{2t\:\der t +\der t^2}{\der t} \\
+  \frac{\der x}{\der t} &=  \frac{2t\der t +\der t^2}{\der t} \\
                         &= 2t+\der t
 \end{align*}
 for the derivative. On a graph like figure \figref{close-up}, $\der x/\der t$ is the slope of the tangent line: the change
@@ -61,8 +61,8 @@ that the earlier approximate results, 2.1 and 2.01, were getting closer and clos
 To show the power of infinitesimals and the Leibniz notation, let's prove that the derivative of $t^3$ is $3t^2$:
 \begin{align*}
   \frac{\der x}{\der t} &= \frac{(t+\der t)^3-t^3}{\der t} \\
-                        &= \frac{3t^2\:\der t + 3t\:\der t^2 + \der t^3}{\der t} \\
-                        &= 3t^2 + \ldots \qquad ,
+                        &= \frac{3t^2\der t + 3t\der t^2 + \der t^3}{\der t} \\
+                        &= 3t^2 + \ldots\eqquad,
 \end{align*}
 where the dots indicate infinitesimal terms that we can neglect.
 \end{eg}
@@ -118,16 +118,16 @@ for $k=1,$ 2, 3, \ldots, was also valid for $k=-1$, i.e., for the function $x=1/
 let's first redo the numerical check in a slightly more suggestive form. Again approximating the derivating at
 $t=3$, we have
 \begin{equation*}
-  \frac{\der x}{\der t}  \approx \left(\frac{1}{3.01}-\frac{1}{3}\right)\left(\frac{1}{0.01}\right)  \qquad .
+  \frac{\der x}{\der t}  \approx \left(\frac{1}{3.01}-\frac{1}{3}\right)\left(\frac{1}{0.01}\right)\eqquad.
 \end{equation*}
 Let's apply the grade-school technique for subtracting fractions, in which we first get them over the same denominator:
 \begin{equation*}
-  \frac{1}{3}-\frac{1}{3.01} = \frac{3-3.01}{3\times3.01}  \qquad .
+  \frac{1}{3}-\frac{1}{3.01} = \frac{3-3.01}{3\times3.01}\eqquad.
 \end{equation*}
 The result is 
 \begin{align*}
   \frac{\der x}{\der t}  &\approx \left(\frac{-0.01}{3\times3.01}\right)\left(\frac{1}{0.01}\right) \\
-                         &=-\frac{1}{3\times3.01} \qquad .
+                         &=-\frac{1}{3\times3.01}\eqquad.
 \end{align*}
 Replacing 3 with $t$ and $0.01$ with $\der t$, this becomes
 \begin{align*}
@@ -142,17 +142,17 @@ Replacing 3 with $t$ and $0.01$ with $\der t$, this becomes
 \begin{eg}\label{eg:derivative-of-sin}\index{derivative!of the sine}\index{sine!derivative of}
 The derivative of $x=\sin t$, with $t$ in units of radians, is
 \begin{equation*}
-  \frac{\der x}{\der t} = \frac{\sin(t+\der t)-\sin t}{\der t} \qquad , 
+  \frac{\der x}{\der t} = \frac{\sin(t+\der t)-\sin t}{\der t}\eqquad, 
 \end{equation*}
 and with the trig identity $\sin(\alpha+\beta)=\sin\alpha\cos\beta+\cos\alpha\sin\beta$, this becomes
 \begin{equation*}
-                        = \frac{\sin t \: \cos \der t + \cos t \: \sin \der t - \sin t}{\der t} \qquad .
+                        = \frac{\sin t \: \cos \der t + \cos t \: \sin \der t - \sin t}{\der t}\eqquad.
 \end{equation*}
 Applying the small-angle approximations $\sin u\approx u$ and $\cos u\approx 1$,
 we have
 \begin{align*}
-\frac{\der x}{\der t}   &= \frac{\cos t \: \der t}{\der t} + \ldots\\
-                        &= \cos t + \ldots \qquad ,
+\frac{\der x}{\der t}   &= \frac{\cos t \der t}{\der t} + \ldots\\
+                        &= \cos t + \ldots\eqquad,
 \end{align*}
 where ``\ldots'' represents the error caused by the small-angle approximations.
 
@@ -179,7 +179,7 @@ $\pi/2$. If the derivative of the sine is the same as itself, but shifted to the
 the cosine must be a cosine shifted to the left by $\pi/2$:
 \begin{align*}
   \frac{\der\: \cos t}{\der t} &= \cos(t+\pi/2) \\
-                               &= -\sin t \qquad .
+                               &= -\sin t\eqquad.
 \end{align*}
 \end{eg}
 The next example will require a little trickery.
@@ -208,12 +208,12 @@ is exactly 1, but that's not the same as proving it.
 But let's take another look at that number 1.001001001001. It's clearly a repeating decimal.
 In other words, it appears that
 \begin{equation*}
-       \frac{1}{1-1/1000} = 1+\frac{1}{1000}+\left(\frac{1}{1000}\right)^2+\ldots \qquad ,
+       \frac{1}{1-1/1000} = 1+\frac{1}{1000}+\left(\frac{1}{1000}\right)^2+\ldots\eqquad,
 \end{equation*}
 and we can easily verify this by multiplying both sides of the equation by $1-1/1000$ and collecting like
 powers. This is a special case of the geometric series\index{geometric series}\index{series!geometric}\label{geometric-series}
 \begin{equation*}
-       \frac{1}{1-t} = 1+t+t^2+\ldots \qquad ,
+       \frac{1}{1-t} = 1+t+t^2+\ldots\eqquad,
 \end{equation*}
 which can be derived\footnote{As a technical aside, it's not necessary for our present purposes
 to go into the issue of how to make the most general possible definition of what is meant by
@@ -240,7 +240,7 @@ the truncation that happens when you ask your calculator to find $\sqrt{2}$ as a
 The result for the derivative is
 \begin{align*}
   \frac{\der x}{\der t} &= \frac{\left(1+\der t+{\der t}^2+\ldots\right)-1}{1+\der t-1} \\
-                        &= 1+\ldots \qquad .
+                        &= 1+\ldots\eqquad.
 \end{align*}
 \end{eg}
 
@@ -272,10 +272,10 @@ By the twentieth century, when I learned calculus, a clear consensus had formed 
 numbers weren't numbers at all. A notation like $\der x/\der t$, my calculus teacher told me, wasn't really
 one number divided by another, it was merely a symbol for something called a limit,\index{derivative!defined using a limit}\index{limit}
 \begin{equation*}
-\lim_{\Delta t\rightarrow 0} \frac{\Delta x}{\Delta t} \qquad ,
+\lim_{\Delta t\rightarrow 0} \frac{\Delta x}{\Delta t}\eqquad,
 \end{equation*}
 where $\Delta x$ and $\Delta t$ represented finite changes. I'll give a formal definition (actually two different formal
-definitions) of the term ``limit'' in section \ref{sec:limits}, but intuitively the concept is that is that we can get as good
+definitions) of the term ``limit'' in section \ref{sec:limits}, but intuitively the concept is that we can get as good
 an approximation to the derivative as we like, provided that we make $\Delta t$ small enough.
 
 That satisfied me until we got to a certain topic
@@ -371,9 +371,9 @@ of the transfer principle, see page \pageref{transfer}.}\label{backref-transfer}
 As a nontrivial example of how to apply the transfer principle, let's consider how to handle
 expressions like the one that occurred when we wanted to differentiate $t^2$ using infinitesimals:
 \begin{equation*}
-  \frac{\der \left(t^2\right)}{\der t} = 2t+\der t  \qquad .
+  \frac{\der \left(t^2\right)}{\der t} = 2t+\der t\eqquad.
 \end{equation*}
-I argued earlier than $2t+\der t$ is so close to $2t$ that for all practical purposes, the
+I argued earlier that $2t+\der t$ is so close to $2t$ that for all practical purposes, the
 answer is really $2t$. But is it really valid in general to say that $2t+\der t$ is the
 same hyperreal number as $2t$? No. We can apply the transfer principle to the
 following statement about the reals:
@@ -434,7 +434,7 @@ the derivative of the product of two functions any time we know the derivatives 
 \begin{important}[The product  rule]
 If $x$ and $y$ are both functions of $t$, then the derivative of their product is
 \begin{equation*}
-  \frac{\der(xy)}{\der t} = \frac{\der x}{\der t}\cdot y +  x \cdot \frac{\der y}{\der t} \qquad .
+  \frac{\der(xy)}{\der t} = \frac{\der x}{\der t}\cdot y +  x \cdot \frac{\der y}{\der t}\eqquad.
 \end{equation*}
 \end{important}
 
@@ -442,9 +442,9 @@ The proof is easy. Changing $t$ by an infinitesimal amount $\der t$ changes the 
 an amount
 \begin{gather*}
   (x+\der x)(y+\der y)-xy \\
-      = y\der x + x\der y+\der x\der y \qquad , \\
-\intertext{and dividing by \der t makes this into}
-      \frac{\der x}{\der t}\cdot y +  x \cdot \frac{\der y}{\der t} + \frac{\der x \der y}{\der t} \qquad ,
+      = y\der x + x\der y+\der x\der y\eqquad, \\
+\intertext{and dividing by $\der t$ makes this into}
+      \frac{\der x}{\der t}\cdot y +  x \cdot \frac{\der y}{\der t} + \frac{\der x \der y}{\der t}\eqquad,
 \end{gather*}
 whose standard part is the result to be proved.
 
@@ -481,7 +481,7 @@ $\munit^2/\sunit$, wouldn't match the ones on the right, $\munit^2/\sunit^2$.
 Because this unit-checking feature is so helpful, there is a special way of writing a second
 derivative in the Leibniz notation. What Newton called $\Ddot{x}$, Leibniz wrote as
 \begin{equation*}
-  \frac{\der^2 x}{\der t^2} \qquad .
+  \frac{\der^2 x}{\der t^2}\eqquad.
 \end{equation*}
 Although the different placement of the 2's on top and bottom seems strange and inconsistent to many
 beginners, it actually works out nicely.
@@ -490,7 +490,7 @@ second derivative is supposed to have units of acceleration, in units of meters 
 second, also written $(\munit/\sunit)/\sunit$, or $\munit/\sunit^2$. (The acceleration of falling
 objects on Earth is $9.8\ \munit/\sunit^2$ in these units.) The Leibniz notation is meant to suggest
 exactly this: the top of the fraction looks like it has units of meters, because we're not squaring $x$,
-while the bottom of the fraction looks like it has units of seconds, because it looks like we're
+while the bottom of the fraction looks like it has units of seconds squared, because it looks like we're
 squaring $\der t$. Therefore the units come out right. It's important to realize, however, that
 the symbol $\der$ isn't a number (not a real one, and not a hyperreal one, either), so we can't really
 square it; the notation is not to be taken as a literal statement about infinitesimals.
@@ -526,7 +526,7 @@ the middle one will come up by $\der y$, but this will also cause the one on the
 If we want to predict how much the rightmost clown will move in response to a certain amount of motion by the
 leftmost one, we have
 \begin{equation*}
-  \frac{\der z}{\der x} =   \frac{\der z}{\der y}  \cdot \frac{\der y}{\der x} \qquad .
+  \frac{\der z}{\der x} =   \frac{\der z}{\der y}  \cdot \frac{\der y}{\der x}\eqquad.
 \end{equation*}
 This is called the chain rule. It says that if a change in $x$ causes $y$ to change, and $y$ then causes $z$ to change,
 then this chain of changes has a cascading effect. Mathematically, 
@@ -544,7 +544,7 @@ and $z$ the calories spent. Then
 \begin{align*}
   \frac{\der z}{\der x} &= \left(\frac{70\ \zu{cal}}{1\ \cancel{\zu{km}}}\right)
                                      \left(\frac{3\ \cancel{\zu{km}}}{1\ \zu{hr}}\right) \\
-          &= 210\ \zu{cal}/\zu{hr} \qquad .
+          &= 210\ \zu{cal}/\zu{hr}\eqquad.
 \end{align*}
 \end{eg}
 
@@ -558,7 +558,7 @@ Let $x$, $y$, and $z$ be the angular positions of the three gears. Then by the c
 \begin{align*}
   \frac{\der z}{\der x} &= \frac{\der z}{\der y}  \cdot \frac{\der y}{\der x} \\
                         &= \frac{13}{21} \cdot \frac{21}{42} \\
-                        &= \frac{13}{42} \qquad .
+                        &= \frac{13}{42}\eqquad.
 \end{align*}
 
 \end{eg}
@@ -643,7 +643,8 @@ to time, and interpret the result. Check that the units of the result make sense
                         &= -\frac{c_{\zu{o}}}{a}e^{-t/a}
 \end{align*}
 
-This can be interpreted as the rate at which caffeine is being removed from the blood and put into the person's urine. It's
+This can be interpreted as the rate at which caffeine is being removed from the blood and
+broken down by the liver. It's
 negative because the concentration is decreasing.
 According to the original expression for $x$, a substance with a large $a$ will take a long time to reduce its concentration,
 since $t/a$ won't be very big unless we have large $t$ on top to compensate for the large $a$ on the bottom.
@@ -674,7 +675,7 @@ you know how to handle. This one can be rewritten as a base-$e$ exponent:
 Applying the chain rule, we have the derivative of the exponential, which is just the same
 exponential, multiplied by the derivative of the inside stuff:
 \begin{align*}
-  \frac{\der y}{\der x} &= e^{x\ln 10} \cdot \ln 10 \qquad .
+  \frac{\der y}{\der x} &= e^{x\ln 10} \cdot \ln 10\eqquad.
 \end{align*}
 In other words, the ``$c$'' referred to in the discussion of the derivative of $e^x$ becomes
 $c=\ln 10$ in the case of the base-10 exponential.
@@ -685,7 +686,7 @@ $c=\ln 10$ in the case of the base-10 exponential.
 The natural logarithm is the function that undoes the exponential. In a situation like this, we
 have
 \begin{equation*}
-  \frac{\der y}{\der x} = \frac{1}{\der x/\der y} \qquad ,
+  \frac{\der y}{\der x} = \frac{1}{\der x/\der y}\eqquad,
 \end{equation*}
 where on the left we're thinking of $y$ as a function of $x$, and on the right we consider
 $x$ to be a function of $y$. Applying this to the natural logarithm,
@@ -695,7 +696,7 @@ $x$ to be a function of $y$. Applying this to the natural logarithm,
   \frac{\der x}{\der y} &= e^y \\
   \frac{\der y}{\der x} &= \frac{1}{e^y} \\
                         & = \frac{1}{x} \\
-  \frac{\der \ln x}{\der x} &= \frac{1}{x} \qquad .
+  \frac{\der \ln x}{\der x} &= \frac{1}{x}\eqquad.
 \end{align*}
 
 \fig{power-ladder}{Differentiation and integration of functions of the form $x^n$. Constants
@@ -732,7 +733,7 @@ takes us off the ladder entirely.
 \intertext{By the chain rule,}
   \frac{\der y}{\der x} &= e^{n \ln x} \cdot \frac{n}{x} \\
                         &= x^n \cdot \frac{n}{x} \\
-                        &= nx^{n-1} \qquad .
+                        &= nx^{n-1}\eqquad.
 \end{align*}
 (For $n=0$, the result is zero.)
 \end{eg}
@@ -774,7 +775,7 @@ against considering infinitesimals as numbers in the first place.
 
 Using the new notation, the quotient rule becomes
 \begin{equation*}
-  \frac{\der}{\der x} \left(\frac{v}{u}\right) = \frac{1}{u}\cdot\frac{\der v}{\der x} - \frac{v}{u^2} \cdot \frac{\der u}{\der x} \qquad .
+  \frac{\der}{\der x} \left(\frac{v}{u}\right) = \frac{1}{u}\cdot\frac{\der v}{\der x} - \frac{v}{u^2} \cdot \frac{\der u}{\der x}\eqquad.
 \end{equation*}
 The interpretation of the minus sign is that if $u$ increases, $v/u$ decreases.
 
@@ -786,7 +787,7 @@ The interpretation of the minus sign is that if $u$ increases, $v/u$ decreases.
   \frac{\der}{\der x} \left(\frac{v}{u}\right) &= \frac{1}{u}\cdot\frac{\der v}{\der x} - \frac{v}{u^2} \cdot \frac{\der u}{\der x} \\
             &= \frac{1}{1+3x} - \frac{3x}{(1+3x)^2}
 \end{align*}
-One way to check that the result makes sense it to consider extreme values of $x$. For very large values of $x$, the
+One way to check that the result makes sense is to consider extreme values of $x$. For very large values of $x$, the
 1 on the bottom of $x/(1+3x)$ becomes negligible compared to the $3x$, and the function $y$ approaches $x/3x=1/3$ as a limit.
 Therefore we expect that the derivative $\der y/\der x$ should approach zero, since the derivative of a constant is
 zero. It works: plugging in bigger and bigger numbers for $x$ in the expression for the derivative does give
@@ -836,7 +837,7 @@ the program's output.
 First I asked it to differentiate $x^2$ with respect to x, and it told me the result was $2x$.
 Then I did the derivative of $e^{x^2}$, which
 I also could have done fairly easily by hand.
-(If you're trying this out on a computer as you real along, make sure to capitalize functions
+(If you're trying this out on a computer as you read along, make sure to capitalize functions
 like Exp, Sin, and Cos.)
 Finally I tried an example where I didn't know the answer off the top of my head, and that would
 have been a little tedious to calculate by hand.
@@ -1092,19 +1093,22 @@ same result you would have obtained by differentiating $x^8$.
 \givecredit{M. Livshits}
 \end{hwwithsoln}
 
-
 \begin{hwwithsoln}{max-range}
 The range of a gun, when elevated to an angle $\theta$, is given by
 \begin{align*}
-  R=\frac{2v^2}{g}\sin\theta\:\cos\theta \qquad .
+  R=\frac{2v^2}{g}\sin\theta\:\cos\theta\eqquad.
 \end{align*}
 Find the angle that will produce the maximum range.
 \end{hwwithsoln}
 
+\begin{hw}
+Differentiate $\sin \cos \tan x$ with respect to $x$.
+\end{hw}
+
 \begin{hwwithsoln}{cosh}\index{hyperbolic cosine}
 The hyperbolic cosine function is defined by
 \begin{align*}
-  \cosh x = \frac{e^x+e^{-x}}{2} \qquad .
+  \cosh x = \frac{e^x+e^{-x}}{2}\eqquad.
 \end{align*}
 Find any minima and maxima of this function.
 \end{hwwithsoln}
@@ -1126,7 +1130,7 @@ maximum velocity at which the upward force of air resistance cancels out the for
 The expression for the distance dropped by of a free-falling object, with air resistance, is\footnote{Jan Benacka
 and Igor Stubna, \emph{The Physics Teacher}, 43 (2005) 432.}
 \begin{equation*}
-  d = A \ln\left[\cosh\left(t\sqrt{\frac{g}{A}}\right)\right] \qquad ,
+  d = A \ln\left[\cosh\left(t\sqrt{\frac{g}{A}}\right)\right]\eqquad,
 \end{equation*}
 where $g$ is the acceleration the object would have without air resistance, the function cosh
 has been defined in problem \ref{hw:cosh}, and
@@ -1185,7 +1189,7 @@ This problem is a variation on problem \ref{hw:ke} on page \pageref{hw:ke}. Eins
 equation $K=(1/2)mv^2$ for kinetic energy was only a good approximation for speeds much less than
 the speed of light, $c$. At speeds comparable to the speed of light, the correct equation is
 \begin{equation*}
-  K = \frac{\frac{1}{2}mv^2}{\sqrt{1-v^2/c^2}} \qquad .
+  K = \frac{\frac{1}{2}mv^2}{\sqrt{1-v^2/c^2}}\eqquad.
 \end{equation*}
 (a) As in the earlier, simpler problem, find the power $\der K/\der t$ for an object accelerating
 at a steady rate, with $v=at$. \\
@@ -1200,11 +1204,11 @@ that the derivative of $\ln |x|$ equals $1/x$, for both positive and negative $x
 \end{hwwithsoln}
 
 \begin{hwwithsoln}{odd-even}
-On even function is one with the property $f(-x)=f(x)$. For example, $\cos x$ is an even function, and $x^n$ is an even function if
+An even function is one with the property $f(-x)=f(x)$. For example, $\cos x$ is an even function, and $x^n$ is an even function if
 $n$ is even. An odd function has $f(-x)=-f(x)$. Prove that the derivative of an even function is odd.
 \end{hwwithsoln}
 
-\begin{hw}
+\begin{hw}{average-minimizes-sum-of-squares}
 Suppose we have a list of numbers $x_1,\ldots x_n$, and we wish to find some number $q$ that is as close as possible
 to as many of the $x_i$ as possible. To make this a mathematically precise goal, we need to define some numerical
 measure of this closeness. Suppose we let $h=(x_1-q)^2+\ldots+(x_n-q)^2$, which can also be notated using $\Sigma$, uppercase Greek
@@ -1248,7 +1252,7 @@ all! Instead, the tuning has a certain amount of ``slop'' intentionally designed
 The strength of the received signal $s$ can be expressed in terms of the dial's setting
 $f$ by a function of the form
 \begin{equation*}
-  s = \frac{1}{\sqrt{a(f^2-f_\zu{o}^2)^2+bf^2}} \qquad ,
+  s = \frac{1}{\sqrt{a(f^2-f_\zu{o}^2)^2+bf^2}}\eqquad,
 \end{equation*}
 where $a$, $b$, and $f_\zu{o}$ are constants. This functional form is in fact very general, and
 is encountered in many other physical contexts. The graph below shows the resulting bell-shaped
@@ -1271,7 +1275,7 @@ Let the distance from the film to the lens be $x$, and let the distance from the
 needs to adjust $x$ so that it is properly matched with $y$, or else the image will be out of focus. There is therefore
 a fixed relationship between $x$ and $y$, and this relationship is of the form
 \begin{equation*}
-  \frac{1}{x}+\frac{1}{y} = \frac{1}{f} \qquad ,
+  \frac{1}{x}+\frac{1}{y} = \frac{1}{f}\eqquad,
 \end{equation*}
 where $f$ is a property of the lens, called its focal length. A stronger lens has a shorter focal length.
 Since the theater is large, and the projector is relatively small, $x$ is much less than $y$.

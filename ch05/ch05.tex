@@ -48,7 +48,7 @@ giving
   \Delta x &\approx \frac{\Delta y}{3x^2} \\
            &= 0.14 \\
   x &= 4.43 \\
-  x^3 &= 86.9 \qquad .
+  x^3 &= 86.9\eqquad.
 \end{align*}
 This second iteration gives an excellent approximation.
 
@@ -61,7 +61,7 @@ the sun. At $t=0$, the planet is at its closest approach to the sun, A. At some
 later time, the planet is at point B. The angle $x$ (measured in radians) is defined with reference
 to the imaginary circle encompassing the orbit. Kepler found the equation
 \begin{equation*}
-  2\pi \frac{t}{T} = x-e\sin x \qquad ,
+  2\pi \frac{t}{T} = x-e\sin x\eqquad,
 \end{equation*}
 where the period, $T$, is the time required for the planet to complete a full orbit, and
 the eccentricity of the ellipse, $e$, is a number that measures how much it
@@ -74,7 +74,7 @@ when Mercury has completed $1/4$ of a period.
 
 \eganswer We have
 \begin{equation*}
-  y = x-(0.206)\sin x \qquad ,
+  y = x-(0.206)\sin x\eqquad,
 \end{equation*}
 and we want to find $x$ when $y=2\pi/4=1.57$. As a first guess, we try $x=\pi/2$ (90 degrees), since the eccentricity of Mercury's
 orbit is actually much smaller than the example shown in the figure, and
@@ -100,7 +100,7 @@ For example, suppose we want to find $\der y/\der x$ in a case
 where the relationship between $x$
 and $y$ is given by the following equation:
 \begin{equation*}
-  y^7+y = x^7+x^2 \qquad .
+  y^7+y = x^7+x^2\eqquad.
 \end{equation*}
 There is no equivalent of the quadratic formula for seventh-order
 polynomials, so we have no way to solve for one variable in terms
@@ -114,15 +114,15 @@ $x^2$ with respect to $x$ and multiplied it by $\der x$. In
 symbols,
 \begin{align*}
   \der(x^2) &= \frac{\der(x^2)}{\der x} \cdot \der x \\
-           &= 2x \: \der x \qquad .
+           &= 2x \der x\eqquad.
 \end{align*}
 That is, the change in $x^2$ is $2x$ times the change in $x$.
 Doing this to both sides of the original equation, we have
 \begin{gather*}
   \der(y^7+y) = \der(x^7+x^2)\\
-  7y^6\:\der y + 1\:\der y = 7x^6\:\der x + 2x\:\der x\\
+  7y^6\der y + 1\der y = 7x^6\der x + 2x\der x\\
   (7y^6+1)\der y = (7x^6+2x)\der x \\
-  \frac{\der y}{\der x} = \frac{7x^6+2x}{7y^6+1} \qquad .
+  \frac{\der y}{\der x} = \frac{7x^6+2x}{7y^6+1}\eqquad.
 \end{gather*}
 This still doesn't give us a formula for the derivative in
 terms of $x$ alone, but it's not entirely useless. For instance,
@@ -134,7 +134,7 @@ evaluate the derivative.
 
 \subsection{Change of variable}\label{change-of-variable-for-integration}\index{integration!methods of!change of variable}\index{integration!methods of!substitution}\index{change of variables}\index{substitution}
 
-Sometimes an unfamiliar-looking integral can be made into a familiar one by substituting a
+Sometimes an unfamiliar-looking integral can be made into a familiar one by substituting 
 a new variable for an old one. For example, we know how to integrate $1/x$ --- the answer
 is $\ln x$ --- but what about
 \begin{equation*}
@@ -144,7 +144,7 @@ Let $u=2x+1$. Differentiating both sides, we have $\der u=2\der x$, or $\der x=\
 \begin{align*}
   \int \frac{\der x}{2x+1}   &= \int \frac{\der u/2}{u} \\
        &= \frac{1}{2}\ln u + c \\
-       &= \frac{1}{2}\ln(2x+1) +c \qquad .
+       &= \frac{1}{2}\ln(2x+1) +c\eqquad.
 \end{align*}
 This technique is known as a change of variable or a substitution. (Because the letter $u$ is often
 employed, you may also see it called $u$-substitution.)
@@ -162,7 +162,7 @@ to reflect the new variable.
 \intertext{Here the notation $\left.\right|_{u=7}^{u=9}$ means to evaluate the function at
 7 and 9, and subtract the former from the latter. The result is}
   \int_{x=3}^{x=4} \frac{\der x}{2x+1}  &= \frac{1}{2}(\ln 9-\ln 7) \\
-            &=\frac{1}{2}\ln\frac{9}{7} \qquad .
+            &=\frac{1}{2}\ln\frac{9}{7}\eqquad.
 \end{align*}
 \end{eg}
 
@@ -172,16 +172,16 @@ seemingly impossible integral.
 \begin{eg}\label{eg:not-so-tricky}
 \egquestion Evaluate
 \begin{equation*}
-  \int \frac{e^{\sqrt x}}{\sqrt x} \der x \qquad .
+  \int \frac{e^{\sqrt x}}{\sqrt x} \der x\eqquad.
 \end{equation*}
 
 \eganswer The only hope for reducing this to a form we can do is to let
 $u=\sqrt x$. Then $\der x=\der(u^2)=2u\der u$, so
 \begin{align*}
-  \int \frac{e^{\sqrt x}}{\sqrt x} \der x &=   \int \frac{e^u}{u} \cdot 2u\:\der u \\
+  \int \frac{e^{\sqrt x}}{\sqrt x} \der x &=   \int \frac{e^u}{u} \cdot 2u\der u \\
              &= 2 \int e^u \der u \\
              &= 2e^u \\
-             &= 2e^{\sqrt{x}} \qquad .
+             &= 2e^{\sqrt{x}}\eqquad.
 \end{align*}
 \end{eg}
 
@@ -192,15 +192,15 @@ dastardly.
 \begin{eg}\label{eg:arctan}\index{arctangent}
 \egquestion Evaluate
 \begin{equation*}
-  \int \frac{\der x}{1+x^2} \qquad .
+  \int \frac{\der x}{1+x^2}\eqquad.
 \end{equation*}
 
 \eganswer The substitution that works is $x=\tan u$. First let's see what this does
 to the expression $1+x^2$. The familiar identity
 \begin{align*}
-   &\sin^2 u + \cos^2 u = 1 \qquad ,\\
+   &\sin^2 u + \cos^2 u = 1\eqquad,\\
 \intertext{when divided by $\cos^2 u$, gives}
-   &\tan^2 u + 1 = \sec^2 u \qquad ,
+   &\tan^2 u + 1 = \sec^2 u\eqquad,
 \end{align*}
 so $1+x^2$ becomes $\sec^2 u$.
 But differentiating both sides of $x=\tan u$ gives
@@ -209,13 +209,13 @@ But differentiating both sides of $x=\tan u$ gives
          &= (\der\sin u)(\cos u)^{-1}\\
          &  \quad +(\sin u)\der\left[(\cos u)^{-1}\right] \\
          &= \left(1+\tan^2 u\right)\der u \\
-         &= \sec^2 u\:\der u \qquad , 
+         &= \sec^2 u\der u\eqquad, 
 \end{align*}
 so the integral becomes
 \begin{align*}
   \int \frac{\der x}{1+x^2} &= \int \frac{\sec^2 u \der u}{\sec^2 u} \\
            &= u+c \\
-           &= \tan^{-1} x+c \qquad .
+           &= \tan^{-1} x+c\eqquad.
 \end{align*}
 \end{eg}
 %
@@ -244,11 +244,11 @@ Pythagorean theorem to find its hypotenuse.
 triangle with hypotenuse 1 and a leg of length $x$, and were using the
 Pythagorean theorem to find the other leg, as in figure \figref{cos-substitution}.
 This motivates us to try the substitution $x=\cos u$, which gives
-$\der x=-\sin u\:\der u$ and $\sqrt{1-x^2}=\sqrt{1-\cos^2u}=\sin u$. The result is
+$\der x=-\sin u\der u$ and $\sqrt{1-x^2}=\sqrt{1-\cos^2u}=\sin u$. The result is
 \begin{align*}
-  \int \frac{\der x}{\sqrt{1-x^2}} &= \int \frac{-\sin u\:\der u}{\sin u} \\
-                 &= u+c \\
-                 &= \cos^{-1}x \qquad .
+  \int \frac{\der x}{\sqrt{1-x^2}} &= \int \frac{-\sin u\der u}{\sin u} \\
+                 &= -u+c \\
+                 &= -\cos^{-1}x\eqquad.
 \end{align*}
 \end{eg}
 %
@@ -262,9 +262,9 @@ then we can calculate the easier one, and then by simple geometry determine
 the one we wanted. Identifying the large rectangle that surrounds both
 shaded areas, and the small white rectangle on the lower left, we have
 \begin{align*}
-  \int u\:\der v =& (\text{area of large rectangle})\\
+  \int u\der v =& (\text{area of large rectangle})\\
                 &-(\text{area of small rectangle})\\
-                &\int v\:\der u \qquad .
+                &\int v\der u\eqquad.
 \end{align*}
 
 \fig{by-parts}{Integration by parts.}
@@ -272,13 +272,13 @@ shaded areas, and the small white rectangle on the lower left, we have
 In the case of an indefinite integral, we have a similar relationship
 derived from the product rule:
 \begin{gather*}
-  \:\der(uv) = u \:\der v + v \:\der u \\
-  u \:\der v = \der(uv) - v \:\der u 
+  \der(uv) = u \der v + v \der u \\
+  u \der v = \der(uv) - v \der u 
 \end{gather*}
 Integrating both sides, we have the following relation.
 \begin{important}[Integration by parts]
 \begin{equation*}
-  \int u \:\der v = uv - \int v \:\der u \qquad .
+  \int u \der v = uv - \int v \der u\eqquad.
 \end{equation*}
 \end{important}
 Since a definite integral can always be done by evaluating an indefinite
@@ -295,23 +295,23 @@ a simplification.
 \begin{eg}
 \egquestion Evaluate
 \begin{equation*}
-  \int x \cos x \:\der x
+  \int x \cos x \der x
 \end{equation*}
 
 \egquestion There are two obvious possibilities for splitting up the integrand
 into factors,
 \begin{align*}
-  u \:\der v &= (x)(\cos x\:\der x) \\
+  u \der v &= (x)(\cos x\der x) \\
 \intertext{or}
-  u \:\der v &= (\cos x)(x\:\der x) \qquad .
+  u \der v &= (\cos x)(x\der x)\eqquad.
 \end{align*}
 The first one is the one that lets us make progress. If $u=x$, then
-$\der u=\der x$, and if $\der v=\cos x\:\der x$, then integration
+$\der u=\der x$, and if $\der v=\cos x\der x$, then integration
 gives $v=\sin x$.
 \begin{align*}
-  \int x \cos x \:\der x &= \int u \:\der v \\
-                       &= uv - \int v \:\der u \\
-                       &= x\sin x-\int \sin x \:\der x \\
+  \int x \cos x \der x &= \int u \der v \\
+                       &= uv - \int v \der u \\
+                       &= x\sin x-\int \sin x \der x \\
                        &= x\sin x+\cos x
 \end{align*}
 Of the two possibilities we considered for $u$ and $\der v$, the reason
@@ -324,21 +324,21 @@ less.
 \end{eg}
 
 \begin{eg}
-\egquestion Evaluate $\int \ln x \:\der x$.
+\egquestion Evaluate $\int \ln x \der x$.
 
 \eganswer This one is a little tricky, because it isn't explicitly
 written as a product, and yet we can attack it using integration by
 parts. Let $u=\ln x$ and $\der v=\der x$.
 \begin{align*}
-  \int \ln x \:\der x &= \int u \:\der v \\
-                       &= uv - \int v \:\der u \\
+  \int \ln x \der x &= \int u \der v \\
+                       &= uv - \int v \der u \\
                        &= x\ln x-\int x \frac{\der x}{x} \\
                        &= x\ln x-x
 \end{align*}
 \end{eg}
 
 \begin{eg}\label{eg:integrate-x-squared-times-exp}
-\egquestion Evaluate $\int x^2 e^x \:\der x$.
+\egquestion Evaluate $\int x^2 e^x \der x$.
 
 \eganswer
 Integration by parts lets us split the integrand into two factors, integrate one, differentiate the
@@ -347,13 +347,13 @@ $x^2$ increases the exponent, which makes the problem look harder, whereas diffe
 knocks the exponent down a step, which makes it look easier. Let $u=x^2$ and $\der v=e^x \der x$,
 so that $\der u=2x\der x$ and $v=e^x$. We then have
 \begin{equation*}
-  \int x^2 e^x \:\der x = x^2 e^x - 2 \int x e^x\der x \qquad .
+  \int x^2 e^x \der x = x^2 e^x - 2 \int x e^x\der x\eqquad.
 \end{equation*}
 Although we don't immediately know how to evaluate this new integral, we can subject it to the
 same type of integration by parts, now with $u=x$ and $\der v=e^x \der x$. After the second
 integration by parts, we have:
 \begin{align*}
-  \int x^2 e^x \:\der x &= x^2 e^x - 2 \left(x e^x -\int e^x\der x \right) \\
+  \int x^2 e^x \der x &= x^2 e^x - 2 \left(x e^x -\int e^x\der x \right) \\
                         &= x^2 e^x - 2 \left(x e^x - e^x \right) \\
                         &= (x^2-2x+2)e^x \\
 \end{align*}
@@ -363,19 +363,19 @@ integration by parts, we have:
 
 Given a function like
 \begin{equation*}
-  \frac{-1}{x-1}+\frac{1}{x+1} \qquad ,
+  \frac{-1}{x-1}+\frac{1}{x+1}\eqquad,
 \end{equation*}
 we can rewrite it over a common denominator like this:
 \begin{align*}
   &\left(\frac{-1}{x-1}\right)\left(\frac{x+1}{x+1}\right) \\
   &+\left(\frac{1}{x+1}\right)\left(\frac{x-1}{x-1}\right) \\
   &=\frac{-x-1+x-1}{(x-1)(x+1)} \\
-  &=\frac{-2}{x^2-1} \qquad .
+  &=\frac{-2}{x^2-1}\eqquad.
 \end{align*}
 But note that the original form is easily integrated to give
 \begin{multline*}
-  \int \left(\frac{-1}{x-1}+\frac{1}{x+1}\right)\:\der x \\
-    =-\ln(x-1)+\ln(x+1)+c \qquad ,
+  \int \left(\frac{-1}{x-1}+\frac{1}{x+1}\right)\der x \\
+    =-\ln(x-1)+\ln(x+1)+c\eqquad,
 \end{multline*}
 while faced with the form \linebreak[4] $-2/(x^2-1)$, we wouldn't have known how to
 integrate it.
@@ -394,11 +394,11 @@ could only have happened if the constants on top were opposites like plus and mi
 The idea of the method of partial fractions is that if we want to
 do an integral of the form
 \begin{equation*}
-  \int \frac{\der x}{P(x)} \qquad ,
+  \int \frac{\der x}{P(x)}\eqquad,
 \end{equation*}
 where $P(x)$ is an nth order polynomial, we rewrite $1/P$ as
 \begin{equation*}
-  \frac{1}{P(x)} = \frac{A_1}{x-r_1} + \ldots \frac{A_n}{x-r_n} \qquad ,
+  \frac{1}{P(x)} = \frac{A_1}{x-r_1} + \ldots \frac{A_n}{x-r_n}\eqquad,
 \end{equation*}
 where $r_1$ \ldots $r_n$ are the roots of the polynomial, i.e., the
 solutions of the equation $P(r)=0$. If the polynomial is second-order,
@@ -439,7 +439,7 @@ We know that for $x$ very close to 3, the expression
 will be dominated by the $A_1$ term, so
 \begin{gather*}
   -8930 \approx \frac{A_1}{3.000001-3} \\
-  A_1 \approx (-8930)(10^{-6})  \qquad .
+  A_1 \approx (-8930)(10^{-6})\eqquad.
 \end{gather*}
 By the same method we can find the other four constants:
 \begin{Code}
@@ -457,7 +457,7 @@ avoid problems with rounding errors.) Thus, \begin{align*}
   \frac{1}{P} &= \frac{-8.93\times10^{-3}}{x-3} \\
               &+ \frac{2.84\times10^{-3}}{x-7} \\
               &- \frac{4.33\times10^{-3}}{x+4} \\
-              &+ \frac{1.04\times10^{-2}}{x+1} \qquad .
+              &+ \frac{1.04\times10^{-2}}{x+1}\eqquad.
 \end{align*}
 The desired integral is
 \begin{align*}
@@ -465,7 +465,7 @@ The desired integral is
               & +2.84\times10^{-3}\ln(x-7) \\
               & -4.33\times10^{-3}\ln(x+4) \\
               &+ 1.04\times10^{-2}\ln(x+1) \\
-              &+c \qquad .
+              &+c\eqquad.
 \end{align*}
 
 As in the simpler example I started off with, where $P$ was second order
@@ -527,7 +527,7 @@ Yacas to expand the integrand in terms of partial fractions:
 We can now rewrite the integral like this:
 
 \begin{align*}
-   &\frac{2}{25} \int \frac{x\:\der x}{x^2+1} \\
+   &\frac{2}{25} \int \frac{x\der x}{x^2+1} \\
   +&\frac{3}{50} \int \frac{\der x}{x^2+1} \\
   +&\frac{1}{300} \int \frac{\der x}{x-7} \\
   -&\frac{1}{12} \int \frac{\der x}{x-1} \\
@@ -561,12 +561,12 @@ are distinct, and that $P$'s highest-order term is $x^n$. We can then write $P$ 
 $P(x)=(x-r_1)(x-r_2)\ldots(x-r_n)$. For products like this, there is a notation $\Pi$ (capital Greek letter ``pi'')
 that works like $\Sigma$ does for sums: 
 \begin{equation*}
-  P(x)=\prod_{i=1}^n(x-r_i) \qquad .
+  P(x)=\prod_{i=1}^n(x-r_i)\eqquad.
 \end{equation*}
 It's not necessary that the roots be real, but for now we assume that they are.
 We want to find the coefficients $A_i$ such that
 \begin{equation*}
-  \frac{1}{P(x)} = \sum \frac{A_i}{x-r_i} \qquad .
+  \frac{1}{P(x)} = \sum \frac{A_i}{x-r_i}\eqquad.
 \end{equation*}
 We then have
 \begin{gather*}
@@ -695,7 +695,7 @@ at the point on the curve you found in part a. Answer: $\der y/\der x=-0.0379$\\
 \begin{hw}
 Suppose you want to evaluate
 \begin{equation*}
-  \int \frac{\der x}{1+\sin 2x} \qquad ,
+  \int \frac{\der x}{1+\sin 2x}\eqquad,
 \end{equation*}
 and you've found
 \begin{equation*}
@@ -708,21 +708,28 @@ original problem.
 \begin{hw}
 Evaluate
 \begin{equation*}
-  \int \frac{\sin x \der x}{1+\cos x} \qquad .
+  \int \frac{\sin x \der x}{1+\cos x}\eqquad.
 \end{equation*}
 \end{hw}
 
 \begin{hw}
 Evaluate
 \begin{equation*}
-  \int \frac{\sin x \der x}{1+\cos^2 x} \qquad .
+  \int \frac{\sin x \der x}{1+\cos^2 x}\eqquad.
 \end{equation*}
 \end{hw}
 
 \begin{hw}
 Evaluate
 \begin{equation*}
-  \int \sqrt{x^4+bx^2} \:\der x \qquad ,
+  \int x\sqrt{a-x}\der x\eqquad.
+\end{equation*}
+\end{hw}
+
+\begin{hw}
+Evaluate
+\begin{equation*}
+  \int \sqrt{x^4+bx^2} \der x\eqquad,
 \end{equation*}
 where $b$ is a constant.
 \end{hw}
@@ -730,30 +737,30 @@ where $b$ is a constant.
 \begin{hw}
 Evaluate
 \begin{equation*}
-  \int x e^{-x^2} \:\der x \qquad .
+  \int x e^{-x^2} \der x\eqquad.
 \end{equation*}
 \end{hw}
 
 \begin{hw}
 Evaluate
 \begin{equation*}
-  \int x e^x \:\der x \qquad .
+  \int x e^x \der x\eqquad.
 \end{equation*}
 \end{hw}
 
 \begin{hw}
 Use integration by parts to evaluate the following integrals.
 \begin{gather*}
-  \int \sin^{-1} x\:\der x \\
-  \int \cos^{-1} x\:\der x \\
-  \int \tan^{-1} x\:\der x 
+  \int \sin^{-1} x\der x \\
+  \int \cos^{-1} x\der x \\
+  \int \tan^{-1} x\der x 
 \end{gather*}
 \end{hw}
 
 \begin{hw}
 Evaluate
 \begin{equation*}
-  \int x^2 \sin x \:\der x \qquad .
+  \int x^2 \sin x \der x\eqquad.
 \end{equation*}
 Hint: Use integration by parts more than once.
 \end{hw}
@@ -761,28 +768,28 @@ Hint: Use integration by parts more than once.
 \begin{hw}
 Evaluate
 \begin{equation*}
-  \int \frac{\der x}{x^2-x-6} \qquad .
+  \int \frac{\der x}{x^2-x-6}\eqquad.
 \end{equation*}
 \end{hw}
 
 \begin{hw}
 Evaluate
 \begin{equation*}
-  \int \frac{\der x}{x^3+3x^2-4} \qquad .
+  \int \frac{\der x}{x^3+3x^2-4}\eqquad.
 \end{equation*}
 \end{hw}
 
 \begin{hw}
 Evaluate
 \begin{equation*}
-  \int \frac{\der x}{x^3-x^2+4x-4} \qquad .
+  \int \frac{\der x}{x^3-x^2+4x-4}\eqquad.
 \end{equation*}
 \end{hw}
 
 \begin{hw}\label{hw:integration-by-parts-twice-trick}
 Apply integration by parts \emph{twice} to
 \begin{equation*}
-  \int e^{-x}\cos x \:\der x \qquad ,
+  \int e^{-x}\cos x \der x\eqquad,
 \end{equation*}
 examine what happens, and manipulate the result in order to solve the original integral.
 (An approach that doesn't rely on tricks is given in example \ref{eg:int-exp-cos-euler} on p.~\pageref{eg:int-exp-cos-euler}.)
@@ -793,7 +800,7 @@ Plan, \emph{but do not actually carry out} the steps that would be required in o
 the result of example \ref{eg:integrate-x-squared-times-exp} on p.~\pageref{eg:integrate-x-squared-times-exp}
 in order to evaluate
 \begin{equation*}
-  \int x^a b^{-x} \:\der x \qquad ,
+  \int x^a b^{-x} \der x\eqquad,
 \end{equation*}
 where $a$ and $b$ are constants.
 Which is easier, the generalization from 2 to $a$, or the one from $e$ to $b$?
@@ -808,7 +815,7 @@ of variable to write down a different integral that also can't be done in closed
 \begin{hwwithsoln}{exp-of-power-doable}
 Consider the integral
 \begin{equation*}
-  \int e^{x^p} \der x \qquad ,
+  \int e^{x^p} \der x\eqquad,
 \end{equation*}
 where $p$ is a constant. There is an obvious substitution. If this is to result in
 an integral that can be evaluated in closed form by a series of integrations by parts,

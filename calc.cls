@@ -3,7 +3,7 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{calc}
 
-\LoadClass[12pt]{book}
+\LoadClass[12pt,a4paper]{book}
 
 \RequirePackage{mytocloft,titlesec,titletoc,multicol,makeidx,wrapfig,fancyhdr,calc,amssymb,fancyvrb,ifthen,framed,alphalph,cancel,url,learn-cmd-syntax,navigator}
 \RequirePackage{color}%see pdftex mailing list, 2004 May 22-23
@@ -39,11 +39,11 @@
 
 %----------- page layout ----------------
 \setlength{\marginparwidth}{0mm}
-\setlength{\textwidth}{7.42in}
-\setlength{\textheight}{9.82in}
+\setlength{\textwidth}{6.9in}
+\setlength{\textheight}{10.2in}
 \setlength{\pdfpagewidth}{8.27in}
 \setlength{\pdfpageheight}{11.69in}
-\setlength{\hoffset}{-.35in}
+\setlength{\hoffset}{-.25in}
 \setlength{\voffset}{-.73in} %% -.3
 \setlength{\topmargin}{0in}
 \setlength{\oddsidemargin}{0mm}

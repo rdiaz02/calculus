@@ -1,11 +1,14 @@
 %%chapter%% 99
-\chapter{Detours}
+\phantomsection
+\chapter*{Detours}
 
-%\newcommand{\detour}[2]{\textbf{#2}\label{detour:#1}}
-\newcommand{\detour}[2]{\subsection{#2}\label{detour:#1}}
+\addcontentsline{toc}{chapter}{A. Detours}
+\markboth{A. Detours}{A. Detours}
 
+
+\phantomsection
+\newcommand{\detour}[2]{\section{#2}\label{detour:#1}}
 \vfill
-
 \detour{def-tangent}{Formal definition of the tangent line}\index{tangent line!formal definition}
 
 Given a function $x(t)$, consider any point $\zu{P}=(a,x(a))$ on its graph.
@@ -44,7 +47,8 @@ $b=0$ gives the tangent line at the origin.
 
 
 \pagebreak
-
+% \addcontentsline{toc}{subsection}{E.1.2 Derivatives of polynomials}
+% \subsection*{Derivatives of polynomials}\index{derivative!of a polynomial}
 \detour{polynomial-proof}{Derivatives of polynomials}\index{derivative!of a polynomial}
 
 Some ideas in this proof are due to Tom Goodwillie.
@@ -830,7 +834,7 @@ the definition of the definite integral that when one function is less than anot
 than the other's. Since $y$ takes on values less than and greater than $\bar{y}$, it follows from the intermediate value theorem
 that $y$ takes on the value $\bar{y}$ somewhere (intuitively, at a boundary between $L$ and $M$).
 
-\pagebreak
+\clearpage
 
 \detour{fn-thm-alg-proof}{Proof of the fundamental theorem of algebra}\index{fundamental theorem of algebra!proof}
 

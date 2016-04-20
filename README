@@ -29,3 +29,19 @@ Then:
 I haven't tried compiling the books on MacOS X or Windows. I suspect
 it could be done on MacOS X without any heroic measures, and I suspect
 that it would be a real pain on Windows.
+
+
+===================
+Changes by rdiaz02
+===================
+
+Modified for easier navigation and reading in a tablet
+- Hyperref with outline and correct numbers
+- Page size A4 
+- Decreased margins
+- Single column
+
+(These changes mess some things of the beatiful original: figures now
+leave a lot of empty space around, and I did a lot of ugly kludges
+to get numbers right on ToC and outlines for Detours and ff ---and Detours
+is still showing ugly).

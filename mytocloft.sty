@@ -97,11 +97,11 @@ Consider installing the current version of tocbibind.}}
   \fi}
 \newcommand{\@cftdobibtoc}{%
   \if@dotoctoc
-    \if@bibchapter
-      \addcontentsline{toc}{chapter}{\contentsname}
-    \else
-      \addcontentsline{toc}{\@tocextra}{\contentsname}
-    \fi
+  \if@bibchapter 
+  \addcontentsline{toc}{chapter}{\contentsname}
+  \else
+  \addcontentsline{toc}{\@tocextra}{\contentsname}
+  \fi
   \fi}
 \AtBeginDocument{%
 \if@cftnctoc\else

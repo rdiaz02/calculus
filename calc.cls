@@ -268,11 +268,16 @@
 %============================= titlesec stuff ===================================
 \definecolor{secnumgray}{gray}{.75} %% 55
 \newcommand{\showsecnum}[1]{\color{secnumgray}#1}
-\titleformat{\chapter}
+% \titleformat{\chapter}
+%     {\normalfont\Huge\bfseries\sffamily\raggedright}{\thechapter}{5mm}
+%     {\Huge}
+
+\titleformat{\chapter}[block]
     {\normalfont\Huge\bfseries\sffamily\raggedright}{\thechapter}{5mm}
     {\Huge}
+
 \titlespacing{\chapter}{0mm}{0mm}{5mm} % left margin, space before, space after
-\titleformat{\section}
+\titleformat{\section}[block]
     {\normalfont\Large\bfseries\sffamily\raggedright}{\showsecnum{\thesection}}{0.6em}{}
 \titlespacing{\section}{0mm}{0mm}{0mm} % left margin, space before, space after
 \titleformat{\subsection}

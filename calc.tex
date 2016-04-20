@@ -8,12 +8,26 @@
 % \let\ifpdf\relax % http://tex.stackexchange.com/questions/11414/package-ifpdf-error
 % --------> this fails with TeX Live 2013, conflicts with xparse
 
+%% \providecommand\phantomsection{}
+\usepackage{bookmark} %% for bookmarksetup below
+\usepackage[fontsize=16pt]{scrextend}
+\usepackage{makeidx}
+\makeindex
+\usepackage[nottoc]{tocbibind}
 
 \usepackage{hyperref}
-\usepackage[fontsize=16pt]{scrextend}
+\hypersetup{pdftex,
+  colorlinks=true,
+  allcolors=blue
+  , bookmarksnumbered=true     
+  % bookmarksopen=true,         
+  % bookmarksopenlevel=1,       
+  % colorlinks=true,            
+  % pdfstartview=Fit,           
+  % pdfpagemode=UseOutlines
+}
 %\changefontsizes[20pt]{16pt}
-\makeindex
-
+% \makeindex
 
 
 \begin{document}
@@ -40,6 +54,7 @@
   \addtocounter{page}{6} 
 %========================= chapters =========================
 	\renewcommand{\chapdir}{ch01}\include{ch01/ch01}% 
+\bookmarksetup{startatroot} %% enough putting it here. Nesting was wrong.
 	\renewcommand{\chapdir}{ch02}\include{ch02/ch02}% 
 	\renewcommand{\chapdir}{ch03}\include{ch03/ch03}% 
 	\renewcommand{\chapdir}{ch04}\include{ch04/ch04}% 
@@ -51,6 +66,9 @@
 	\renewcommand{\chapdir}{ch09}\include{ch09/ch09}% 
 \onecolumn
 \setcounter{chapter}{0}
+\setcounter{section}{0}
+\setcounter{subsection}{0}
+\bookmarksetup{startatroot}
 \renewcommand{\thechapter}{\Alph{chapter}}
 \renewcommand{\chaptermark}[1]{\markboth{\textsf{\thechapter\hspace{\myfooterspace}#1}}{}}
 	\renewcommand{\chapdir}{ch99}\include{ch99/detours}% 

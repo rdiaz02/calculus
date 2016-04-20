@@ -124,7 +124,7 @@ very_clean: clean
 
 clean:
 	# Sometimes we get into a state where LaTeX is unhappy, and erasing these cures it:
-	rm -f *aux *idx *ilg *ind *log *toc
+	rm -f *aux *idx *ilg *ind *log *toc *out
 	rm -f ch*/*aux
 	rm -f temp.* temp_mathml.*
 	# Shouldn't exist in subdirectories:
